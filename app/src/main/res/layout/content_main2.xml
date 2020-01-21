@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_mainfrag"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/rt3"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
+    android:screenOrientation="portrait"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Main2Activity"
+    tools:showIn="@layout/app_bar_main2">
+
+
+  <ScrollView
+
+
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FAD6EB">
+
+
+      <Button
+          android:id="@+id/btnAFestivos"
+          android:layout_width="0dp"
+          android:layout_height="46dp"
+          android:layout_marginStart="115dp"
+          android:layout_marginEnd="115dp"
+          android:background="#FDFDFE"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Arreglos Festivos"
+          android:textColor="#009898"
+          android:textSize="12sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="@+id/btnCajasConF"
+          app:layout_constraintTop_toBottomOf="@+id/btnSINchoc" />
+
+      <Button
+          android:id="@+id/btnCajasConF"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:background="#009898"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Cajas con Frutas"
+          android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+          android:textSize="12sp"
+          app:layout_constraintEnd_toStartOf="@+id/btnSINchoc"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/btnConCHoc" />
+
+      <Button
+          android:id="@+id/btnNcontacto"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:background="#009898"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Nuestro Contacto"
+          android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+          android:textSize="12sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/btnAFestivos"
+          app:layout_constraintTop_toBottomOf="@+id/btnFrutaFlo" />
+
+      <android.support.v4.view.ViewPager
+          android:id="@+id/imageView4"
+          android:layout_width="0dp"
+          android:layout_height="268dp"
+          android:layout_marginTop="16dp"
+          android:background="@drawable/frutagolosa"
+          android:contentDescription="@string/logo"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/frutagolosa">
+
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+
+        </android.support.design.widget.TabLayout>
+
+      </android.support.v4.view.ViewPager>
+
+      <fragment
+          android:id="@+id/fragmentar"
+          android:name="com.frutagolosa.fgapp.ConChocolateFragment"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="1dp"
+          android:layout_marginTop="80dp"
+          android:layout_marginEnd="1dp"
+          android:layout_marginBottom="80dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView4"
+          app:layout_constraintVertical_bias="0.0" />
+
+      <fragment
+          android:id="@+id/fragmentar2"
+          android:name="com.frutagolosa.fgapp.SinChocolateFragment"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="1dp"
+          android:layout_marginTop="80dp"
+          android:layout_marginEnd="1dp"
+          android:layout_marginBottom="80dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView4"
+          app:layout_constraintVertical_bias="0.013" />
+
+      <fragment
+          android:id="@+id/fragmentar3"
+          android:name="com.frutagolosa.fgapp.FrutasFloresFragm"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="80dp"
+          android:layout_marginBottom="120dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+      <fragment
+          android:id="@+id/fragmentar4"
+          android:name="com.frutagolosa.fgapp.ContacNuFragment"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="80dp"
+          android:layout_marginBottom="50dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+      <fragment
+          android:id="@+id/fragmentar5"
+          android:name="com.frutagolosa.fgapp.FestivosFragment"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="80dp"
+          android:layout_marginBottom="50dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+
+      <Button
+          android:id="@+id/btnConCHoc"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:background="#FDFDFE"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text=" Arreglos Con Chocolate"
+          android:textColor="#009898"
+          android:textSize="12sp"
+          app:layout_constraintEnd_toStartOf="@+id/btnSINchoc"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/btnSINchoc" />
+
+      <Button
+          android:id="@+id/btnSINchoc"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_marginStart="115dp"
+          android:layout_marginEnd="115dp"
+          android:background="#009898"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Arreglos Sin Chocolate"
+          android:textColor="@android:color/white"
+          android:textSize="12sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/btnConCHoc"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+      <Button
+          android:id="@+id/btnFrutaFlo"
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:background="#FDFDFE"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Areglos De Frutas y Flores"
+          android:textColor="#009898"
+          android:textSize="12sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/btnSINchoc"
+          app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+  </ScrollView>
+
+  <Button
+
+      android:id="@+id/PedidopendienteBTN"
+      style="@style/Widget.AppCompat.Button.Colored"
+      android:layout_width="409dp"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="2dp"
+      android:layout_marginLeft="2dp"
+      android:layout_marginTop="580dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginRight="0dp"
+      android:layout_marginBottom="0dp"
+      android:background="@color/colorAccent"
+      android:fontFamily="@font/roboto_condensed_bold"
+      android:text="SIGA SU PEDIDO"
+      android:textAppearance="@style/TextAppearance.AppCompat.Button"
+      android:textColor="@android:color/white"
+      android:textSize="18sp" />
+
+  <TextView
+      android:id="@+id/UsuarioTxt"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginLeft="0dp"
+      android:layout_marginTop="0dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginRight="0dp"
+      android:background="@color/yellow"
+      android:fontFamily="@font/roboto_condensed_bold"
+      android:text="@string/usuario"
+      android:textAlignment="center"
+      android:textColor="@color/common_google_signin_btn_text_dark_focused"
+      android:textSize="14sp" />
+
+</RelativeLayout>

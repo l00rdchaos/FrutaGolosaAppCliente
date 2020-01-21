@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "966542052214",
+    "firebase_url": "https://frutagolosap3.firebaseio.com",
+    "project_id": "frutagolosap3",
+    "storage_bucket": "frutagolosap3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966542052214:android:2baa85e8dd801404",
+        "android_client_info": {
+          "package_name": "com.frutagolosa.fgapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966542052214-tkog5t7b5i40r3u045gn83hdksrp8d41.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.frutagolosa.fgapp",
+            "certificate_hash": "2cec34aab29cc7aafd45d77ed2f1ed1744b9c187"
+          }
+        },
+        {
+          "client_id": "966542052214-s77aklsuttdrsqrprrps1jpbs7lhhq3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZSNmgWa-7AgurW7CUoHkZFr2-fOP_Pag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966542052214-s77aklsuttdrsqrprrps1jpbs7lhhq3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

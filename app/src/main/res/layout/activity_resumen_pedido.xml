@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rt2"
+    tools:context=".ResumenPedidoActivity">
+
+  <Button
+      android:id="@+id/btnPagar"
+      android:layout_width="match_parent"
+      android:layout_height="45dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginLeft="0dp"
+      android:layout_marginTop="580dp"
+      android:layout_marginEnd="208dp"
+      android:layout_marginRight="208dp"
+      android:layout_marginBottom="0dp"
+      android:background="@color/colorAccent"
+      android:text="Transferencia"
+      android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+  <Button
+      android:id="@+id/btnpagar2"
+      android:layout_width="match_parent"
+      android:layout_height="45dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="208dp"
+      android:layout_marginLeft="208dp"
+      android:layout_marginTop="580dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginRight="0dp"
+      android:layout_marginBottom="0dp"
+      android:background="@color/colorAccent"
+      android:text="@string/tarjeta_de_creditoa"
+      android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF6FF">
+
+
+      <TextView
+          android:id="@+id/textView27"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="48dp"
+          android:text="@string/descripci_n_de_su_pedido"
+          android:textAlignment="center"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:text="Descripción de su pedido" />
+
+
+      <TextView
+          android:id="@+id/NombreArregloPr"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/nombre_de_arregloj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/txtdescuento" />
+
+      <TextView
+          android:id="@+id/PrecioArreglo"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/precio_de_arregloj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/NombreArregloPr" />
+
+      <TextView
+          android:id="@+id/NombrePrecibr"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/nombre_de_persona_que_recibej"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/PrecioArreglo" />
+
+      <TextView
+          android:id="@+id/TelefonoPrRecibe"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/telefono_de_persona_que_recibej"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/NombrePrecibr" />
+
+      <TextView
+          android:id="@+id/FechaRecibepr"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/fecha_de_entregaj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/TelefonoPrRecibe" />
+
+      <TextView
+          android:id="@+id/HoraRecibepr"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/franja_horaria_de_entrega"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/FechaRecibepr" />
+
+      <TextView
+          android:id="@+id/AdicionalPorEnvio"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/costo_adicional_por_envioj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/HoraRecibepr" />
+
+      <TextView
+          android:id="@+id/CallePrincipalPr"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/calle_principalj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/AdicionalPorEnvio" />
+
+      <TextView
+          android:id="@+id/CalleSecPR"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/calle_secundariaj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/CallePrincipalPr" />
+
+      <TextView
+          android:id="@+id/ReferenciaPr"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/referenciasj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/CalleSecPR" />
+
+      <TextView
+          android:id="@+id/DetalleUBPR"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/detalle_extra_de_ubicacionj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/ReferenciaPr" />
+
+      <TextView
+          android:id="@+id/GloboOTG"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="4dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/globo_y_tarjetaj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/TxtNumeracion" />
+
+      <TextView
+          android:id="@+id/Detagg"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/detalle_en_la_tarjetaj"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/GloboOTG" />
+
+
+      <TextView
+          android:id="@+id/PrecioFinal"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="20dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginBottom="120dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/precio_final"
+          android:textAlignment="center"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/TxtSector"
+          app:layout_constraintVertical_bias="1.0" />
+
+      <TextView
+          android:id="@+id/TxtNumeracion"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/numeracionasd"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/DetalleUBPR" />
+
+      <TextView
+          android:id="@+id/TxtEspecificacionrp"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/especificacionf"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/Detagg" />
+
+      <TextView
+          android:id="@+id/TxtSector"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/textviewa"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/TxtEspecificacionrp" />
+
+      <ImageView
+          android:id="@+id/ImgCompArr"
+          android:layout_width="0dp"
+          android:layout_height="224dp"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="50dp"
+          android:scaleType="fitXY"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView27"
+          app:srcCompat="@drawable/frutagolosa" />
+
+      <ImageView
+          android:id="@+id/imageView15"
+          android:layout_width="0dp"
+          android:layout_height="44dp"
+          android:layout_marginStart="200dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView27"
+          app:srcCompat="@drawable/frutagolosa" />
+
+      <TextView
+          android:id="@+id/txtdescuento"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:visibility="gone"
+          android:layout_marginTop="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Descuento"
+          app:layout_constraintEnd_toStartOf="@+id/btnDescuento"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/ImgCompArr" />
+
+      <Button
+          android:id="@+id/btnDescuento"
+          android:layout_width="191dp"
+          android:layout_height="38dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:visibility="gone"
+          android:background="@color/colorAccent"
+          android:text="Pulse Para Aplicar Su Descuento"
+          android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/txtdescuento"
+          app:layout_constraintTop_toBottomOf="@+id/ImgCompArr" />
+
+      <TextView
+          android:id="@+id/txtInfo"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginBottom="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Si tiene problemas para realizar su pago no se preocupe, comuniquese al 025111111 o al 0984727881"
+          android:textAlignment="center"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/PrecioFinal"
+          app:layout_constraintVertical_bias="0.169" />
+
+    </android.support.constraint.ConstraintLayout>
+  </ScrollView>
+
+  <TextView
+      android:id="@+id/textpreciofinal"
+      android:layout_width="match_parent"
+      android:layout_height="32dp"
+      android:layout_alignParentStart="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginLeft="0dp"
+      android:layout_marginTop="0dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginRight="0dp"
+      android:background="#00B4A1"
+      android:fontFamily="@font/roboto_condensed_bold"
+      android:text="@string/textopreciofinala"
+      android:textAlignment="center"
+      android:textColor="@android:color/white"
+      android:textSize="20sp" />
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_Choco"
+            android:icon="@drawable/conchoco"
+            android:title="Arreglos Con Chocolate"
+            android:tint="@color/colorPrimary"
+            />
+
+        <item
+            android:id="@+id/nav_SinChoco"
+            android:icon="@drawable/straw"
+            android:title="Arreglos Sin Chocolate" />
+        <item
+            android:id="@+id/nav_FrutaFa"
+            android:icon="@drawable/flourish1"
+            android:title="@string/frutas_y_flores" />
+
+        <item
+            android:id="@+id/nav_Festivo"
+            android:icon="@drawable/festivoicon"
+            android:title="Arreglos Festivos" />
+
+        <item
+            android:id="@+id/nav_CajaF"
+            android:icon="@drawable/cajaficon"
+            android:title="Cajas con frutas" />
+        <item
+            android:id="@+id/nav_Contacto"
+            android:icon="@drawable/contacticon"
+            android:title="Nuestro Contacto" />
+
+        <item
+            android:id="@+id/nav_Politicas"
+            android:icon="@drawable/politicon"
+            android:title="Politicas De Privacidad" />
+
+        <item
+            android:id="@+id/nav_Siga"
+            android:icon="@drawable/greenarrow"
+            android:title="Siga su pedido" />
+    </group>
+
+
+
+</menu>

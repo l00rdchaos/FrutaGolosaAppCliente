@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:background="#FFF6FF"
+    tools:context=".ContacNuFragment">
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="#FFF6FF">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <ImageView
+          android:id="@+id/Map1"
+          android:layout_width="0dp"
+          android:layout_height="216dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:scaleType="fitXY"
+          android:src="@drawable/mapaquito"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+      <TextView
+          android:id="@+id/textView35"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="28dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="EN QUITO"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/textView36"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Nuestra sucursal se encuentra ubicada en las calles Juan Acevedo y Obispo Diaz de la Madrid esquina, junto a Farmacias Economicas, Sector Las Casas.
+
+Puede encontrarnos en Google Maps como Fruta Golosa Quito.
+
+Puede contactarse con nosotros a traves del Telefono 025 11 11 11 sin anteponer el 2.
+
+Correo email: info@frutagolosa.com
+
+Whatsapp: 0984727881
+"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/Map1" />
+
+      <TextView
+          android:id="@+id/textView37"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="EN GUAYAQUIL"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+      <TextView
+          android:id="@+id/textView38"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="
+En Guayaquil estamos ubicados en Av. Quito 1010 entre Luque y Velez, junto a la barberia.
+
+Puede encontrarnos en Google Maps como Fruta Golosa Guayaquil
+
+Correo email: guayaquil@frutagolosa.com
+
+Whatsapp: 0984639341"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/Map2" />
+
+      <ImageView
+          android:id="@+id/Map2"
+          android:layout_width="0dp"
+          android:layout_height="216dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:scaleType="fitXY"
+          android:src="@drawable/mapaguayaquil"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.509"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+      <TextView
+          android:id="@+id/textView39"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="9dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="QUIENES SOMOS"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+      <ImageView
+          android:id="@+id/imageView14"
+          android:layout_width="0dp"
+          android:layout_height="122dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:src="@drawable/frutagolosa"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+      <TextView
+          android:id="@+id/textView40"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="18dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="La vida nos ha ensenado, que todo aquello que se crea con los mas puros sentimientos, y se le dedica cada minuto, cada segundo con pasion, resulta en algo, que magicamente llena el corazon
+
+Ya llevamos tres anos en el mercado quiteno, enfocandonos principalmente en la experiencia que quiere entregar nuestro cliente, volviendonos el numero 1 en nuestra ciudad y proximamente en el pais.
+
+Nuestra calidad e innovacion, entregada en cada uno de nuestros arreglos frutales, nos permiten establecer altos estandares de servicio hacia nuestros clientes, con el objetivo que cada arreglo frutal, lleve una experiencia.
+
+
+"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView14"
+          app:layout_constraintVertical_bias="0.0" />
+
+      <TextView
+          android:id="@+id/textView4"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="20dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Contacto del programador"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+      <TextView
+          android:id="@+id/textView16"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="cesarivr@77gmail.com"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    </android.support.constraint.ConstraintLayout>
+  </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".CompArreglo">
+
+  <Button
+      android:id="@+id/btnComp"
+      style="@style/Widget.AppCompat.Button.Colored"
+      android:layout_width="wrap_content"
+      android:layout_height="66dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginLeft="0dp"
+      android:layout_marginTop="580dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginRight="0dp"
+      android:layout_marginBottom="0dp"
+      android:background="@color/colorAccent"
+      android:text="@string/comprarbtn" />
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="1000dp"
+      android:background="@color/cafe">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/cafe"
+        android:minHeight="800dp">
+
+      <ImageView
+          android:id="@+id/ImgCompPrin"
+          android:layout_width="0dp"
+          android:layout_height="283dp"
+          android:contentDescription="@string/comp1"
+          android:scaleType="centerCrop"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ari" />
+
+
+      <Button
+          android:id="@+id/flechaizq"
+          style="@style/Widget.AppCompat.Button.Colored"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginBottom="176dp"
+          android:background="@color/colorPrimary"
+          android:text="@string/Felchaizq"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@+id/cantidadTxt"
+          app:layout_constraintStart_toStartOf="parent" />
+
+      <Button
+          android:id="@+id/flechadec"
+          style="@style/Widget.AppCompat.Button.Colored"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginBottom="176dp"
+          android:background="@color/colorPrimary"
+          android:text="@string/flechade"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.777"
+          app:layout_constraintStart_toEndOf="@+id/cantidadTxt" />
+
+      <TextView
+          android:id="@+id/cantidadTxt"
+          android:layout_width="21dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginBottom="60dp"
+          android:text="@string/cantidad"
+          android:textSize="30sp"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="@+id/LimpiarRadio"
+          app:layout_constraintEnd_toStartOf="@+id/flechadec"
+          app:layout_constraintStart_toEndOf="@+id/flechaizq" />
+
+      <Button
+          android:id="@+id/LimpiarRadio"
+          style="@style/Widget.AppCompat.Button.Colored"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:background="@color/colorPrimary"
+          android:text="@string/limpiar"
+          android:visibility="gone"
+          tools:layout_editor_absoluteX="205dp"
+          tools:layout_editor_absoluteY="800dp" />
+
+      <ImageView
+          android:id="@+id/imgcd"
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+
+
+          android:layout_marginTop="12dp"
+          android:contentDescription="@string/comp1"
+          app:layout_constraintEnd_toStartOf="@+id/imgglobo"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/ViewPrecio"
+          app:srcCompat="@drawable/bowl" />
+
+      <ImageView
+          android:id="@+id/imgtarjeta"
+
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+          android:layout_marginTop="72dp"
+          android:contentDescription="@string/comp1"
+          app:layout_constraintEnd_toStartOf="@+id/imgmoto"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView17"
+          app:srcCompat="@drawable/tarjeta" />
+
+      <ImageView
+
+          android:id="@+id/imgglobo"
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+          android:layout_marginTop="12dp"
+          android:contentDescription="@string/comp1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/imgcd"
+          app:layout_constraintTop_toBottomOf="@+id/ViewPrecio"
+          app:srcCompat="@drawable/globo" />
+
+      <ImageView
+          android:id="@+id/imgmoto"
+
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+          android:layout_marginTop="72dp"
+          android:contentDescription="@string/comp1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/imgtarjeta"
+          app:layout_constraintTop_toBottomOf="@+id/textView19"
+          app:srcCompat="@drawable/motoa" />
+
+
+      <TextView
+
+          android:id="@+id/NombArreglo2"
+          android:layout_width="0dp"
+          android:layout_height="55dp"
+
+          android:background="#FFF6FF"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="@string/nombre_arreglom"
+          android:textAlignment="center"
+
+
+          android:textAllCaps="true"
+          android:textAppearance="@style/Base.TextAppearance.AppCompat.Display2"
+          android:textColor="@color/ROJO"
+          android:textSize="48sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/ImgCompPrin" />
+
+      <TextView
+
+          android:id="@+id/NombArreglo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginTop="84dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginRight="8dp"
+          android:text="@string/nombre_arreglom"
+          android:textColor="@android:color/background_light"
+          android:visibility="gone"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.892"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/PrecioArreglo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginRight="8dp"
+          android:text="@string/precio_arreglom"
+          android:visibility="gone"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/NombArreglo" />
+
+      <ImageView
+          android:id="@+id/imageView8"
+          android:layout_width="253dp"
+          android:layout_height="92dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/frutagolosa" />
+
+      <TextView
+          android:id="@+id/ViewPrecio"
+          android:layout_width="0dp"
+          android:layout_height="49dp"
+          android:background="#FFF6FF"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="TextView"
+          android:textAlignment="center"
+          android:textAllCaps="true"
+          android:textColor="@color/colorPrimary"
+          android:textSize="24sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/NombArreglo2" />
+
+      <TextView
+          android:id="@+id/textView17"
+          android:layout_width="0dp"
+
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="4dp"
+          android:fontFamily="sans-serif-black"
+          android:text="Ceramica"
+          android:textAlignment="center"
+          android:textAllCaps="true"
+          android:textSize="14sp"
+          android:textStyle="italic"
+          app:layout_constraintEnd_toStartOf="@+id/textView19"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imgcd" />
+
+      <TextView
+          android:id="@+id/textView19"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="4dp"
+          android:fontFamily="sans-serif-black"
+          android:text="GLOBO DECORATIVO"
+          android:textAlignment="center"
+          android:textSize="14sp"
+          android:textStyle="italic"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/textView17"
+          app:layout_constraintTop_toBottomOf="@+id/imgglobo" />
+
+      <TextView
+          android:id="@+id/textView24"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="4dp"
+          android:fontFamily="sans-serif-black"
+          android:text="TARJETA PERSONALIZADA"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toStartOf="@+id/textView25"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imgtarjeta" />
+
+      <TextView
+          android:id="@+id/textView25"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="4dp"
+          android:layout_marginTop="8dp"
+          android:fontFamily="sans-serif-black"
+          android:text="ENVIO INCLUIDO"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/textView24"
+          app:layout_constraintTop_toBottomOf="@+id/imgmoto" />
+
+      <TextView
+          android:id="@+id/textView15"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="2dp"
+          android:fontFamily="sans-serif-black"
+          android:text="UBICACION POR GPS"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toStartOf="@+id/textView33"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+      <TextView
+          android:id="@+id/textView33"
+          android:layout_width="0dp"
+          android:layout_height="20dp"
+          android:layout_marginStart="2dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="sans-serif-black"
+          android:text="ESTADO DEL PEDIDO"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/textView15"
+          app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+      <TextView
+          android:id="@+id/textView26"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="4dp"
+          android:layout_marginEnd="4dp"
+          android:text="Hermosa ceramica donde se coloca su arreglo."
+          android:textAlignment="center"
+          app:layout_constraintEnd_toStartOf="@+id/textView28"
+          app:layout_constraintHorizontal_bias="0.433"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+      <TextView
+          android:id="@+id/textView32"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="Puede especificar la direccion exacta del envio de su pedido y vericar la ruta de su pedido"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toStartOf="@+id/textView34"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+      <TextView
+          android:id="@+id/textView34"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="12dp"
+          android:text="Verifique el estado de su pedido en cualquier momento"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/textView32"
+          app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+      <TextView
+          android:id="@+id/textView28"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="4dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="Un corazon si es sentimental o uno de cumpleanos"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/textView26"
+          app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+      <TextView
+          android:id="@+id/textView29"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="3dp"
+          android:layout_marginEnd="4dp"
+          android:text="Con Calidad fotografica en el que podra incluir el texto y los sentimientos que desee"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toStartOf="@+id/textView30"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+      <TextView
+          android:id="@+id/textView30"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="4dp"
+          android:layout_marginTop="8dp"
+          android:text="En el centro, norte y sur de Quito(existen restricciones).Si entregamos en Valles y exteriores de la ciudad"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/textView29"
+          app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+      <TextView
+          android:id="@+id/textView31"
+          android:layout_width="wrap_content"
+          android:layout_height="56dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="TextView"
+          android:visibility="invisible"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+      <ImageView
+          android:id="@+id/imageView10"
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+          android:layout_marginTop="32dp"
+          app:layout_constraintEnd_toStartOf="@+id/imageView12"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView29"
+          app:srcCompat="@drawable/mapsicon" />
+
+      <ImageView
+          android:id="@+id/imageView12"
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+          android:layout_marginTop="16dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/imageView10"
+          app:layout_constraintTop_toBottomOf="@+id/textView30"
+          app:srcCompat="@drawable/statusicon" />
+
+    </android.support.constraint.ConstraintLayout>
+  </ScrollView>
+
+</RelativeLayout>

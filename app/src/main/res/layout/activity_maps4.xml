@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="LabelFor">
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="1.0"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        tools:context=".Maps4Activity" />
+
+    <Button
+        android:id="@+id/BtnEnvDic"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="0dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:onClick="onMapSearch"
+        android:text="@string/buscar"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/SpUbicaciones"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Buscar" />
+
+    <TextView
+        android:id="@+id/textprecio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:text="@string/txtprecio"
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtprecDol" />
+
+    <Button
+        android:id="@+id/btnenviadicax"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:text="@string/enviar_direccionas"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDistancia"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textDistancia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:visibility="invisible"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:text="@string/textdistancia"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textprecio" />
+
+    <TextView
+        android:id="@+id/textDistancia2"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:text="@string/textdistancia"
+        android:visibility="invisible"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDistancia" />
+
+    <Spinner
+        android:id="@+id/SpUbicaciones"
+        android:layout_width="0dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="150dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtprecDol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="120dp"
+        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:text="Precio USD"
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpUbicaciones" />
+
+    <ImageView
+        android:id="@+id/imgFotoMoto"
+        android:layout_width="0dp"
+        android:visibility="gone"
+        android:layout_height="148dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDistancia2"
+        app:srcCompat="@drawable/frutagolosa" />
+
+
+</android.support.constraint.ConstraintLayout>

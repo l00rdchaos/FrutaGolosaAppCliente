@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF6FF"
+    tools:context=".EnvCodTransfActivity"
+    tools:ignore="LabelFor">
+
+    <Button
+        android:id="@+id/btnListoCod"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="580dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/colorAccent"
+        android:text="Aceptar"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/nro1"
+            android:layout_width="0dp"
+            android:layout_height="152dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="1"
+            android:textColor="#F08538"
+            android:textSize="100sp"
+            app:layout_constraintEnd_toStartOf="@+id/instruct1a"
+            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtpreciototalaa" />
+
+        <TextView
+            android:id="@+id/instruct1a"
+            android:layout_width="0dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Seleecione el banco de su eleccion,para realizar el deposito o transferencia"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/instruct2"
+            android:layout_width="0dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Ingrese los siguiente datos para poder realizar la transferencia en el banco seleccionado"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPacifico" />
+
+        <TextView
+            android:id="@+id/nro3"
+            android:layout_width="0dp"
+            android:layout_height="152dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="3"
+            android:textColor="#04ACED"
+            android:textSize="100sp"
+            app:layout_constraintEnd_toStartOf="@+id/instruct3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/copytxtnoCuenta" />
+
+        <TextView
+            android:id="@+id/instruct3"
+            android:layout_width="0dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Adjunte el comprobante de su transferencia para confirmar su pago. El mismo sera validado por nuestros asesores"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/copytxtnoCuenta" />
+
+        <TextView
+            android:id="@+id/nro2"
+            android:layout_width="0dp"
+            android:layout_height="152dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="2"
+            android:textColor="#1CAA98"
+            android:textSize="100sp"
+            app:layout_constraintEnd_toStartOf="@+id/instruct2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPacifico" />
+
+        <EditText
+            android:id="@+id/copytxtname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+
+            android:ems="10"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:text="@string/juan_ramoss"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/indicadornombre"
+            tools:targetApi="o" />
+
+        <EditText
+            android:id="@+id/copytxtDni"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+
+            android:ems="10"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:text="@string/_1718919200s"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/indicadorCedula"
+            tools:targetApi="o" />
+
+        <EditText
+            android:id="@+id/copytxtnoCuenta"
+            android:layout_width="0dp"
+
+            android:layout_height="47dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:text="@string/numero_de_cuenta_se_puede_copiar"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/indicadorcuenta"
+            tools:targetApi="o" />
+
+        <EditText
+            android:id="@+id/copytipocuentaEdt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:visibility="gone"
+            android:text="Ahorros"
+            android:textAlignment="center"
+            android:textIsSelectable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/copytxtDni"
+            tools:targetApi="o" />
+
+
+        <ImageView
+            android:id="@+id/SubirComp"
+            android:layout_width="0dp"
+            android:layout_height="197dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="90dp"
+
+            android:layout_marginBottom="60dp"
+            android:contentDescription="@string/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruct3"
+            app:srcCompat="@drawable/iconupload" />
+
+        <CalendarView
+            android:id="@+id/FechaActualCalendar"
+            android:layout_width="0dp"
+            android:layout_height="198dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SubirComp" />
+
+        <ImageView
+            android:id="@+id/btnPichincha"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruct1a"
+            app:srcCompat="@drawable/bcpichincha" />
+
+        <ImageView
+            android:id="@+id/btnProdubanco"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPichincha"
+            app:srcCompat="@drawable/bcprodubanco" />
+
+        <ImageView
+            android:id="@+id/btnBolivariano"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnProdubanco"
+            app:srcCompat="@drawable/bcbolivariano" />
+
+        <ImageView
+            android:id="@+id/btnGuayaquil"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBolivariano"
+            app:srcCompat="@drawable/bcguayaquil" />
+
+        <ImageView
+            android:id="@+id/btnPacifico"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnGuayaquil"
+            app:srcCompat="@drawable/bcpacifico" />
+
+        <ImageView
+            android:id="@+id/imgpaypal"
+            android:layout_width="0dp"
+            android:layout_height="357dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SubirComp"
+            app:srcCompat="@drawable/paypallogo" />
+
+        <TextView
+            android:id="@+id/indicadornombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:textAlignment="center"
+            android:text="Cuenta de Ahorros \n Nombre"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instruct2" />
+
+        <TextView
+            android:id="@+id/indicadorCedula"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Nro. De Cedula"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/copytxtname" />
+
+        <TextView
+            android:id="@+id/indicadorcuenta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Nro. De Cuenta"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/copytxtDni" />
+
+    </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>

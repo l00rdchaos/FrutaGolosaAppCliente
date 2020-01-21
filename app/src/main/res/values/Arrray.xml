@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+
+    <string-array name="ViajesQuitoa">
+
+
+        <item>0USD Belisario Quevedo</item>
+        <item>0USD Belisario Quevedo</item>
+        <item>0USD Belisario Quevedo</item>
+
+    </string-array>
+
+    <string-array name="ViajesGuayaquil">
+
+
+        <item>0USD Viaje 1</item>
+        <item>0USD SUBURBIOS</item>
+
+    </string-array>
+
+
+    <string-array name="FranjaHoraria">
+
+        <item>11:00 a 13:00</item>
+        <item>14:00 a 16:00</item>
+        <item>16:00 a 18:00</item>
+    </string-array>
+
+    <string-array name="TarjetaGlobo">
+
+        <item>Cumpleanos</item>
+        <item>Sentimental</item>
+
+    </string-array>
+
+    <string-array name="Bancos">
+        <item>Seleccione un banco aqui</item>
+        <item>Pichincha</item>
+        <item>Guayaquil</item>
+        <item>Produbanco</item>
+        <item>Bolivariano</item>
+        <item>Pacifico</item>
+
+    </string-array>
+
+
+    <string-array name="Ubicaciones">
+        <item>FRUTA GOLOSA</item>
+        <item>Belisario Quevedo</item>
+        <item>Mariscal Sucre</item>
+        <item>Rumipamba</item>
+        <item>Jipijapa</item>
+        <item>Cochapamba</item>
+        <item>Concepcion</item>
+        <item>Kennedy</item>
+        <item>San Isidro Del Inca</item>
+        <item>Cotocollao</item>
+        <item>Comite del pueblo</item>
+        <item>Condado</item>
+        <item>Carcelen</item>
+        <item>Carapungo</item>
+        <item>Llano Grande</item>
+        <item>Pusuqui</item>
+        <item>Calderon</item>
+        <item>Las Marianas</item>
+        <item>LLano Chico</item>
+        <item>Centro de Quito</item>
+        <item>CHIMBACALLE</item>
+        <item>MAGDALENA</item>
+        <item>CHILIBULO</item>
+        <item>FERROVIARIA</item>
+        <item>SAN BARTOLO</item>
+        <item>MENA</item>
+        <item>SOLANDA</item>
+        <item>ARGELIA</item>
+        <item>CHILLOGALLO</item>
+        <item>QUITUMBE</item>
+        <item>GUAMANI</item>
+        <item>TURUBAMBA</item>
+        <item>ECUATORIANA</item>
+        <item>ESPE</item>
+        <item>SANGOLQUI</item>
+        <item>NAYON</item>
+        <item>PUENGASI</item>
+        <item>CUMBAYA</item>
+        <item>TUMBACO</item>
+    </string-array>
+
+    <string-array name="UbicacionesG">
+        <item>SAUCES</item>
+        <item>SUBURBIO</item>
+        <item>FLORIDA</item>
+        <item>RIO CENTRO SUR</item>
+        <item>CENTRO DE DURAN</item>
+        <item>URB PUERTO AZUL</item>
+        <item>GAYACAYANES</item>
+        <item>BASE NAVAL</item>
+        <item>PUNTILLA</item>
+        <item>RECREO</item>
+        <item>LAGUNA CLUB</item>
+        <item>BASTION POPULAR</item>
+        <item>PLAYITA</item>
+        <item>DURAN YAGUACHI</item>
+        <item>CERRO BLANCO</item>
+        <item>PLAZA LAGOS</item>
+        <item>ELECTROQUIL</item>
+        <item>LA JOYA</item>
+
+    </string-array>
+
+    <string-array name="CasaEmpresaEdificio">
+        <item>Casa</item>
+        <item>Empresa</item>
+        <item>Edificio</item>
+    </string-array>
+
+    <string-array name="Ciudades">
+        <item>QUITO</item>
+        <item>GUAYAQUIL</item>
+
+    </string-array>
+
+
+</resources>

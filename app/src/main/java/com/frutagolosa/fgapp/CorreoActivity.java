@@ -147,8 +147,7 @@ public class CorreoActivity extends AppCompatActivity {
                             editor.putString("nombreus",nombreus2);
                             editor.putString("verificado","si");
                             editor.commit();
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            user.delete();
+
                           }catch (Exception e){
 
                           }

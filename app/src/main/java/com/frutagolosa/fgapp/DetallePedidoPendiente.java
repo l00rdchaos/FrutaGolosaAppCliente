@@ -30,6 +30,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.request.RequestOptions;
 import com.frutagolosa.fgapp.api.RegisterApiContador;
 import com.frutagolosa.fgapp.api.RegisterEstado;
 
@@ -102,6 +106,7 @@ public class DetallePedidoPendiente extends AppCompatActivity {
         final  String coordenadas=getIntent().getStringExtra(PedidoPendienteActiviy.CoordenadaA);
         final  String imgal=getIntent().getStringExtra(PedidoPendienteActiviy.imgalA);
         final  String imgaent=getIntent().getStringExtra(PedidoPendienteActiviy.imgaentA);
+        final  String TiempoFab=getIntent().getStringExtra(PedidoPendienteActiviy.TiempoFAB);
         TextView Fechapidetxt =findViewById(R.id.vfechaPedidoTxt);
 
         TextView FechaEnttxt=findViewById(R.id.vFechaEnt);
@@ -122,27 +127,31 @@ public class DetallePedidoPendiente extends AppCompatActivity {
         TextView ViewEncuesta=findViewById(R.id.ViewEncuesta);
 
         TextView Estadotxt=findViewById(R.id.vEstadoTxt);
+        ImageView imgar=findViewById(R.id.imageView2);
         ImageView ImgArreglolisto=findViewById(R.id.ImgArregloListo);
         ImageView ImgArregloEnt=findViewById(R.id.imgArregloEnt);
 
 
-        Fechapidetxt.setText("Fecha Pedido: "+Fecha_Pedido);
-        FechaEnttxt.setText("Fecha Entrega: "+Fecha_qRecibe);
-        Arreglotxt.setText("Arreglo: "+idarrelgo);
-        Recibetxt.setText("Recibe: "+Nombre_qRecibe);
-        FranjaHorariatxt.setText("Hora: "+Franaja_horara);
-        TelefonoQuienRtxt.setText("Telefono: "+Telefono_qrecibe);
-        CallePrintx.setText("Calle Prin: "+Calle_principal);
-        CalleSecundatxt.setText("CalleSec: "+Calle_secundaria);
-        CasaEmpreseDtxt.setText("Estructura: "+Casaempresaedificio);
-        Referenciatxt.setText("Referencia: "+referencia);
-        PortadaTxt.setText("Portada Tarjeta: "+Portada_tarjeta);
-        TextoTarjetatxt.setText("Texto en tarjeta: "+Texto_tarjeta);
-        Especificaciontxt.setText("Especificacion: " + Especificacion);
-        Globotxt.setText("Globo: "+ Globo);
-        Sectortxt.setText("Sector: "+sector);
-        CostoEnviotxt.setText("Costo de envio: "+Costo_envio);
-        Estadotxt.setText("Estado: "+Estado);
+        Fechapidetxt.setText("FECHA PEDIDO\n"+Fecha_Pedido);
+        FechaEnttxt.setText("FECHA DE ENTREGA\n"+Fecha_qRecibe);
+        Arreglotxt.setText("ARREGLO\n"+idarrelgo);
+        Recibetxt.setText("RERCIBE\n"+Nombre_qRecibe);
+        FranjaHorariatxt.setText("HORA\n"+Franaja_horara);
+        TelefonoQuienRtxt.setText("TELEFONO\n"+Telefono_qrecibe);
+        CallePrintx.setText("PRINCIPAL\n"+Calle_principal);
+        CalleSecundatxt.setText("SECUNDARIA\n"+Calle_secundaria);
+        CasaEmpreseDtxt.setText("ESTRUCTURA\n"+Casaempresaedificio);
+        Referenciatxt.setText("REFERENCIA\n"+referencia);
+        PortadaTxt.setText("PORTADA TARJETA (2 PALABRAS)\n"+Portada_tarjeta);
+        TextoTarjetatxt.setText("TEXTO TARJETA (600 CARACTERES)\n"+Texto_tarjeta.replace("<br>",""));
+        Especificaciontxt.setText("ESPECIFICACION\n" + Especificacion);
+        Globotxt.setText("GLOBO\n"+ Globo);
+        Sectortxt.setText("SECTOR\n"+sector);
+        CostoEnviotxt.setText("COSTO DE ENVIO\n"+Costo_envio);
+        Estadotxt.setText("ESTADO: "+Estado);
+
+        Glide.with(imgar.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +idarrelgo.toLowerCase().replace(" ","")+"1.jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).placeholder(R.drawable.frutagolosa).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new FitCenter()).apply(new RequestOptions()).into(imgar).waitForLayout();
+
 
         Glide.with(this).load(imgal).into(ImgArreglolisto);
 
@@ -260,9 +269,12 @@ TextView ViewFabicado=findViewById(R.id.ViewFabticado);
 
         if (Estado.equals("En Ruta")){
 
+            ViewFabicado.setText("FABRICADO - hora: "+TiempoFab);
+            if(imgal.equals("https://frutagolosa.com/FrutaGolosaApp/imgapp/frutagolosa.png")){
+                ViewFabicado.setVisibility(View.GONE);
+                ImgArreglolisto.setVisibility(View.GONE);
+            }
             ViewEntregado.setVisibility(View.GONE);
-
-
             ImgArregloEnt.setVisibility(View.GONE);
             btnVerMOTO.setVisibility(View.VISIBLE);
 
@@ -284,15 +296,27 @@ TextView ViewFabicado=findViewById(R.id.ViewFabticado);
         }
 
         if (Estado.equals("Fabricado")){
+            if(imgal.equals("https://frutagolosa.com/FrutaGolosaApp/imgapp/frutagolosa.png")){
+                ViewFabicado.setVisibility(View.GONE);
+                ImgArreglolisto.setVisibility(View.GONE);
+            }
+            ViewFabicado.setText("Foto de fabricado\n hora: "+TiempoFab);
             ImgArregloEnt.setVisibility(View.GONE);
             ViewEntregado.setVisibility(View.GONE);
 
         }
 
         if (Estado.equals("Entregado")){
-            ViewFabicado.setVisibility(View.VISIBLE);
-            ImgArregloEnt.setVisibility(View.VISIBLE);
-            ViewEntregado.setVisibility(View.VISIBLE);
+            if(imgal.equals("https://frutagolosa.com/FrutaGolosaApp/imgapp/frutagolosa.png")){
+                ViewFabicado.setVisibility(View.GONE);
+                ImgArreglolisto.setVisibility(View.GONE);
+            }
+            if(imgaent.equals("https://frutagolosa.com/FrutaGolosaApp/imgapp/frutagolosa.png")){
+                ImgArregloEnt.setVisibility(View.GONE);
+                ViewEntregado.setVisibility(View.GONE);
+            }
+
+            ViewFabicado.setText("Foto de fabricado\n hora: "+TiempoFab);
             btnVerEncuesta.setVisibility(View.VISIBLE);
             ViewEncuesta.setVisibility(View.VISIBLE);
         }

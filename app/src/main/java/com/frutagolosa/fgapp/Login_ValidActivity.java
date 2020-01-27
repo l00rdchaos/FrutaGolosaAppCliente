@@ -53,6 +53,7 @@ public class Login_ValidActivity extends AppCompatActivity {
   FirebaseAuth auth;
   PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
   String verification_code;
+  private PhoneAuthProvider.ForceResendingToken mResendToken;
   public static final String ROOT_URL="https://frutagolosa.com/FrutaGolosaApp";
 
   @Override
@@ -106,7 +107,7 @@ public class Login_ValidActivity extends AppCompatActivity {
 
       @Override
       public void onVerificationFailed(FirebaseException e) {
-        Toast.makeText(getApplicationContext(), "Codigo no enviado, revise el numero por favor", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Codigo no enviado, revise el numero por favor, tambien puede que haya excedido los intentos", Toast.LENGTH_SHORT).show();
         Button btnpdcod = (Button) findViewById(R.id.btnpedcod);
         btnpdcod.setEnabled(true);
       }
@@ -116,7 +117,7 @@ public class Login_ValidActivity extends AppCompatActivity {
         super.onCodeSent(s, forceResendingToken);
         verification_code = s;
 
-
+        mResendToken = forceResendingToken;
         Toast.makeText(getApplicationContext(), "Codigo enviado a su numero", Toast.LENGTH_SHORT).show();
         TextView dig = (TextView) findViewById(R.id.txtdigitcode);
         Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
@@ -144,7 +145,16 @@ public class Login_ValidActivity extends AppCompatActivity {
 
   }
 
-
+  private void resendVerificationCode(String phoneNumber,
+                                      PhoneAuthProvider.ForceResendingToken token) {
+    PhoneAuthProvider.getInstance().verifyPhoneNumber(
+            phoneNumber,        // Phone number to verify
+            60,                 // Timeout duration
+            TimeUnit.SECONDS,   // Unit of timeout
+            this,               // Activity (for callback binding)
+            mCallback,         // OnVerificationStateChangedCallbacks
+            token);             // ForceResendingToken from callbacks
+  }
   public void send_sms(View v) {
     EditText n= (EditText) findViewById(R.id.editTextName);
     EditText t= (EditText) findViewById(R.id.editTextMail);
@@ -224,8 +234,7 @@ public class Login_ValidActivity extends AppCompatActivity {
                                 notificacion();
                                 startActivity(f);
                                 try {
-                                  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                  user.delete();
+
                                 }catch (Exception e){
 
                                 }
@@ -345,8 +354,7 @@ public class Login_ValidActivity extends AppCompatActivity {
         txtcorreous.setVisibility(View.VISIBLE);
         txtnombreus.setVisibility(View.VISIBLE);
         try {
-          FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-          user.delete();
+
           FirebaseAuth.getInstance().signOut();
         }catch (Exception e){
 
@@ -439,7 +447,7 @@ public class Login_ValidActivity extends AppCompatActivity {
     builder.setTitle("No recibio su codigo?");
     builder.setMessage("Si no pudo recibir la verificacion de su codigo, puede probar otro metodo de verificacion, como" +
             "el envio de correo electronico, o solicitar que se le agregue un codigo de verificacion manualmente," +
-            "escribiendonos a nuestro whatsapp. Seleccione una de las dos opciones debajo.");
+            "escribiendonos a nuestro whatsapp. Seleccione una de las dos opciones debajo. Pulse fuera de este cuadro para cambiar el numero ingresado.");
     builder.setPositiveButton("Correo", new DialogInterface.OnClickListener() {
       @Override
 
@@ -457,9 +465,13 @@ public class Login_ValidActivity extends AppCompatActivity {
       public void onClick(DialogInterface dialog, int which) {
 
 
+          EditText phones = (EditText) findViewById(R.id.txtpohne);
+          String number = phones.getText().toString().replaceFirst("0","+593").trim();
+          resendVerificationCode(number, mResendToken);
 
       }
     });
+
 
 
     builder.create();

@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CenterInside;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import  com.frutagolosa.fgapp.R;
@@ -72,14 +74,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     holder.motorizado.setText(contacts.get(position).getMotorizado());
     holder.numeracion.setText(contacts.get(position).getNumeracion());
     holder.keyaccount.setText(contacts.get(position).getKeyaccount());
-    holder.texto_tarjeta.setText(contacts.get(position).getTexto_tarjeta());
+    holder.texto_tarjeta.setText(contacts.get(position).getTexto_tarjeta().replace("<br>"," "));
     holder.especificacion.setText(contacts.get(position).getEspecificacion());
     holder.IDPEDIDO.setText("Id: "+contacts.get(position).getID_PEDIDO());
     holder.imgal.setText(contacts.get(position).getimgal());
+    holder.tiempofab.setText(contacts.get(position).getTiempo_Fabricado());
     x=contacts.get(position).getNombre_arreglo().toLowerCase().replace(" ","").trim();
    // int b=holder.arreglofoto.getResources().getIdentifier(x,"drawable",holder.arreglofoto.getContext().getPackageName());
    // holder.arreglofoto.setImageResource("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +x+".jpg");
-    Glide.with(holder.arreglofoto.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +x+".jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).placeholder(R.drawable.frutagolosa).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new CenterCrop()).apply(new RequestOptions()).into(holder.arreglofoto).waitForLayout();
+   Glide.with(holder.arreglofoto.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +x+".jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).placeholder(R.drawable.frutagolosa).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new FitCenter()).apply(new RequestOptions()).into(holder.arreglofoto).waitForLayout();
 
 
 
@@ -118,7 +121,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     TextView IDPEDIDO, fechapedido, nombre, telefonocliente, nombre_qrecibe, nombre_arreglo, telefono_qrecibe, sector, correo_cliente,
             fecha_qrecibe,franja_horaria,calle_principal, calle_secundaria,casaempresaedificio,referencia,portada_tarjeta,texto_tarjeta,especificacion,
-            numeracion,motorizado,estado,keyaccount,parroquia,regalo,globo,coordenadas,imgal;
+            numeracion,motorizado,estado,keyaccount,parroquia,regalo,globo,coordenadas,imgal,tiempofab;
     ImageView arreglofoto;
 
     public MyViewHolder(View itemView) {
@@ -152,6 +155,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
       globo=itemView.findViewById(R.id.globotxt);
       coordenadas=itemView.findViewById(R.id.coordenadastxt);
       imgal=itemView.findViewById(R.id.txtArreglolisto);
+      tiempofab=itemView.findViewById(R.id.TiempoFab);
       arreglofoto=itemView.findViewById(R.id.ImgArreglo);
 
 

@@ -118,11 +118,18 @@
         <item>Edificio</item>
     </string-array>
 
-    <string-array name="Ciudades">
+    <string-array name="Ciudades">z
         <item>QUITO</item>
         <item>GUAYAQUIL</item>
 
     </string-array>
+
+    <string-array name="NO">z
+        <item>ENTREGAS NO DISPONIBLES</item>
+
+
+    </string-array>
+
 
 
 </resources>

@@ -1,8 +1,11 @@
 package com.frutagolosa.fgapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -58,7 +61,7 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
   public static final String MotorizadoA="id23klkl" ;
   public static final String imgalA="id30" ;
   public static final String imgaentA="asdid3asd0" ;
-
+    public static final String TiempoFAB="Tier" ;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -143,6 +146,7 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
             String coordenadast=contacts.get(recyclerView.getChildAdapterPosition(view)).getCoordenadas();
             String imgal=contacts.get(recyclerView.getChildAdapterPosition(view)).getimgal();
             String imgaent=contacts.get(recyclerView.getChildAdapterPosition(view)).getImgaent();
+              String TiempoFab=contacts.get(recyclerView.getChildAdapterPosition(view)).getTiempo_Fabricado();
             String motorizado=contacts.get(recyclerView.getChildAdapterPosition(view)).getMotorizado();
 
 
@@ -173,6 +177,7 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
             c.putExtra(CoordenadaA,coordenadast);
             c.putExtra(imgalA,imgal);
             c.putExtra(imgaentA,imgaent);
+              c.putExtra(TiempoFAB,TiempoFab);
             startActivity(c);
             finish();
           }
@@ -195,7 +200,7 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.refrescar, menu);
+    getMenuInflater().inflate(R.menu.info, menu);
     return true;
   }
 
@@ -216,6 +221,31 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
       cargarpedidos();
       Toast.makeText(this, "Se ha actualizado", Toast.LENGTH_SHORT).show();
     }
+
+
+    if (id == R.id.infor) {
+      final AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+      builder2.setTitle("Estados de sus pedidos");
+      builder2.setMessage("POR CONFIRMAR: Proceso de verificacion de pago, pasa a espera el dia de su pedido.\n \n" +
+              "EN ESPERA: Listo para entrar en fabricacion.\n \n" +
+              "FABRICADO: Su pedido esta listo y en espera de motorizado.\n \n" +
+              "EN RUTA: Se encuentra en camino con su motorizado.\n \n" +
+              "ENTREGADO: Ya fue entregado su pedido.\n \n" +
+              "COMPLETADO: En el historial de sus pedidos.");
+      builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+
+
+        }
+      });
+
+      builder2.create();
+      builder2.show();
+
+    }
+
     return true;
   }
 

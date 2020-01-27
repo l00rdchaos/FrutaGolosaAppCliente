@@ -195,7 +195,7 @@ public class CompArreglo extends AppCompatActivity {
               @Override
               public void run() {
 
-                String version="1.6.8";
+                String version="1.8.1";
 
                 RestAdapter adapter = new RestAdapter.Builder()
                         .setEndpoint("https://frutagolosa.com/FrutaGolosaApp/version.php?z="+version)

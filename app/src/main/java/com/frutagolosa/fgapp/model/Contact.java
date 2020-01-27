@@ -100,6 +100,10 @@ public class Contact {
     @SerializedName("imgaent")
     private String imgaent;
 
+    @SerializedName("Tiempo_Fabricado")
+    private String Tiempo_Fabricado;
+
+
     @SerializedName("ID_PEDIDO")
     private String ID_PEDIDO;
 
@@ -212,6 +216,11 @@ public class Contact {
 
     public String getImgaent() {
         return imgaent;
+    }
+
+
+    public String getTiempo_Fabricado() {
+        return Tiempo_Fabricado;
     }
 
     public String getID_PEDIDO() {

@@ -23,12 +23,7 @@
     </string-array>
 
 
-    <string-array name="FranjaHoraria">
 
-        <item>11:00 a 13:00</item>
-        <item>14:00 a 16:00</item>
-        <item>16:00 a 18:00</item>
-    </string-array>
 
     <string-array name="TarjetaGlobo">
 
@@ -118,7 +113,8 @@
         <item>Edificio</item>
     </string-array>
 
-    <string-array name="Ciudades">z
+    <string-array name="Ciudades">
+        <item>SELECCIONE CIUDAD</item>
         <item>QUITO</item>
         <item>GUAYAQUIL</item>
 

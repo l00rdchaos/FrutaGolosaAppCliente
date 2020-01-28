@@ -29,11 +29,14 @@ import com.frutagolosa.fgapp.api.apiInterfaceFranjas;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -67,58 +70,28 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
     final String precio = getIntent().getStringExtra(CompArreglo.PrecioArreglo);
     final String IdArreglo = getIntent().getStringExtra(CompArreglo.NombreArreglo);
 //---------------------------------------------------------------------------------
-    final String a=String.valueOf(cantpassAnt);
 
+  date2= new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
-    final Spinner FranjaHoraria;
+      final Spinner FranjaHoraria;
     final Spinner SpCiudad;
 
     FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
     SpCiudad= (Spinner) findViewById(R.id.spCiudad);
     apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
-    SharedPreferences preferences=getSharedPreferences("login", Context.MODE_PRIVATE);
-    String nombreus=preferences.getString("nombreus","Registrese");
-    String mailus=preferences.getString("mailus","No");
-    String telefonous=preferences.getString("telefonous","No");
-    Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas1.php");
-    call.enqueue(new Callback<List<horas>>() {
-      @Override
-      public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
-        horas = response.body();
 
-        Spinner  FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
-        if(horas.size()>=1) {
-          String[] s = new String[horas.size()];
-          for (int i = 0; i < horas.size(); i++) {
-            s[i] = horas.get(i).getHora();
-            final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
-            a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            //Setting the ArrayAdapter data on the Spinner
-            FranjaHoraria.setAdapter(a);
-          }
-        }else{
+
+
 
           ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(),R.array.NO, android.R.layout.simple_spinner_item);
         FranjaHoraria.setAdapter(adapter3);
 
 
 
-        }
-      }
 
 
-
-
-
-      @Override
-      public void onFailure(Call<List<horas>> call, Throwable t) {
-        Toast.makeText(UbicacionEnvioActiviy.this, "No se pudo conectar a la red, intente de nuevo", Toast.LENGTH_SHORT).show();
-        finish();
-      }
-    });
-
-    ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,R.array.Ciudades, android.R.layout.simple_spinner_item);
-    SpCiudad.setAdapter(adapter3);
+    ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.Ciudades, android.R.layout.simple_spinner_item);
+    SpCiudad.setAdapter(adapter4);
 
 
     final Button EnvDic = (Button) findViewById(R.id.btnEnvDireccion);

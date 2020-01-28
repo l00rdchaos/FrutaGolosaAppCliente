@@ -2,13 +2,11 @@ package com.frutagolosa.fgapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,13 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.frutagolosa.fgapp.api.RegisterAPI;
 import com.frutagolosa.fgapp.api.RegisterApiPendiente;
 
 import java.io.BufferedReader;
@@ -33,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -62,6 +59,8 @@ public class DetalleUbicacionesActivity extends AppCompatActivity {
     public static final String CiudadA="ciudadd" ;
     private final int xf = (int) (Math.random() * 10000);
     private final String xf2 = String.valueOf(xf);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +101,10 @@ public class DetalleUbicacionesActivity extends AppCompatActivity {
         final Spinner  CasaEmpEd = (Spinner) findViewById(R.id.SpCasaEd);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,R.array.CasaEmpresaEdificio, android.R.layout.simple_spinner_item);
       CasaEmpEd.setAdapter(adapter2);
+
+
+
+
 
         TextWatcher watcher = new TextWatcher() {
             @Override

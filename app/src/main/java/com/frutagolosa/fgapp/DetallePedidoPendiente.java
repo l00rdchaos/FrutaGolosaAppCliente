@@ -160,7 +160,6 @@ public class DetallePedidoPendiente extends AppCompatActivity {
 
         ImgArreglolisto.setRotation(ImgArreglolisto.getRotation()+90);
        ImgArregloEnt.setRotation(ImgArregloEnt.getRotation()+90);
-        notificacion();
         Button btnVerMOTO=findViewById(R.id.btnVerMOTO);
         Button btnVerEncuesta=findViewById(R.id.btnEncuesta);
         Button btnBorrarPedido=findViewById(R.id.btnBorrarPedido);

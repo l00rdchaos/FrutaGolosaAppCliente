@@ -69,6 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     holder.referencia.setText(contacts.get(position).getReferencia());
     holder.portada_tarjeta.setText(contacts.get(position).getPortada_tarjeta());
     holder.estado.setText(contacts.get(position).getEstado());
+    String estad=contacts.get(position).getEstado().toString();
     holder.globo.setText(contacts.get(position).getGlobo());
     holder.coordenadas.setText(contacts.get(position).getCoordenadas());
     holder.motorizado.setText(contacts.get(position).getMotorizado());
@@ -84,7 +85,41 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
    // holder.arreglofoto.setImageResource("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +x+".jpg");
    Glide.with(holder.arreglofoto.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +x+".jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).placeholder(R.drawable.frutagolosa).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new FitCenter()).apply(new RequestOptions()).into(holder.arreglofoto).waitForLayout();
 
+   if(estad.equals("Por Confirmar")){
+     holder.estadofoto.setImageResource(R.drawable.semaforo);
 
+
+   }
+
+    if(estad.equals("En Espera")){
+      holder.estadofoto.setImageResource(R.drawable.semaforo1);
+
+
+    }
+
+    if(estad.equals("Fabricado")){
+      holder.estadofoto.setImageResource(R.drawable.semaforo2);
+
+
+    }
+
+    if(estad.equals("En Ruta")){
+      holder.estadofoto.setImageResource(R.drawable.semaforo3);
+
+
+    }
+
+    if(estad.equals("Entregado")){
+      holder.estadofoto.setImageResource(R.drawable.semaforo5);
+
+
+    }
+
+    if(estad.equals("Completado")){
+      holder.estadofoto.setImageResource(R.drawable.semaforo6);
+
+
+    }
 
 
 
@@ -122,7 +157,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     TextView IDPEDIDO, fechapedido, nombre, telefonocliente, nombre_qrecibe, nombre_arreglo, telefono_qrecibe, sector, correo_cliente,
             fecha_qrecibe,franja_horaria,calle_principal, calle_secundaria,casaempresaedificio,referencia,portada_tarjeta,texto_tarjeta,especificacion,
             numeracion,motorizado,estado,keyaccount,parroquia,regalo,globo,coordenadas,imgal,tiempofab;
-    ImageView arreglofoto;
+    ImageView arreglofoto,estadofoto;
 
     public MyViewHolder(View itemView) {
       super(itemView);
@@ -157,7 +192,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
       imgal=itemView.findViewById(R.id.txtArreglolisto);
       tiempofab=itemView.findViewById(R.id.TiempoFab);
       arreglofoto=itemView.findViewById(R.id.ImgArreglo);
-
+   estadofoto=itemView.findViewById(R.id.imgestado);
 
     }
   }

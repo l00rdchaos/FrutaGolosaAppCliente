@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -124,9 +125,59 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
     EnvDic.setBackgroundColor(getResources().getColor(R.color.gris2));
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    date2= sdf.format(new Date(FechaRecibe.getDate()));
 
+    SpCiudad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+        String Ciudad=SpCiudad.getSelectedItem().toString().trim();
+        apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
+        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad);
+        call.enqueue(new Callback<List<horas>>() {
+          @Override
+          public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
+            horas = response.body();
+
+
+            Spinner  FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
+            if(horas.size()>=1) {
+              String[] s = new String[horas.size()];
+              for (int i = 0; i < horas.size(); i++) {
+                s[i] = horas.get(i).getHora();
+                final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
+                a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //Setting the ArrayAdapter data on the Spinner
+                FranjaHoraria.setAdapter(a);
+              }
+            }else{
+
+              ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(),R.array.NO, android.R.layout.simple_spinner_item);
+              FranjaHoraria.setAdapter(adapter3);
+
+
+
+            }
+          }
+
+
+
+
+
+          @Override
+          public void onFailure(Call<List<horas>> call, Throwable t) {
+            ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(),R.array.NO, android.R.layout.simple_spinner_item);
+            FranjaHoraria.setAdapter(adapter3);
+          }
+        });
+
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parentView) {
+        // your code here
+      }
+
+    });
 
 //Pasar al siguiente activiy con validacion de campos en blanco--------------------------------------
 
@@ -172,7 +223,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
         int d = dayOfMonth;
         int m = month+1;
         int y= year;
-        Spinner  FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
+        final Spinner  FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
         FranjaHoraria.setAdapter(null);
         String d1=String.valueOf(d);
         String m1=String.valueOf(m);
@@ -214,8 +265,8 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
           @Override
           public void onFailure(Call<List<horas>> call, Throwable t) {
-            Toast.makeText(UbicacionEnvioActiviy.this, "No se pudo conectar a la red, intente de nuevo", Toast.LENGTH_SHORT).show();
-            finish();
+            ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(),R.array.NO, android.R.layout.simple_spinner_item);
+            FranjaHoraria.setAdapter(adapter3);
           }
         });
 

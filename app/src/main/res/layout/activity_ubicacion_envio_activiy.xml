@@ -80,7 +80,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="8dp"
           android:fontFamily="@font/roboto_condensed_bold"
-          android:text="@string/nombre_de_quien_recibe"
+          android:text="Nombre y apellido de quien recibe"
           android:textAlignment="center"
           android:textAllCaps="false"
           android:textSize="14sp"

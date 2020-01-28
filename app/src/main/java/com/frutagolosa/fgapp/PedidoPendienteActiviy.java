@@ -231,7 +231,7 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
               "FABRICADO: Su pedido esta listo y en espera de motorizado.\n \n" +
               "EN RUTA: Se encuentra en camino con su motorizado.\n \n" +
               "ENTREGADO: Ya fue entregado su pedido.\n \n" +
-              "COMPLETADO: En el historial de sus pedidos.");
+              "COMPLETADO: En el historial de sus pedidos. En este estado lo puede eliminar.");
       builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {

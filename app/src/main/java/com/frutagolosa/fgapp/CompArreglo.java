@@ -68,7 +68,7 @@ public class CompArreglo extends AppCompatActivity {
     // Cambios de imagen segun el arreglo---------------------------------
 
 
-      Glide.with(this).load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"1.jpg").diskCacheStrategy(DiskCacheStrategy.NONE).into(AD);
+      Glide.with(this).load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(AD);
 
 
 
@@ -238,7 +238,7 @@ public class CompArreglo extends AppCompatActivity {
                               }else {
 
                                 builder2.setTitle("Actualice su app");
-                                builder2.setMessage("Tenemos nuevos arreglos y nuevas mejoras en nuestra, por favor actulice a la ultima versin.");
+                                builder2.setMessage("Tenemos mejoras importantes en nuestra app, por favor actualiza para poder comprar y seguir disfrutando.");
                                 builder2.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                   @Override
                                   public void onClick(DialogInterface dialog, int which) {
@@ -315,16 +315,16 @@ public class CompArreglo extends AppCompatActivity {
 
 
   private void llenarimagen() {
-    final String IdArreglo = getIntent().getStringExtra(ConChocolateFragment.IdArreglo);
-    final int id = getResources().getIdentifier(IdArreglo+1, "drawable", getPackageName());
-    final int id2 = getResources().getIdentifier(IdArreglo+2, "drawable", getPackageName());
-    int id3=getResources().getIdentifier("backgroundcomp","drawable",getPackageName());
+    final String IdArreglo = getIntent().getStringExtra(ConChocolateFragment.IdArreglo).toLowerCase();
+    //final int id = getResources().getIdentifier(IdArreglo+1, "drawable", getPackageName());
+   // final int id2 = getResources().getIdentifier(IdArreglo+2, "drawable", getPackageName());
+    //int id3=getResources().getIdentifier("backgroundcomp","drawable",getPackageName());
     final ImageView AD = (ImageView) findViewById(R.id.ImgCompPrin);
 
 
-    if(x==2){Glide.with(getApplicationContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"1.jpg").diskCacheStrategy(DiskCacheStrategy.RESOURCE).skipMemoryCache(true).transition(BitmapTransitionOptions.withCrossFade(1000)).into(AD);}
-    if(x==1){Glide.with(getApplicationContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"2.jpg").diskCacheStrategy(DiskCacheStrategy.RESOURCE).skipMemoryCache(true).transition(BitmapTransitionOptions.withCrossFade(1000)).into(AD);}
-    if(x==3){x=0;}
+    if(x==1){Glide.with(getApplicationContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).transition(BitmapTransitionOptions.withCrossFade(1000)).into(AD);}
+    if(x==2){Glide.with(getApplicationContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"2.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).transition(BitmapTransitionOptions.withCrossFade(1000)).into(AD);}
+    if(x==3){x=1;}
     x=x+1;
 
   }

@@ -109,28 +109,28 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
         call.enqueue(new Callback<List<horas>>() {
           @Override
           public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
-            horas = response.body();
+            if(response.body()!=null) {
+              horas = response.body();
 
 
-            Spinner  FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
-            if(horas.size()>=1) {
-              String[] s = new String[horas.size()];
-              for (int i = 0; i < horas.size(); i++) {
-                s[i] = horas.get(i).getHora();
-                final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
-                a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                //Setting the ArrayAdapter data on the Spinner
-                FranjaHoraria.setAdapter(a);
+              Spinner FranjaHoraria = (Spinner) findViewById(R.id.SpHorario);
+              if (horas.size() >= 1) {
+                String[] s = new String[horas.size()];
+                for (int i = 0; i < horas.size(); i++) {
+                  s[i] = horas.get(i).getHora();
+                  final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
+                  a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                  //Setting the ArrayAdapter data on the Spinner
+                  FranjaHoraria.setAdapter(a);
+                }
+              } else {
+
+                ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.NO, android.R.layout.simple_spinner_item);
+                FranjaHoraria.setAdapter(adapter3);
+
+
               }
-            }else{
-
-              ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(),R.array.NO, android.R.layout.simple_spinner_item);
-              FranjaHoraria.setAdapter(adapter3);
-
-
-
-            }
-          }
+            } }
 
 
 
@@ -209,28 +209,28 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
         call.enqueue(new Callback<List<horas>>() {
           @Override
           public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
-            horas = response.body();
+            if(response.body()!=null) {
+              horas = response.body();
 
 
-            Spinner  FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
-            if(horas.size()>=1) {
-              String[] s = new String[horas.size()];
-              for (int i = 0; i < horas.size(); i++) {
-                s[i] = horas.get(i).getHora();
-                final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
-                a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                //Setting the ArrayAdapter data on the Spinner
-                FranjaHoraria.setAdapter(a);
+              Spinner FranjaHoraria = (Spinner) findViewById(R.id.SpHorario);
+              if (horas.size() >= 1) {
+                String[] s = new String[horas.size()];
+                for (int i = 0; i < horas.size(); i++) {
+                  s[i] = horas.get(i).getHora();
+                  final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
+                  a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                  //Setting the ArrayAdapter data on the Spinner
+                  FranjaHoraria.setAdapter(a);
+                }
+              } else {
+
+                ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.NO, android.R.layout.simple_spinner_item);
+                FranjaHoraria.setAdapter(adapter3);
+
+
               }
-            }else{
-
-              ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(),R.array.NO, android.R.layout.simple_spinner_item);
-              FranjaHoraria.setAdapter(adapter3);
-
-
-
-            }
-          }
+            }  }
 
 
 

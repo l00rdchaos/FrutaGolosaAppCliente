@@ -131,87 +131,73 @@ final Button btndescuento=(Button)findViewById(R.id.btnDescuento);
 
                         BufferedReader reader = null;
                         String output = "";
+                 if(response.getBody()!=null) {
+
+                     try {
+                         reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
 
-                        try {
-                            reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
+                         output = reader.readLine();
+
+                         if (output.equals("0")) {
+
+                             Precf.setVisibility(View.INVISIBLE);
+
+                             contadorpedidos = "1";
+                         }
+
+                         if (output.equals("1")) {
+                             Precf.setVisibility(View.INVISIBLE);
+                             descuentotxt.setText("Descuento de 10%");
+                             btndescuento.setVisibility(View.VISIBLE);
+                             descuentotxt.setVisibility(View.VISIBLE);
+                             Toast.makeText(ResumenPedidoActivity.this, "Pulse para aplicar descuento de 10%", Toast.LENGTH_SHORT).show();
+
+                         }
+
+                         if (output.equals("2")) {
+
+                             Precf.setVisibility(View.INVISIBLE);
+                             descuentotxt.setText("Descuento de 20%");
+                             btndescuento.setVisibility(View.VISIBLE);
+                             descuentotxt.setVisibility(View.VISIBLE);
+                             Toast.makeText(ResumenPedidoActivity.this, "Pulse para aplicar descuento de 20%", Toast.LENGTH_SHORT).show();
 
 
-                            output = reader.readLine();
-
-                            if(output.equals("0")){
-
-                                Precf.setVisibility(View.INVISIBLE);
-
-                           contadorpedidos="1";
-                            }
-
-                            if(output.equals("1")){
-                                Precf.setVisibility(View.INVISIBLE);
-                                contadorpedidos="2";
-
-                            }
-
-                            if(output.equals("2")){
-
-                                Precf.setVisibility(View.INVISIBLE);
-                                descuentotxt.setText("Descuento de 30%");
-                                btndescuento.setVisibility(View.VISIBLE);
-                                descuentotxt.setVisibility(View.VISIBLE);
-                                Toast.makeText(ResumenPedidoActivity.this, "Pulse para aplicar descuento de 30%", Toast.LENGTH_SHORT).show();
+                             contadorpedidos = "3";
 
 
-                                contadorpedidos="3";
+                         }
 
 
+                         if (output.equals("3")) {
 
-                            }
-
-
-                            if(output.equals("3")){
-
-                                Precf.setVisibility(View.INVISIBLE);
-                                contadorpedidos="4";
-                            }
-
-                            if(output.equals("4")){
-                                Precf.setVisibility(View.INVISIBLE);
-                                descuentotxt.setText("Descuento de 50%");
-                                btndescuento.setVisibility(View.VISIBLE);
-                                descuentotxt.setVisibility(View.VISIBLE);
-                                Toast.makeText(ResumenPedidoActivity.this, "Pulse para aplicar descuento de 50%", Toast.LENGTH_SHORT).show();
-
-                                contadorpedidos="0";
-                            }
+                             Precf.setVisibility(View.INVISIBLE);
+                             descuentotxt.setText("Descuento de 30%");
+                             btndescuento.setVisibility(View.VISIBLE);
+                             descuentotxt.setVisibility(View.VISIBLE);
+                             Toast.makeText(ResumenPedidoActivity.this, "Pulse para aplicar descuento de 20%", Toast.LENGTH_SHORT).show();
 
 
-                            if(output.equals("5")){
+                             contadorpedidos = "4";
+                         }
 
-                                Precf.setVisibility(View.INVISIBLE);
-                                contadorpedidos="0";
-                            }
+                         if (output.equals("4")) {
+                             Precf.setVisibility(View.INVISIBLE);
+                             descuentotxt.setText("Descuento de 50%");
+                             btndescuento.setVisibility(View.VISIBLE);
+                             descuentotxt.setVisibility(View.VISIBLE);
+                             Toast.makeText(ResumenPedidoActivity.this, "Pulse para aplicar descuento de 50%", Toast.LENGTH_SHORT).show();
 
-                            if(output.equals("6")){
+                             contadorpedidos = "0";
+                         }
 
 
-                                contadorpedidos="6";
-                            }
+                     } catch (IOException e) {
+                         e.printStackTrace();
+                     }
 
-                            if(output.equals("10")){
-
-                                Precf.setVisibility(View.INVISIBLE);
-                                descuentotxt.setText("Descuento de 10%");
-                                btndescuento.setVisibility(View.VISIBLE);
-                                descuentotxt.setVisibility(View.VISIBLE);
-                                Toast.makeText(ResumenPedidoActivity.this, "Pulse para aplicar descuento de 10%", Toast.LENGTH_SHORT).show();
-                                contadorpedidos="0";
-                            }
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
+                 }   }
 
                     @Override
                     public void failure(RetrofitError error) {
@@ -506,6 +492,19 @@ final Button btndescuento=(Button)findViewById(R.id.btnDescuento);
 
                 if(desct.equals("Descuento de 10%")){
                     dac=precio*10;
+                    dac=dac/100;
+                    precio=precio-dac;
+                    preciototale=precio+preciof;
+                    textpreciofinal.setText("PRECIO TOTAL: "+String.valueOf(preciototale)+" USD");
+                    btndescuento.setVisibility(View.GONE);
+                    descuentotxt.setVisibility(View.GONE);
+
+                    preciototal2= String.valueOf(preciototale);
+                }
+
+
+                if(desct.equals("Descuento de 20%")){
+                    dac=precio*20;
                     dac=dac/100;
                     precio=precio-dac;
                     preciototale=precio+preciof;

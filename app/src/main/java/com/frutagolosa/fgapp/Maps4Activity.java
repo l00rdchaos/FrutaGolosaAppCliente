@@ -551,7 +551,7 @@ prec.setText("De un toque a la pantalla para marcar ubicacion o deje pulsado");
 
             if (area.equals("null") || area.equals("") || area.isEmpty()) {
 
-                prec.setText("Lo sentimos no vamos a esta direccion");
+                prec2.setText("$10");
 
 
             }

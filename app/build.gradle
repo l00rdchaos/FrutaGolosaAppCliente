@@ -6,10 +6,10 @@ android {
     defaultConfig {
         buildToolsVersion "28.0.3"
         applicationId "com.frutagolosa.fgapp"
-        minSdkVersion 17
+        minSdkVersion 23
         targetSdkVersion 28
-        versionCode 51
-        versionName "1.8.2"
+        versionCode 56
+        versionName "1.8.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         lintOptions {
             checkReleaseBuilds false // Add this

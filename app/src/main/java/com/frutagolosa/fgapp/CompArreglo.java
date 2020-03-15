@@ -195,7 +195,7 @@ public class CompArreglo extends AppCompatActivity {
               @Override
               public void run() {
 
-                String version="1.8.1";
+                String version="1.8.2";
 
                 RestAdapter adapter = new RestAdapter.Builder()
                         .setEndpoint("https://frutagolosa.com/FrutaGolosaApp/version.php?z="+version)
@@ -213,64 +213,60 @@ public class CompArreglo extends AppCompatActivity {
                         new Callback<Response>() {
                           @Override
                           public void success(Response result, Response response) {
+                    if(response.getBody()!=null) {
+                      BufferedReader reader = null;
+                      String output = "";
 
-                            BufferedReader reader = null;
-                            String output = "";
+                      try {
+                        reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
-                            try {
-                              reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
-
-                              output = reader.readLine();
-                              if(output.equals("Actual")){
-
-
-
-                                Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
-                                f.putExtra(PrecioArreglo, precio);
-                                f.putExtra(NombreArreglo, IdArreglo);
-                                startActivity(f);
-                                loading.dismiss();
+                        output = reader.readLine();
+                        if (output.equals("Actual")) {
 
 
+                          Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
+                          f.putExtra(PrecioArreglo, precio);
+                          f.putExtra(NombreArreglo, IdArreglo);
+                          startActivity(f);
+                          loading.dismiss();
 
 
+                        } else {
 
-                              }else {
-
-                                builder2.setTitle("Actualice su app");
-                                builder2.setMessage("Tenemos mejoras importantes en nuestra app, por favor actualiza para poder comprar y seguir disfrutando.");
-                                builder2.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                  @Override
-                                  public void onClick(DialogInterface dialog, int which) {
-                                    Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp");
-                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                    startActivity(intent);
-
-
-                                  }
-                                });
-                                builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                  @Override
-                                  public void onClick(DialogInterface dialog, int which) {
-                    
-
-                                  }
-                                });
-                                builder2.create();
-                                builder2.show();
+                          builder2.setTitle("Actualice su app");
+                          builder2.setMessage("Tenemos mejoras importantes en nuestra app, por favor actualiza para poder comprar y seguir disfrutando.");
+                          builder2.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                              Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp");
+                              Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                              startActivity(intent);
 
 
-                                Toast.makeText(CompArreglo.this, output, Toast.LENGTH_SHORT).show();
-                                loading.dismiss();
-
-                              }
-
-                            } catch (IOException e) {
-                              e.printStackTrace();
                             }
+                          });
+                          builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
 
-                          }
+                            }
+                          });
+                          builder2.create();
+                          builder2.show();
+
+
+                          Toast.makeText(CompArreglo.this, output, Toast.LENGTH_SHORT).show();
+                          loading.dismiss();
+
+                        }
+
+                      } catch (IOException e) {
+                        e.printStackTrace();
+                      }
+
+
+                    }  }
 
                           @Override
                           public void failure(RetrofitError error) {

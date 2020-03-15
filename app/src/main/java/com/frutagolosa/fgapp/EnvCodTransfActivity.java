@@ -140,7 +140,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
     final ImageView btnBolivariano = (ImageView) findViewById(R.id.btnBolivariano);
     final ImageView btnGuayaquil = (ImageView) findViewById(R.id.btnGuayaquil);
     final ImageView btnPacifico = (ImageView) findViewById(R.id.btnPacifico);
-
+    final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
     Button listoco = (Button) findViewById(R.id.btnListoCod);
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
@@ -220,29 +220,29 @@ public class EnvCodTransfActivity extends AppCompatActivity {
           } else {
             fpago = Banco;
           }
-          Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
-                  "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
+         // Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
+               //   "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
 
-          try {
-            LongOperation l = new LongOperation();
-            l.execute();  //sends the email in background
-
-
-          } catch (Exception e) {
+     //     try {
+         //   LongOperation l = new LongOperation();
+        //    l.execute();  //sends the email in background
 
 
-            Log.e("SendMail", e.getMessage(), e);
+       //   } catch (Exception e) {
 
 
-          }
-          insertUser();
+       //     Log.e("SendMail", e.getMessage(), e);
+
+
+       //   }
+
 
 
         }
 
 
       }
-
+      insertUser();
 
     }
 
@@ -333,23 +333,23 @@ public class EnvCodTransfActivity extends AppCompatActivity {
                 } else {
                   fpago = Banco;
                 }
-                Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
-                        "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
+            //    Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
+               //         "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
 
-                try {
-                  LongOperation l = new LongOperation();
-                  l.execute();  //sends the email in background
-
-
-                } catch (Exception e) {
+            //   try {
+           //    LongOperation l = new LongOperation();
+          //      l.execute();  //sends the email in background
 
 
-                  Log.e("SendMail", e.getMessage(), e);
+            // } catch (Exception e) {
 
 
-                }
+                // Log.e("SendMail", e.getMessage(), e);
 
-                insertUser();
+
+               // }
+
+           uploadImage();
 
 
               }
@@ -485,36 +485,34 @@ public class EnvCodTransfActivity extends AppCompatActivity {
             new Callback<Response>() {
               @Override
               public void success(Response result, Response response) {
+                      if(response.getBody()!=null) {
+                        BufferedReader reader = null;
 
-                BufferedReader reader = null;
+                        String output = "";
 
-                String output = "";
+                        try {
+                          reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
-                try {
-                  reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
+                          output = reader.readLine();
+                        } catch (IOException e) {
+                          e.printStackTrace();
+                        }
+                        if (output.equals("Pedido Registrado Exitosamente")) {
+                          Toast.makeText(EnvCodTransfActivity.this, output, Toast.LENGTH_LONG).show();
+                          Intent d = new Intent(EnvCodTransfActivity.this, Inicio.class);
+                          //  subircontador();
+                          notificacion();
+                          startActivity(d);
 
-                  output = reader.readLine();
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
-                if (output.equals("Pedido Registrado Exitosamente")) {
-                  Toast.makeText(EnvCodTransfActivity.this, output, Toast.LENGTH_LONG).show();
-                  Intent d = new Intent(EnvCodTransfActivity.this, Inicio.class);
-                  uploadImage();
-                  subircontador();
-                  BorrarPendiente();
-                  notificacion();
-                  startActivity(d);
-
-                  finish();
-                } else {
+                          finish();
+                        } else {
 
 
-                  Toast.makeText(EnvCodTransfActivity.this, output, Toast.LENGTH_SHORT).show();
+                          Toast.makeText(EnvCodTransfActivity.this, output, Toast.LENGTH_SHORT).show();
 
-                }
+                        }
 
-              }
+                      } }
 
               @Override
               public void failure(RetrofitError error) {
@@ -618,6 +616,20 @@ public class EnvCodTransfActivity extends AppCompatActivity {
               public void onResponse(String response) {
                 loading.dismiss();
                 Toast.makeText(EnvCodTransfActivity.this, response, Toast.LENGTH_LONG).show();
+                if(response.equals("Imagen Enviada")){
+
+                    insertUser();
+
+                }
+
+                else{
+
+
+                  Toast.makeText(EnvCodTransfActivity.this, "No se pudo enviar intente de nuevo", Toast.LENGTH_SHORT).show();
+
+                }
+
+
               }
             }, new com.android.volley.Response.ErrorListener() {
       @Override

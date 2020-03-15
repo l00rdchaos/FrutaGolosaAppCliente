@@ -53,51 +53,43 @@ public class VerMotorizado extends AppCompatActivity {
     call.enqueue(new Callback<List<Motorizado>>() {
       @Override
       public void onResponse(Call<List<Motorizado>> call, Response<List<Motorizado>> response) {
-        contacts = response.body();
-        adapter = new RecyclerAdapter2(contacts);
-        recyclerView.setAdapter(adapter);
+        if(response.body()!=null) {
+          contacts = response.body();
+          adapter = new RecyclerAdapter2(contacts);
+          recyclerView.setAdapter(adapter);
 
 
+          adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
-        adapter.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
+              final String coordenadas = contacts.get(recyclerView.getChildAdapterPosition(view)).getCoordenadas();
+              final String telfmoto = contacts.get(recyclerView.getChildAdapterPosition(view)).getTelefono();
+              final String imagenmoto = contacts.get(recyclerView.getChildAdapterPosition(view)).getFoto();
+              final String coorde = contacts.get(recyclerView.getChildAdapterPosition(view)).getCoordenadas();
+              if (coordenadas.substring(1).equals("G") || coordenadas.equals("no") || coordenadas.equals(" ")) {
+
+                Toast.makeText(VerMotorizado.this, "Ubicacion no disponible actualmente", Toast.LENGTH_SHORT).show();
+              } else {
 
 
-            final String coordenadas=contacts.get(recyclerView.getChildAdapterPosition(view)).getCoordenadas();
-            final String telfmoto=contacts.get(recyclerView.getChildAdapterPosition(view)).getTelefono();
-            final String imagenmoto=contacts.get(recyclerView.getChildAdapterPosition(view)).getFoto();
-            final String coorde=contacts.get(recyclerView.getChildAdapterPosition(view)).getCoordenadas();
-            if(coordenadas.substring(1).equals("G")||coordenadas.equals("no")||coordenadas.equals(" ")){
-
-              Toast.makeText(VerMotorizado.this, "Ubicacion no disponible actualmente", Toast.LENGTH_SHORT).show();
-            }
-
-
-
-            else {
+                Intent b = new Intent(VerMotorizado.this, Maps4Activity.class);
+                String Ciudad = "si";
+                b.putExtra(MOTORIZADOTELFONO, telfmoto);
+                b.putExtra(IMAGENMOTO, imagenmoto);
+                b.putExtra(COORDENADAS, coorde);
+                b.putExtra(CiudadA, Ciudad);
+                startActivity(b);
+                finish();
 
 
-
-              Intent b = new Intent(VerMotorizado.this, Maps4Activity.class);
-              String Ciudad="si";
-              b.putExtra(MOTORIZADOTELFONO,telfmoto);
-              b.putExtra(IMAGENMOTO,imagenmoto);
-              b.putExtra(COORDENADAS,coorde);
-              b.putExtra(CiudadA,Ciudad);
-              startActivity(b);
-              finish();
-
-
-
+              }
 
             }
+          });
 
-          }
-        });
-
-      }
+        }}
 
 
 

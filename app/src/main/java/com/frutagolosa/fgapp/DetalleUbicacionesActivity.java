@@ -226,7 +226,7 @@ insertPendiente();
             final String CasaEmpEdif =CasaEmpEd.getSelectedItem().toString()+": "+CasaADD.getText().toString().replace(","," ").trim();
             final String especificacion = Especificaciona.getText().toString().replace(","," ").trim();
 
-            String datea = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+            String datea = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 
             String a = datea.replace("-","/");
             String b = telefonous;
@@ -302,67 +302,60 @@ insertPendiente();
                     new Callback<Response>() {
                         @Override
                         public void success(Response result, Response response) {
+                                        if(response.getBody()!=null) {
+                                            BufferedReader reader = null;
 
-                            BufferedReader reader = null;
+                                            String output = "";
 
-                            String output = "";
+                                            try {
+                                                reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
-                            try {
-                                reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
+                                                output = reader.readLine();
 
-                                output = reader.readLine();
-
-                                String id=output;
-
-
-                                String callprin=CallePrin.getText().toString().replace(","," ").trim();
-                                String callsec=CallSec.getText().toString().replace(","," ").trim();
-                                String refer=Refe.getText().toString().trim();
-                                String Numerac=EditNumerac.getText().toString().replace(","," ").trim();
-                                String detagg=DetalleAGG.getText().toString().replace(","," ").trim();
-                                String MotivGlob =TipoTG.getSelectedItem().toString();
-                                String CasaEmpEdif =CasaEmpEd.getSelectedItem().toString()+": "+CasaADD.getText().toString().replace(","," ").trim();
-                                String especificacion = Especificaciona.getText().toString().replace(","," ").trim();
+                                                String id = output;
 
 
+                                                String callprin = CallePrin.getText().toString().replace(",", " ").trim();
+                                                String callsec = CallSec.getText().toString().replace(",", " ").trim();
+                                                String refer = Refe.getText().toString().trim();
+                                                String Numerac = EditNumerac.getText().toString().replace(",", " ").trim();
+                                                String detagg = DetalleAGG.getText().toString().replace(",", " ").trim();
+                                                String MotivGlob = TipoTG.getSelectedItem().toString();
+                                                String CasaEmpEdif = CasaEmpEd.getSelectedItem().toString() + ": " + CasaADD.getText().toString().replace(",", " ").trim();
+                                                String especificacion = Especificaciona.getText().toString().replace(",", " ").trim();
 
 
+                                                Intent ba = new Intent(DetalleUbicacionesActivity.this, ResumenPedidoActivity.class);
 
-                                Intent ba = new Intent(DetalleUbicacionesActivity.this, ResumenPedidoActivity.class);
-
-                                ba.putExtra(NombreQuienRecibe, Nombpass);
-                                ba.putExtra(TelefonoQuienRecibe, TelPass);
-                                ba.putExtra(DiaEntrega, FechaPass);
-                                ba.putExtra(FranjaHorariaQueRecibe, Horapass);
-                                ba.putExtra(Cantidadpassm,cantidadpass);
-                                ba.putExtra(Direccionpass,DireccionPassr);
-                                ba.putExtra(PrecioViajePass,PrecioViajePassa);
-                                ba.putExtra(CallePrincPassss,callprin);
-                                ba.putExtra(CalleSecPass,callsec);
-                                ba.putExtra(RefereciaPass,refer);
-                                ba.putExtra(DetalleUbicacionPass,CasaEmpEdif);
-                                ba.putExtra(DetalleAGGPass,detagg);
-                                ba.putExtra(GloboOTarjetaPass,MotivGlob);
-                                ba.putExtra(PrecioArreglo, precioArreglo);
-                                ba.putExtra(NombreArreglo,IdArreglo);
-                                ba.putExtra(Numeracion,Numerac);
-                                ba.putExtra(Especificacion,especificacion);
-                                ba.putExtra(Sector,sector);
-                                ba.putExtra(CiudadA,Ciudad);
-                                loading.dismiss();
-                                startActivity(ba);
-
+                                                ba.putExtra(NombreQuienRecibe, Nombpass);
+                                                ba.putExtra(TelefonoQuienRecibe, TelPass);
+                                                ba.putExtra(DiaEntrega, FechaPass);
+                                                ba.putExtra(FranjaHorariaQueRecibe, Horapass);
+                                                ba.putExtra(Cantidadpassm, cantidadpass);
+                                                ba.putExtra(Direccionpass, DireccionPassr);
+                                                ba.putExtra(PrecioViajePass, PrecioViajePassa);
+                                                ba.putExtra(CallePrincPassss, callprin);
+                                                ba.putExtra(CalleSecPass, callsec);
+                                                ba.putExtra(RefereciaPass, refer);
+                                                ba.putExtra(DetalleUbicacionPass, CasaEmpEdif);
+                                                ba.putExtra(DetalleAGGPass, detagg);
+                                                ba.putExtra(GloboOTarjetaPass, MotivGlob);
+                                                ba.putExtra(PrecioArreglo, precioArreglo);
+                                                ba.putExtra(NombreArreglo, IdArreglo);
+                                                ba.putExtra(Numeracion, Numerac);
+                                                ba.putExtra(Especificacion, especificacion);
+                                                ba.putExtra(Sector, sector);
+                                                ba.putExtra(CiudadA, Ciudad);
+                                                loading.dismiss();
+                                                startActivity(ba);
 
 
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
 
 
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-
-                        }
+                                        } }
 
                         @Override
                         public void failure(RetrofitError error) {

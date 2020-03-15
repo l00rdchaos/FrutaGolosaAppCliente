@@ -158,8 +158,8 @@ public class DetallePedidoPendiente extends AppCompatActivity {
 
         Glide.with(this).load(imgaent).into(ImgArregloEnt);
 
-        ImgArreglolisto.setRotation(ImgArreglolisto.getRotation()+90);
-       ImgArregloEnt.setRotation(ImgArregloEnt.getRotation()+90);
+       // ImgArreglolisto.setRotation(ImgArreglolisto.getRotation()+90);
+   //    ImgArregloEnt.setRotation(ImgArregloEnt.getRotation()+90);
         Button btnVerMOTO=findViewById(R.id.btnVerMOTO);
         Button btnVerEncuesta=findViewById(R.id.btnEncuesta);
         Button btnBorrarPedido=findViewById(R.id.btnBorrarPedido);

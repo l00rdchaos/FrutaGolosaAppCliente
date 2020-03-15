@@ -5,29 +5,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
-import com.bumptech.glide.Glide;
-import com.frutagolosa.fgapp.adapter.PersonajesAdapter;
-import com.frutagolosa.fgapp.adapter.RecyclerAdapter;
 import com.frutagolosa.fgapp.adapter.RecyclerAdapterArreglos;
 import com.frutagolosa.fgapp.api.ApiClient;
 import com.frutagolosa.fgapp.api.ApiInterFaceArreglo;
-import com.frutagolosa.fgapp.api.ApiInterface3;
 import com.frutagolosa.fgapp.model.Arreglos;
-import com.frutagolosa.fgapp.model.Contact;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,7 +35,7 @@ import retrofit2.Response;
  */
 
 
-public class ConChocolateFragment extends Fragment  {
+public class CajasConFrutasFragment extends Fragment  {
     public static final String IdArreglo="bc" ;
     public static final String Precio="precio" ;
     // TODO: Rename parameter arguments, choose names that match
@@ -74,7 +64,7 @@ public class ConChocolateFragment extends Fragment  {
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
-    public ConChocolateFragment() {
+    public CajasConFrutasFragment() {
         // Required empty public constructor
     }
 
@@ -115,8 +105,8 @@ public class ConChocolateFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View vista=inflater.inflate(R.layout.fragment_con_chocolate, container, false);
-        recyclerView= (RecyclerView) vista.findViewById(R.id.recyclerId);
+        View vista=inflater.inflate(R.layout.fragment_cajasconfrutas, container, false);
+        recyclerView= (RecyclerView) vista.findViewById(R.id.recyclerIdcc);
         final GridLayoutManager gridLayoutManager= new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -128,42 +118,64 @@ public class ConChocolateFragment extends Fragment  {
 
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            {
+                if(dy > 0) //check for scroll down
+                {
+                    visibleItemCount = gridLayoutManager.getChildCount();
+                    totalItemCount = gridLayoutManager.getItemCount();
+                    pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
 
+                    if (loading)
+                    {
+                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
+                        {
+                            loading = false;
+                            Toast.makeText(getContext(), "Last Item", Toast.LENGTH_SHORT).show();
+                            //Do pagination.. i.e. fetch new data
+                        }
+                    }
+                }
+            }
+        });
         apiInterface = ApiClient.getApiClient().create(ApiInterFaceArreglo.class);
-String tip="Fruta Golosa";
+        String tip="CAJASCONFRUTAS";
 
         Call<List<Arreglos>> call = apiInterface.getArreglos("https://frutagolosa.com/FrutaGolosaApp/ArreglosEnApp.php?t="+tip+"&k=121523");
         call.enqueue(new Callback<List<Arreglos>>() {
             @Override
             public void onResponse(Call<List<Arreglos>> call, Response<List<Arreglos>> response) {
-                if(response.body()!=null) {
-                    arreglos = response.body();
-                    adapter = new RecyclerAdapterArreglos(arreglos);
-                    adapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.setHasFixedSize(true);
-                    adapter.notifyDataSetChanged();
-                    recyclerView.setNestedScrollingEnabled(false);
+                arreglos = response.body();
+                adapter = new RecyclerAdapterArreglos(arreglos);
+                adapter.notifyDataSetChanged();
+                recyclerView.setAdapter(adapter);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setDrawingCacheEnabled(true);
+                recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                recyclerView.setNestedScrollingEnabled(false);
+                adapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
+                        String nombreArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre();
+                        String valorArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getValor();
 
-                    adapter.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                        // String tipoArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
 
-                            String nombreArreglo = arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre();
-                            String valorArreglo = arreglos.get(recyclerView.getChildAdapterPosition(view)).getValor();
+                        Intent c= new Intent(getContext(), CompArreglo.class);
+                        Intent re = new Intent(getContext(), CompArreglo.class);
+                        re.putExtra(IdArreglo,nombreArreglo);
+                        re.putExtra(Precio,valorArreglo);
+                        startActivity(re);
+                    }
+                });
 
-                            // String tipoArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
-
-                            Intent c = new Intent(getContext(), CompArreglo.class);
-                            Intent re = new Intent(getContext(), CompArreglo.class);
-                            re.putExtra(IdArreglo, nombreArreglo);
-                            re.putExtra(Precio, valorArreglo);
-                            startActivity(re);
-                        }
-                    });
-
-                }     }
+            }
 
             @Override
             public void onFailure(Call<List<Arreglos>> call, Throwable t) {
@@ -250,7 +262,7 @@ String tip="Fruta Golosa";
         super.onDestroyView();
         arreglos.clear();
         adapter.notifyDataSetChanged();
-        Glide.get(getContext()).clearMemory();
+
     }
 
     /**

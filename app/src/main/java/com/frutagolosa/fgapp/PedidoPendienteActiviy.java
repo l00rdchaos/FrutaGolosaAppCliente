@@ -111,79 +111,80 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
     call.enqueue(new Callback<List<Contact>>() {
       @Override
       public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-        contacts = response.body();
-        adapter = new RecyclerAdapter(contacts);
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-        adapter.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
+        if(response.body()!=null) {
+          contacts = response.body();
+          adapter = new RecyclerAdapter(contacts);
+          adapter.notifyDataSetChanged();
+          recyclerView.setAdapter(adapter);
+          recyclerView.setHasFixedSize(true);
+          adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            String ID_PEDIDO1=contacts.get(recyclerView.getChildAdapterPosition(view)).getID_PEDIDO();
-            String Idarreglot=contacts.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
-            String FechaPedidot=contacts.get(recyclerView.getChildAdapterPosition(view)).getFecha_pedido();
-            String NombreClientet=contacts.get(recyclerView.getChildAdapterPosition(view)).getNombreCliente();
-            String Correo_Clientet=contacts.get(recyclerView.getChildAdapterPosition(view)).getCorreo_cliente();
-            String Telefono_Clientet=contacts.get(recyclerView.getChildAdapterPosition(view)).getTelefono_cliente();
-            String Nombre_qrecibet=contacts.get(recyclerView.getChildAdapterPosition(view)).getNombre_qRecibe();
-            String Telefono_qrecibet=contacts.get(recyclerView.getChildAdapterPosition(view)).getTelefono_qRecibe();
-            String Fecha_Qrecibet=contacts.get(recyclerView.getChildAdapterPosition(view)).getFechaEntrega();
+              String ID_PEDIDO1 = contacts.get(recyclerView.getChildAdapterPosition(view)).getID_PEDIDO();
+              String Idarreglot = contacts.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
+              String FechaPedidot = contacts.get(recyclerView.getChildAdapterPosition(view)).getFecha_pedido();
+              String NombreClientet = contacts.get(recyclerView.getChildAdapterPosition(view)).getNombreCliente();
+              String Correo_Clientet = contacts.get(recyclerView.getChildAdapterPosition(view)).getCorreo_cliente();
+              String Telefono_Clientet = contacts.get(recyclerView.getChildAdapterPosition(view)).getTelefono_cliente();
+              String Nombre_qrecibet = contacts.get(recyclerView.getChildAdapterPosition(view)).getNombre_qRecibe();
+              String Telefono_qrecibet = contacts.get(recyclerView.getChildAdapterPosition(view)).getTelefono_qRecibe();
+              String Fecha_Qrecibet = contacts.get(recyclerView.getChildAdapterPosition(view)).getFechaEntrega();
 
-            String Franja_Horariat=contacts.get(recyclerView.getChildAdapterPosition(view)).getFranja_horaria();
-            String Calle_Principalt=contacts.get(recyclerView.getChildAdapterPosition(view)).getCalle_principal();
-            String Calle_Secundariat=contacts.get(recyclerView.getChildAdapterPosition(view)).getCalle_secundaria();
-            String casaempresaedificiot=contacts.get(recyclerView.getChildAdapterPosition(view)).getCasaempresaedificio();
-            String referenciat=contacts.get(recyclerView.getChildAdapterPosition(view)).getReferencia();
-            String portada_tarjetat=contacts.get(recyclerView.getChildAdapterPosition(view)).getPortada_tarjeta();
-            String texto_tarjetat=contacts.get(recyclerView.getChildAdapterPosition(view)).getTexto_tarjeta();
-            String especificaciont=contacts.get(recyclerView.getChildAdapterPosition(view)).getEspecificacion();
-            String estadot=contacts.get(recyclerView.getChildAdapterPosition(view)).getEstado();
-            String keyaccountt=contacts.get(recyclerView.getChildAdapterPosition(view)).getKeyaccount();
+              String Franja_Horariat = contacts.get(recyclerView.getChildAdapterPosition(view)).getFranja_horaria();
+              String Calle_Principalt = contacts.get(recyclerView.getChildAdapterPosition(view)).getCalle_principal();
+              String Calle_Secundariat = contacts.get(recyclerView.getChildAdapterPosition(view)).getCalle_secundaria();
+              String casaempresaedificiot = contacts.get(recyclerView.getChildAdapterPosition(view)).getCasaempresaedificio();
+              String referenciat = contacts.get(recyclerView.getChildAdapterPosition(view)).getReferencia();
+              String portada_tarjetat = contacts.get(recyclerView.getChildAdapterPosition(view)).getPortada_tarjeta();
+              String texto_tarjetat = contacts.get(recyclerView.getChildAdapterPosition(view)).getTexto_tarjeta();
+              String especificaciont = contacts.get(recyclerView.getChildAdapterPosition(view)).getEspecificacion();
+              String estadot = contacts.get(recyclerView.getChildAdapterPosition(view)).getEstado();
+              String keyaccountt = contacts.get(recyclerView.getChildAdapterPosition(view)).getKeyaccount();
 
-            String globot=contacts.get(recyclerView.getChildAdapterPosition(view)).getGlobo();
-            String sectort=contacts.get(recyclerView.getChildAdapterPosition(view)).getSector();
-            String coordenadast=contacts.get(recyclerView.getChildAdapterPosition(view)).getCoordenadas();
-            String imgal=contacts.get(recyclerView.getChildAdapterPosition(view)).getimgal();
-            String imgaent=contacts.get(recyclerView.getChildAdapterPosition(view)).getImgaent();
-              String TiempoFab=contacts.get(recyclerView.getChildAdapterPosition(view)).getTiempo_Fabricado();
-            String motorizado=contacts.get(recyclerView.getChildAdapterPosition(view)).getMotorizado();
+              String globot = contacts.get(recyclerView.getChildAdapterPosition(view)).getGlobo();
+              String sectort = contacts.get(recyclerView.getChildAdapterPosition(view)).getSector();
+              String coordenadast = contacts.get(recyclerView.getChildAdapterPosition(view)).getCoordenadas();
+              String imgal = contacts.get(recyclerView.getChildAdapterPosition(view)).getimgal();
+              String imgaent = contacts.get(recyclerView.getChildAdapterPosition(view)).getImgaent();
+              String TiempoFab = contacts.get(recyclerView.getChildAdapterPosition(view)).getTiempo_Fabricado();
+              String motorizado = contacts.get(recyclerView.getChildAdapterPosition(view)).getMotorizado();
 
 
-            Intent c= new Intent(PedidoPendienteActiviy.this, DetallePedidoPendiente.class);
-            c.putExtra(IdPEDIDOA,ID_PEDIDO1);
-            c.putExtra(FechaPedidoA,FechaPedidot);
-            c.putExtra(IdArregloA,Idarreglot);
-            c.putExtra(NombreClientesA,NombreClientet);
-            c.putExtra(CorreoClienteA,Correo_Clientet);
-            c.putExtra(TelefonoClienteA,Telefono_Clientet);
-            c.putExtra(NombreqRecibeA,Nombre_qrecibet);
-            c.putExtra(TelefonoQrecibeA,Telefono_qrecibet);
-            c.putExtra(FechaQrecibeA,Fecha_Qrecibet);
+              Intent c = new Intent(PedidoPendienteActiviy.this, DetallePedidoPendiente.class);
+              c.putExtra(IdPEDIDOA, ID_PEDIDO1);
+              c.putExtra(FechaPedidoA, FechaPedidot);
+              c.putExtra(IdArregloA, Idarreglot);
+              c.putExtra(NombreClientesA, NombreClientet);
+              c.putExtra(CorreoClienteA, Correo_Clientet);
+              c.putExtra(TelefonoClienteA, Telefono_Clientet);
+              c.putExtra(NombreqRecibeA, Nombre_qrecibet);
+              c.putExtra(TelefonoQrecibeA, Telefono_qrecibet);
+              c.putExtra(FechaQrecibeA, Fecha_Qrecibet);
 
-            c.putExtra(FranjaHorariaA,Franja_Horariat);
-            c.putExtra(CallePrincipalA,Calle_Principalt);
-            c.putExtra(CalleSecundariaA,Calle_Secundariat);
-            c.putExtra(CasaempresaedifcioA,casaempresaedificiot);
-            c.putExtra(referenciaA,referenciat);
-            c.putExtra(PortadaTarjetaA,portada_tarjetat);
-            c.putExtra(TextoTarjetaA,texto_tarjetat);
-            c.putExtra(EspecificacionA,especificaciont);
-            c.putExtra(MotorizadoA,motorizado);
-            c.putExtra(EstadoA,estadot);
-            c.putExtra(KeyAccountA,keyaccountt);
-            c.putExtra(GloboA,globot);
-            c.putExtra(SectorA,sectort);
-            c.putExtra(CoordenadaA,coordenadast);
-            c.putExtra(imgalA,imgal);
-            c.putExtra(imgaentA,imgaent);
-              c.putExtra(TiempoFAB,TiempoFab);
-            startActivity(c);
-            finish();
-          }
-        });
+              c.putExtra(FranjaHorariaA, Franja_Horariat);
+              c.putExtra(CallePrincipalA, Calle_Principalt);
+              c.putExtra(CalleSecundariaA, Calle_Secundariat);
+              c.putExtra(CasaempresaedifcioA, casaempresaedificiot);
+              c.putExtra(referenciaA, referenciat);
+              c.putExtra(PortadaTarjetaA, portada_tarjetat);
+              c.putExtra(TextoTarjetaA, texto_tarjetat);
+              c.putExtra(EspecificacionA, especificaciont);
+              c.putExtra(MotorizadoA, motorizado);
+              c.putExtra(EstadoA, estadot);
+              c.putExtra(KeyAccountA, keyaccountt);
+              c.putExtra(GloboA, globot);
+              c.putExtra(SectorA, sectort);
+              c.putExtra(CoordenadaA, coordenadast);
+              c.putExtra(imgalA, imgal);
+              c.putExtra(imgaentA, imgaent);
+              c.putExtra(TiempoFAB, TiempoFab);
+              startActivity(c);
+              finish();
+            }
+          });
 
-      }
+        } }
 
 
 

@@ -156,34 +156,35 @@ public class FestivosFragment extends Fragment  {
     call.enqueue(new Callback<List<Arreglos>>() {
       @Override
       public void onResponse(Call<List<Arreglos>> call, Response<List<Arreglos>> response) {
-        arreglos = response.body();
-        adapter = new RecyclerAdapterArreglos(arreglos);
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setDrawingCacheEnabled(true);
-        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        recyclerView.setNestedScrollingEnabled(false);
-        adapter.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
+        if(response.body()!=null) {
+          arreglos = response.body();
+          adapter = new RecyclerAdapterArreglos(arreglos);
+          adapter.notifyDataSetChanged();
+          recyclerView.setAdapter(adapter);
+          recyclerView.setHasFixedSize(true);
+          recyclerView.setDrawingCacheEnabled(true);
+          recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+          recyclerView.setAdapter(adapter);
+          adapter.notifyDataSetChanged();
+          recyclerView.setNestedScrollingEnabled(false);
+          adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            String nombreArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre();
-            String valorArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getValor();
+              String nombreArreglo = arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre();
+              String valorArreglo = arreglos.get(recyclerView.getChildAdapterPosition(view)).getValor();
 
-            // String tipoArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
+              // String tipoArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
 
-            Intent c= new Intent(getContext(), CompArreglo.class);
-            Intent re = new Intent(getContext(), CompArreglo.class);
-            re.putExtra(IdArreglo,nombreArreglo);
-            re.putExtra(Precio,valorArreglo);
-            startActivity(re);
-          }
-        });
+              Intent c = new Intent(getContext(), CompArreglo.class);
+              Intent re = new Intent(getContext(), CompArreglo.class);
+              re.putExtra(IdArreglo, nombreArreglo);
+              re.putExtra(Precio, valorArreglo);
+              startActivity(re);
+            }
+          });
 
-      }
+        }  }
 
       @Override
       public void onFailure(Call<List<Arreglos>> call, Throwable t) {

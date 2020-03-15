@@ -50,7 +50,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,ConChocolateFragment.OnFragmentInteractionListener,SinChocolateFragment.OnFragmentInteractionListener,FrutasFloresFragm.OnFragmentInteractionListener, BlankFragmenta.OnFragmentInteractionListener, FestivosFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,ConChocolateFragment.OnFragmentInteractionListener,SinChocolateFragment.OnFragmentInteractionListener,FrutasFloresFragm.OnFragmentInteractionListener, BlankFragmenta.OnFragmentInteractionListener, FestivosFragment.OnFragmentInteractionListener,CajasConFrutasFragment.OnFragmentInteractionListener {
 
   public static final String ska="codigoarreglo" ;
   public static final String ska2="codigoarreglo" ;
@@ -89,6 +89,8 @@ public class Main2Activity extends AppCompatActivity
     Button btnNC=(Button) findViewById(R.id.btnNcontacto);
     Button btnCF = (Button) findViewById(R.id.btnCajasConF);
     Button btnAF=(Button) findViewById(R.id.btnAFestivos);
+      Button btnCCF=(Button) findViewById(R.id.btnCajasConF);
+
     setTitle("Fruta Golosa");
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -112,6 +114,8 @@ public class Main2Activity extends AppCompatActivity
     frg4.setVisibility(View.GONE);
     View frg5= findViewById(R.id.fragmentar5);
     frg5.setVisibility(View.GONE);
+    View frg6= findViewById(R.id.fragmentar6);
+    frg6.setVisibility(View.GONE);
 
     //////////////////////////////////////////////////////////////////////
     btnAF.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +131,8 @@ public class Main2Activity extends AppCompatActivity
         frg4.setVisibility(View.GONE);
         View frg5= findViewById(R.id.fragmentar5);
         frg5.setVisibility(View.VISIBLE);
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
         
       }
     });
@@ -134,7 +140,18 @@ public class Main2Activity extends AppCompatActivity
     btnCF.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Toast.makeText(Main2Activity.this, "Lo sentimos esta seccion esta en desarrollo", Toast.LENGTH_SHORT).show();
+          View frg= findViewById(R.id.fragmentar);
+          frg.setVisibility(View.GONE);
+          View frg2= findViewById(R.id.fragmentar2);
+          frg2.setVisibility(View.GONE);
+          View frg3= findViewById(R.id.fragmentar3);
+          frg3.setVisibility(View.GONE);
+          View frg4= findViewById(R.id.fragmentar4);
+          frg4.setVisibility(View.GONE);
+          View frg5= findViewById(R.id.fragmentar5);
+          frg5.setVisibility(View.GONE);
+          View frg6= findViewById(R.id.fragmentar6);
+          frg6.setVisibility(View.VISIBLE);
       }
     });
 
@@ -224,7 +241,8 @@ public class Main2Activity extends AppCompatActivity
         frg4.setVisibility(View.GONE);
         View frg5= findViewById(R.id.fragmentar5);
         frg5.setVisibility(View.GONE);
-
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
 
       }
     });
@@ -242,7 +260,8 @@ public class Main2Activity extends AppCompatActivity
         frg4.setVisibility(View.GONE);
         View frg5= findViewById(R.id.fragmentar5);
         frg5.setVisibility(View.GONE);
-
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
       }
     });
 
@@ -259,7 +278,8 @@ public class Main2Activity extends AppCompatActivity
         frg4.setVisibility(View.VISIBLE);
         View frg5= findViewById(R.id.fragmentar5);
         frg5.setVisibility(View.GONE);
-
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
       }
     });
 
@@ -395,7 +415,8 @@ public class Main2Activity extends AppCompatActivity
           frg2.setVisibility(View.GONE);
           View frg4= findViewById(R.id.fragmentar4);
           frg4.setVisibility(View.GONE);
-
+          View frg5= findViewById(R.id.fragmentar5);
+          frg5.setVisibility(View.GONE);
 
           loading.dismiss();
         }
@@ -414,7 +435,8 @@ public class Main2Activity extends AppCompatActivity
       frg3.setVisibility(View.GONE);
       View frg4= findViewById(R.id.fragmentar4);
       frg4.setVisibility(View.GONE);
-
+      View frg5= findViewById(R.id.fragmentar5);
+      frg5.setVisibility(View.GONE);
     }
 
     else if (id == R.id.nav_FrutaFa) {
@@ -427,7 +449,8 @@ public class Main2Activity extends AppCompatActivity
       frg3.setVisibility(View.VISIBLE);
       View frg4= findViewById(R.id.fragmentar4);
       frg4.setVisibility(View.GONE);
-
+      View frg5= findViewById(R.id.fragmentar5);
+      frg5.setVisibility(View.GONE);
     }
 
     else if (id == R.id.nav_Contacto) {
@@ -440,7 +463,8 @@ public class Main2Activity extends AppCompatActivity
       frg3.setVisibility(View.GONE);
       View frg4= findViewById(R.id.fragmentar4);
       frg4.setVisibility(View.VISIBLE);
-
+      View frg5= findViewById(R.id.fragmentar5);
+      frg5.setVisibility(View.GONE);
     }
 
 
@@ -476,31 +500,7 @@ public class Main2Activity extends AppCompatActivity
 
   }
 
-  private void notificacion1() {
-    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-    String NOTIFICATION_CHANNEL_ID = "frutagolosa_32";
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
-      // Configure the notification channel.
-      notificationChannel.setDescription("Fruta Golosa Notifica");
-      notificationChannel.enableLights(true);
-      notificationChannel.setLightColor(Color.GREEN);
-      notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
-      notificationChannel.enableVibration(true);
-      notificationManager.createNotificationChannel(notificationChannel);
-    }
-    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
-    notificationBuilder.setAutoCancel(true)
-            .setDefaults(Notification.DEFAULT_ALL)
-            .setWhen(System.currentTimeMillis())
-            .setSmallIcon(R.mipmap.frutagolosa2)
-            .setTicker("FrutaGolosa")
-            //.setPriority(Notification.PRIORITY_MAX)
-            .setContentTitle("Fruta Golosa App")
-            .setContentText("3era compra 30% y 5ta 50% DE DESCUENTO")
-            .setContentInfo("Ya puede acceder a nuestros golosos productos");
-    notificationManager.notify(1, notificationBuilder.build());
-  }
+
 
   private void notificacion10() {
     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -527,6 +527,33 @@ public class Main2Activity extends AppCompatActivity
             .setContentInfo("Ya puede acceder a nuestros golosos productos");
     notificationManager.notify(1, notificationBuilder.build());
   }
+
+  private void notificacion20() {
+    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    String NOTIFICATION_CHANNEL_ID = "frutagolosa_32";
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+      // Configure the notification channel.
+      notificationChannel.setDescription("Fruta Golosa Notifica");
+      notificationChannel.enableLights(true);
+      notificationChannel.setLightColor(Color.GREEN);
+      notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+      notificationChannel.enableVibration(true);
+      notificationManager.createNotificationChannel(notificationChannel);
+    }
+    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+    notificationBuilder.setAutoCancel(true)
+            .setDefaults(Notification.DEFAULT_ALL)
+            .setWhen(System.currentTimeMillis())
+            .setSmallIcon(R.mipmap.frutagolosa2)
+            .setTicker("FrutaGolosa")
+            //.setPriority(Notification.PRIORITY_MAX)
+            .setContentTitle("Fruta Golosa App")
+            .setContentText("20% DE DESCUENTO EN SU COMPRA")
+            .setContentInfo("Ya puede acceder a nuestros golosos productos");
+    notificationManager.notify(1, notificationBuilder.build());
+  }
+
 
   private void notificacion30() {
     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -608,6 +635,7 @@ public class Main2Activity extends AppCompatActivity
                 @Override
                 public void success(Response result, Response response) {
 
+
                   BufferedReader reader = null;
                   String output = "";
 
@@ -615,47 +643,50 @@ public class Main2Activity extends AppCompatActivity
                   try {
                     reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
+                    if (reader.readLine() != null) {
+                      output = reader.readLine();
 
-                    output = reader.readLine();
 
-                    if(output.equals("1")){
+                      if (output.equals("1")) {
 
-                      notificacion1();
-                      TextView txtUser= findViewById(R.id.UsuarioTxt);
-                      txtUser.setText("Bienvenido "+ nombreus+",tienes 1 compra para la promocion en la app del 30%(solo en tercera compra),50%(quinta compra).");
+                        notificacion10();
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + ",tienes 10% de descuento en tu compra.");
 
+                      }
+
+
+                      if (output.equals("2")) {
+
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + ", tienes 20% de descuento en tu compra");
+                        notificacion20();
+
+
+                      }
+
+                      if (output.equals("3")) {
+
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + ", tienes 30% de descuento en tu compra");
+                        notificacion30();
+
+
+                      }
+
+                      if (output.equals("4")) {
+                        notificacion50();
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + ", tienes 50% de descuento en tu compra.");
+
+
+                      }
+
+                    }  } catch(IOException e){
+                      e.printStackTrace();
                     }
 
-                    if(output.equals("10")){
-                      TextView txtUser= findViewById(R.id.UsuarioTxt);
-                      txtUser.setText("Bienvenido "+ nombreus+",tienes un descuento del 10% para tu compra, ten un goloso dia.");
-                      notificacion10();
-
-
-                    }
-
-                    if(output.equals("2")){
-
-                      TextView txtUser= findViewById(R.id.UsuarioTxt);
-                      txtUser.setText("Bienvenido "+ nombreus+",tienes 2 compras realizadas y un descuento del 30% para tu siguiente compra, ten un goloso dia.");
-                      notificacion30();
-
-
-                    }
-
-                    if(output.equals("4")){
-                      notificacion50();
-                      TextView txtUser= findViewById(R.id.UsuarioTxt);
-                      txtUser.setText("Bienvenido "+ nombreus+",tienes 4 compras en app y un descuento del 50% para tu compra, ten un goloso dia.");
-
-
-                    }
-
-                  } catch (IOException e) {
-                    e.printStackTrace();
                   }
-
-                }
 
                 @Override
                 public void failure(RetrofitError error) {

@@ -26,7 +26,7 @@
         <item
             android:id="@+id/nav_Festivo"
             android:icon="@drawable/festivoicon"
-            android:title="Arreglos Festivos" />
+            android:title="Festividades" />
 
         <item
             android:id="@+id/nav_CajaF"
@@ -36,6 +36,8 @@
             android:id="@+id/nav_Contacto"
             android:icon="@drawable/contacticon"
             android:title="Nuestro Contacto" />
+
+
 
         <item
             android:id="@+id/nav_Politicas"

@@ -11,11 +11,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +33,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -68,7 +68,7 @@ public class Login_ValidActivity extends AppCompatActivity {
     Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
     TextView contt = (TextView) findViewById(R.id.conteotxt);
     Button btnpdcod = (Button) findViewById(R.id.btnpedcod);
-
+      Button btnpdcodwsp = (Button) findViewById(R.id.btnpedcodwsp);
     dig.setVisibility(View.INVISIBLE);
     codee.setVisibility(View.INVISIBLE);
     envcodcod.setVisibility(View.INVISIBLE);
@@ -97,6 +97,20 @@ public class Login_ValidActivity extends AppCompatActivity {
       public void onClick(View v) {
         AnotherVerification();
       }
+    });
+    btnpdcodwsp.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String numberWithCountryCode="+593984727881";
+            EditText n= (EditText) findViewById(R.id.editTextName);
+            EditText t= (EditText) findViewById(R.id.editTextMail);
+            EditText c= (EditText) findViewById(R.id.txtpohne);
+            String message="Hola, soy "+n+", quiero verificar mi numero "+t+" Pero no me llega mi codigo de la app, me lo pueden facilitar. Gracias.";
+            Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+            sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(sendIntent);
+        }
     });
 
     mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -233,6 +247,7 @@ public class Login_ValidActivity extends AppCompatActivity {
                                 Intent f = new Intent(Login_ValidActivity.this, Inicio.class);
                                 notificacion();
                                 startActivity(f);
+                                finish();
                                 try {
 
                                 }catch (Exception e){
@@ -256,12 +271,86 @@ public class Login_ValidActivity extends AppCompatActivity {
 
                 }
 
-                else {  Toast.makeText(getApplicationContext(), "Codigo erroneo", Toast.LENGTH_SHORT).show();
-                  Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
-                  envcodcod.setEnabled(true);
+                else {
+
+                  SharedPreferences preferences = getSharedPreferences("code", Context.MODE_PRIVATE);
+                  final String codeesp = preferences.getString("codee", "0");
+                  EditText ttcod = (EditText) findViewById(R.id.txtcod);
+                  if (ttcod.getText().toString().equals(codeesp)) {
+                    savepreferences();
+                    Toast.makeText(getApplicationContext(), "Usuario registrado con exito", Toast.LENGTH_SHORT).show();
+                    EditText n = (EditText) findViewById(R.id.editTextName);
+                    EditText t = (EditText) findViewById(R.id.txtpohne);
+                    final EditText c = (EditText) findViewById(R.id.editTextMail);
+                    String telefono = t.getText().toString().trim().replace(" ", "");
+                    String nombre = n.getText().toString().trim();
+                    String correo = c.getText().toString().trim().replace(" ", "").toLowerCase();
+
+                    RestAdapter adapter = new RestAdapter.Builder()
+                            .setEndpoint(ROOT_URL)
+                            .build();
+
+                    RegisterAPI2 api = adapter.create(RegisterAPI2.class);
+                    api.inserCliente(
+                            telefono,
+                            nombre,
+                            correo,
+
+                            new Callback<retrofit.client.Response>() {
+                              @Override
+                              public void success(retrofit.client.Response result, Response response) {
+                                BufferedReader reader = null;
+
+                                String output = "";
+
+                                try {
+                                  reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
+
+                                  output = reader.readLine();
+                                } catch (IOException e) {
+                                  e.printStackTrace();
+                                }
+
+                                Toast.makeText(Login_ValidActivity.this, output, Toast.LENGTH_LONG).show();
+                                if (output.equals("No se registro")) {
+                                  Toast.makeText(Login_ValidActivity.this, "Problemas con el servidor", Toast.LENGTH_SHORT).show();
+                                  c.setVisibility(View.VISIBLE);
+                                  Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
+                                  envcodcod.setEnabled(true);
+                                } else {
+                                  Intent f = new Intent(Login_ValidActivity.this, birthdayactivity.class);
+                                  notificacion();
+                                  startActivity(f);
+                                  try {
+
+                                  } catch (Exception e) {
+
+                                  }
+                                  finish();
+                                }
+
+                              }
+
+                              @Override
+                              public void failure(RetrofitError error) {
+                                Toast.makeText(Login_ValidActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                                c.setVisibility(View.VISIBLE);
+                                Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
+                                envcodcod.setEnabled(true);
+                              }
+                            }
+                    );
+
+
+                    Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
+                    envcodcod.setEnabled(true);
+                  }else{
+                      Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
+                    Toast.makeText(getApplicationContext(), "Codigo erroneo", Toast.LENGTH_SHORT).show();
+                      envcodcod.setEnabled(true);
+                  }
+
                 }
-
-
               }
             });
 
@@ -272,10 +361,12 @@ public class Login_ValidActivity extends AppCompatActivity {
     Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
     envcodcod.setEnabled(false);
     EditText cod = (EditText) findViewById(R.id.txtcod);
+      EditText c= (EditText) findViewById(R.id.txtpohne);
+      String input_tlf=c.getText().toString();
     String input_code = cod.getText().toString();
-    if (input_code.equals("")) {
+    if (input_code.equals("")||input_code.length()<4||input_tlf.length()<9) {
 
-      Toast.makeText(getApplicationContext(), "Codigo en blanco", Toast.LENGTH_SHORT).show();
+      Toast.makeText(getApplicationContext(), "Revise el telefono y su codigo ingresado", Toast.LENGTH_SHORT).show();
       envcodcod.setEnabled(true);
     }
     else {
@@ -320,6 +411,7 @@ public class Login_ValidActivity extends AppCompatActivity {
         EditText cod = (EditText) findViewById(R.id.txtcod);
         btnpdcodo.setText("Solicitar en: " + (millisUntilFinished /  1000));
         Button otromet=(Button)findViewById(R.id.btnotrometod);
+        otromet.setVisibility(View.GONE);
         TextView dig = (TextView) findViewById(R.id.txtdigitcode);
         Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
         dig.setVisibility(View.VISIBLE);
@@ -341,6 +433,7 @@ public class Login_ValidActivity extends AppCompatActivity {
         btnpdcodo.setText("Solicitar Otro Codigo");
         btnpdcodo.setVisibility(View.VISIBLE);
         contto.setText("");
+          otromet.setVisibility(View.VISIBLE);
         TextView dig = (TextView) findViewById(R.id.txtdigitcode);
         Button envcodcod = (Button) findViewById(R.id.btnEnviacod);
         EditText cod = (EditText) findViewById(R.id.txtcod);
@@ -349,6 +442,8 @@ public class Login_ValidActivity extends AppCompatActivity {
         n.setVisibility(View.VISIBLE);
         t.setVisibility(View.VISIBLE);
         c.setVisibility(View.VISIBLE);
+          Button btnpdcodwsp = (Button) findViewById(R.id.btnpedcodwsp);
+          btnpdcodwsp.setVisibility(View.VISIBLE);
         EditText phones = (EditText) findViewById(R.id.txtpohne);
         phones.setFocusable(true);
         txtcorreous.setVisibility(View.VISIBLE);
@@ -388,7 +483,7 @@ public class Login_ValidActivity extends AppCompatActivity {
     EditText n= (EditText) findViewById(R.id.editTextName);
     EditText t= (EditText) findViewById(R.id.editTextMail);
     EditText c= (EditText) findViewById(R.id.txtpohne);
-    SharedPreferences preferences=getSharedPreferences("login", Context.MODE_PRIVATE);
+       SharedPreferences preferences=getSharedPreferences("login", Context.MODE_PRIVATE);
     String nombre="Registrese";
     String nombre2= n.getText().toString();
     String mail=t.getText().toString().trim().replace(" ","").toLowerCase();
@@ -441,20 +536,49 @@ public class Login_ValidActivity extends AppCompatActivity {
     notificationManager.notify(1, notificationBuilder.build());
   }
 
+    private void Codenotificacion() {
+        SharedPreferences preferences = getSharedPreferences("code", Context.MODE_PRIVATE);
+        final String codeesp = preferences.getString("codee", "0");
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "frutagolosa_01";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            // Configure the notification channel.
+            notificationChannel.setDescription("Fruta Golosa Notifica");
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.GREEN);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.mipmap.frutagolosa2)
+                .setTicker("FrutaGolosa")
+                //.setPriority(Notification.PRIORITY_MAX)
+                .setContentTitle("Codigo FG")
+                .setContentText(codeesp)
+                .setContentInfo("Ya puede acceder a nuestros golosos productos");
+        notificationManager.notify(1, notificationBuilder.build());
+    }
+
   private void AnotherVerification(){
 
     final AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("No recibio su codigo?");
     builder.setMessage("Si no pudo recibir la verificacion de su codigo, puede probar otro metodo de verificacion, como" +
             "el envio de correo electronico, o solicitar que se le agregue un codigo de verificacion manualmente," +
-            "escribiendonos a nuestro whatsapp. Seleccione una de las dos opciones debajo. Pulse fuera de este cuadro para cambiar el numero ingresado.");
+            "escribiendonos a nuestro whatsapp. Seleccione una de las dos opciones debajo. Pulse fuera de este cuadro para cambiar el numero ingresado o escribirnos por whatsapp.");
     builder.setPositiveButton("Correo", new DialogInterface.OnClickListener() {
       @Override
 
       public void onClick(DialogInterface dialog, int which) {
         savepreferences2();
         EnviarCorreo();
-
+          Button btnpdcodwsp = (Button) findViewById(R.id.btnpedcodwsp);
+          btnpdcodwsp.setVisibility(View.VISIBLE);
 
       }
     });

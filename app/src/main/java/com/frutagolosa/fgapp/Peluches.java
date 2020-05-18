@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +29,10 @@ import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ConChocolateFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ConChocolateFragment#newInstance} factory method to
+ * Use the {@link Peluches#newInstance} factory method to
  * create an instance of this fragment.
  */
-
-
-public class CajasConFrutasFragment extends Fragment  {
+public class Peluches extends Fragment {
     public static final String IdArreglo="bc" ;
     public static final String Precio="precio" ;
     // TODO: Rename parameter arguments, choose names that match
@@ -51,7 +48,7 @@ public class CajasConFrutasFragment extends Fragment  {
     int cc1Nums=10;
 
 
-    private OnFragmentInteractionListener mListener;
+    private Peluches.OnFragmentInteractionListener mListener;
 //referencias
 
     RecyclerView recyclerView;
@@ -64,7 +61,7 @@ public class CajasConFrutasFragment extends Fragment  {
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
 
-    public CajasConFrutasFragment() {
+    public Peluches() {
         // Required empty public constructor
     }
 
@@ -77,8 +74,8 @@ public class CajasConFrutasFragment extends Fragment  {
      * @return A new instance of fragment ConChocolateFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ConChocolateFragment newInstance(String param1, String param2) {
-        ConChocolateFragment fragment = new ConChocolateFragment();
+    public static Peluches newInstance(String param1, String param2) {
+        Peluches fragment = new Peluches();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -105,8 +102,8 @@ public class CajasConFrutasFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View vista=inflater.inflate(R.layout.fragment_cajasconfrutas, container, false);
-        recyclerView= (RecyclerView) vista.findViewById(R.id.recyclerIdcc);
+        View vista=inflater.inflate(R.layout.fragment_peluches, container, false);
+        recyclerView= (RecyclerView) vista.findViewById(R.id.recyclerIdp);
         final GridLayoutManager gridLayoutManager= new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -142,40 +139,41 @@ public class CajasConFrutasFragment extends Fragment  {
             }
         });
         apiInterface = ApiClient.getApiClient().create(ApiInterFaceArreglo.class);
-        String tip="CAJASCONFRUTAS";
+        String tip="PELUCHES";
 
         Call<List<Arreglos>> call = apiInterface.getArreglos("https://frutagolosa.com/FrutaGolosaApp/ArreglosEnApp.php?t="+tip+"&k=121523");
         call.enqueue(new Callback<List<Arreglos>>() {
             @Override
             public void onResponse(Call<List<Arreglos>> call, Response<List<Arreglos>> response) {
-                arreglos = response.body();
-                adapter = new RecyclerAdapterArreglos(arreglos);
-                adapter.notifyDataSetChanged();
-                recyclerView.setAdapter(adapter);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setDrawingCacheEnabled(true);
-                recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                recyclerView.setNestedScrollingEnabled(false);
-                adapter.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                if(response.body()!=null) {
+                    arreglos = response.body();
+                    adapter = new RecyclerAdapterArreglos(arreglos);
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setDrawingCacheEnabled(true);
+                    recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setNestedScrollingEnabled(false);
+                    adapter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                        String nombreArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre();
-                        String valorArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getValor();
+                            String nombreArreglo = arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre();
+                            String valorArreglo = arreglos.get(recyclerView.getChildAdapterPosition(view)).getValor();
 
-                        // String tipoArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
+                            // String tipoArreglo=arreglos.get(recyclerView.getChildAdapterPosition(view)).getNombre_arreglo();
 
-                        Intent c= new Intent(getContext(), CompArreglo.class);
-                        Intent re = new Intent(getContext(), CompArreglo.class);
-                        re.putExtra(IdArreglo,nombreArreglo);
-                        re.putExtra(Precio,valorArreglo);
-                        startActivity(re);
-                    }
-                });
+                            Intent c = new Intent(getContext(), CompArreglo.class);
+                            Intent re = new Intent(getContext(), CompArreglo.class);
+                            re.putExtra(IdArreglo, nombreArreglo);
+                            re.putExtra(Precio, valorArreglo);
+                            startActivity(re);
+                        }
+                    });
 
-            }
+                } }
 
             @Override
             public void onFailure(Call<List<Arreglos>> call, Throwable t) {
@@ -242,8 +240,8 @@ public class CajasConFrutasFragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof SinChocolateFragment.OnFragmentInteractionListener) {
+            mListener = (Peluches.OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/rt3"
-    tools:context=".CajasConFrutasFragment">
+    tools:context=".Peluches">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerIdcc"
+            android:id="@+id/recyclerIdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

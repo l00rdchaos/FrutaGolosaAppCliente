@@ -19,13 +19,12 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,17 +41,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.frutagolosa.fgapp.adapter.RecyclerAdapter;
-import com.frutagolosa.fgapp.api.ApiClient;
 import com.frutagolosa.fgapp.api.ApiInterface3;
-import com.frutagolosa.fgapp.api.ApiInterface4;
 import com.frutagolosa.fgapp.api.BorrarIntentoApi;
 import com.frutagolosa.fgapp.api.RegisterAPI;
-import com.frutagolosa.fgapp.api.RegisterAPI2;
 import com.frutagolosa.fgapp.api.RegisterApiContador;
-import com.frutagolosa.fgapp.model.Contact;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -61,7 +53,6 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -69,7 +60,6 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit2.Call;
 
 
 public class EnvCodTransfActivity extends AppCompatActivity {
@@ -111,7 +101,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_env_cod_transf);
-    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
     final int cantidadpass = getIntent().getIntExtra(PagoActivity.Cantidadpassm, -1);
     final String Nombpass = getIntent().getStringExtra(PagoActivity.NombreQuienRecibe);
@@ -307,7 +297,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
     }
 
 
-    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+   final AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 
 
     listoco.setOnClickListener(new View.OnClickListener() {
@@ -321,12 +311,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
           if (!compruebaConexion(getApplicationContext())) {
             Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
           } else {
-            builder.setTitle("VERIFICANDO TRANSFERENCIA");
-            builder.setMessage("Estamos verificando el codigo de transferencia, al estar listo se le enviara una notificacion con" +
-                    "el estado de su pedido y arreglo.");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
+
                 String fpago = "nada";
                 if (ppa.equals("1")) {
                   fpago = "Paypal";
@@ -352,10 +337,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
            uploadImage();
 
 
-              }
-            });
-            builder.create();
-            builder.show();
+
           }
 
 
@@ -375,6 +357,27 @@ public class EnvCodTransfActivity extends AppCompatActivity {
         showFileChooser();
       }
     });
+
+    Button wspend=(Button)findViewById(R.id.btnwspsend);
+    wspend.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        WspFunct();
+      }
+    });
+
+
+  }
+
+
+
+
+     private void WspFunct()   {
+
+
+
+        insertUser();
+
 
 
   }
@@ -667,6 +670,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     ImageView si = (ImageView) findViewById(R.id.SubirComp);
+
     if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
       Uri filePath = data.getData();
       try {

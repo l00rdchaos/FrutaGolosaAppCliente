@@ -1,17 +1,19 @@
 package com.frutagolosa.fgapp;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.frutagolosa.fgapp.adapter.RecyclerAdapter2;
@@ -40,7 +42,7 @@ public class VerMotorizado extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_ver_motorizado);
     final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
     recyclerView = findViewById(R.id.recyclerViewM);
     layoutManager = new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
@@ -54,9 +56,12 @@ public class VerMotorizado extends AppCompatActivity {
       @Override
       public void onResponse(Call<List<Motorizado>> call, Response<List<Motorizado>> response) {
         if(response.body()!=null) {
+
+
           contacts = response.body();
           adapter = new RecyclerAdapter2(contacts);
           recyclerView.setAdapter(adapter);
+         final String nm=contacts.get(0).getTelefono();
 
 
           adapter.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +94,25 @@ public class VerMotorizado extends AppCompatActivity {
             }
           });
 
-        }}
+          Button wsp=(Button)findViewById(R.id.btnwsp);
+          wsp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              String numberWithCountryCode="+593"+nm.substring(1,nm.length());
+              String message="Buenas, me gustaria conocer la ubicacion de mi pedido";
+              Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
+              Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+              sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+              getApplicationContext().startActivity(sendIntent);
+
+            }
+          });
+        }
+
+
+
+      }
 
 
 

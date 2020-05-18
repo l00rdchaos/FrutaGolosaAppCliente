@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,17 +23,10 @@ import android.widget.Toast;
 
 
 import com.frutagolosa.fgapp.api.ApiClient;
-import com.frutagolosa.fgapp.api.ApiInterface3;
 import com.frutagolosa.fgapp.model.horas;
 import com.frutagolosa.fgapp.api.apiInterfaceFranjas;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;

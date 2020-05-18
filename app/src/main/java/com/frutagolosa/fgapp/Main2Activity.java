@@ -19,19 +19,21 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import androidx.fragment.app.Fragment;
+import androidx.core.app.NotificationCompat;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import com.frutagolosa.fgapp.api.ApiInterfaceVersion;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -50,7 +52,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,ConChocolateFragment.OnFragmentInteractionListener,SinChocolateFragment.OnFragmentInteractionListener,FrutasFloresFragm.OnFragmentInteractionListener, BlankFragmenta.OnFragmentInteractionListener, FestivosFragment.OnFragmentInteractionListener,CajasConFrutasFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,ConChocolateFragment.OnFragmentInteractionListener,SinChocolateFragment.OnFragmentInteractionListener,FrutasFloresFragm.OnFragmentInteractionListener, BlankFragmenta.OnFragmentInteractionListener, FestivosFragment.OnFragmentInteractionListener,CajasConFrutasFragment.OnFragmentInteractionListener,Peluches.OnFragmentInteractionListener {
 
   public static final String ska="codigoarreglo" ;
   public static final String ska2="codigoarreglo" ;
@@ -68,7 +70,7 @@ public class Main2Activity extends AppCompatActivity
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
+toolbar.setLogo(R.drawable.frutagolosatres);
     viewPager= findViewById(R.id.imageView4);
 
     final ImageAdapter adapter= new ImageAdapter(this);
@@ -89,16 +91,18 @@ public class Main2Activity extends AppCompatActivity
     Button btnNC=(Button) findViewById(R.id.btnNcontacto);
     Button btnCF = (Button) findViewById(R.id.btnCajasConF);
     Button btnAF=(Button) findViewById(R.id.btnAFestivos);
-      Button btnCCF=(Button) findViewById(R.id.btnCajasConF);
+    Button btnADC=(Button) findViewById(R.id.btnADomicilio);
 
-    setTitle("Fruta Golosa");
+    Button btnPelu=(Button) findViewById(R.id.btnNPeluches);
+
+    setTitle("");
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
     drawer.addDrawerListener(toggle);
     toggle.syncState();
-    setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
     navigationView.setItemIconTintList(null); // <----- HERE
@@ -116,6 +120,8 @@ public class Main2Activity extends AppCompatActivity
     frg5.setVisibility(View.GONE);
     View frg6= findViewById(R.id.fragmentar6);
     frg6.setVisibility(View.GONE);
+    View frg7= findViewById(R.id.fragmentar7);
+    frg7.setVisibility(View.GONE);
 
     //////////////////////////////////////////////////////////////////////
     btnAF.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +139,8 @@ public class Main2Activity extends AppCompatActivity
         frg5.setVisibility(View.VISIBLE);
         View frg6= findViewById(R.id.fragmentar6);
         frg6.setVisibility(View.GONE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
         
       }
     });
@@ -152,6 +160,29 @@ public class Main2Activity extends AppCompatActivity
           frg5.setVisibility(View.GONE);
           View frg6= findViewById(R.id.fragmentar6);
           frg6.setVisibility(View.VISIBLE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
+      }
+    });
+
+
+    btnPelu.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        View frg= findViewById(R.id.fragmentar);
+        frg.setVisibility(View.GONE);
+        View frg2= findViewById(R.id.fragmentar2);
+        frg2.setVisibility(View.GONE);
+        View frg3= findViewById(R.id.fragmentar3);
+        frg3.setVisibility(View.GONE);
+        View frg4= findViewById(R.id.fragmentar4);
+        frg4.setVisibility(View.GONE);
+        View frg5= findViewById(R.id.fragmentar5);
+        frg5.setVisibility(View.GONE);
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
       }
     });
 
@@ -206,9 +237,7 @@ public class Main2Activity extends AppCompatActivity
 
             View frg1= findViewById(R.id.fragmentar);
             frg1.setVisibility(View.VISIBLE);
-            View frg= findViewById(R.id.fragmentar2);
-            frg.setVisibility(View.GONE);
-            View frg2= findViewById(R.id.fragmentar3);
+            View frg2= findViewById(R.id.fragmentar2);
             frg2.setVisibility(View.GONE);
             View frg3= findViewById(R.id.fragmentar3);
             frg3.setVisibility(View.GONE);
@@ -216,7 +245,10 @@ public class Main2Activity extends AppCompatActivity
             frg4.setVisibility(View.GONE);
             View frg5= findViewById(R.id.fragmentar5);
             frg5.setVisibility(View.GONE);
-
+            View frg6= findViewById(R.id.fragmentar6);
+            frg6.setVisibility(View.GONE);
+            View frg7= findViewById(R.id.fragmentar7);
+            frg7.setVisibility(View.GONE);
 
             loading.dismiss();
 
@@ -243,7 +275,8 @@ public class Main2Activity extends AppCompatActivity
         frg5.setVisibility(View.GONE);
         View frg6= findViewById(R.id.fragmentar6);
         frg6.setVisibility(View.GONE);
-
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
       }
     });
 
@@ -262,6 +295,8 @@ public class Main2Activity extends AppCompatActivity
         frg5.setVisibility(View.GONE);
         View frg6= findViewById(R.id.fragmentar6);
         frg6.setVisibility(View.GONE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
       }
     });
 
@@ -280,15 +315,93 @@ public class Main2Activity extends AppCompatActivity
         frg5.setVisibility(View.GONE);
         View frg6= findViewById(R.id.fragmentar6);
         frg6.setVisibility(View.GONE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
       }
     });
 
-    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    btnNC.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        View frg= findViewById(R.id.fragmentar);
+        frg.setVisibility(View.GONE);
+        View frg2= findViewById(R.id.fragmentar2);
+        frg2.setVisibility(View.GONE);
+        View frg3= findViewById(R.id.fragmentar3);
+        frg3.setVisibility(View.GONE);
+        View frg4= findViewById(R.id.fragmentar4);
+        frg4.setVisibility(View.VISIBLE);
+        View frg5= findViewById(R.id.fragmentar5);
+        frg5.setVisibility(View.GONE);
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
+      }
+    });
+
+    btnPelu.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        View frg= findViewById(R.id.fragmentar);
+        frg.setVisibility(View.GONE);
+        View frg2= findViewById(R.id.fragmentar2);
+        frg2.setVisibility(View.GONE);
+        View frg3= findViewById(R.id.fragmentar3);
+        frg3.setVisibility(View.GONE);
+        View frg4= findViewById(R.id.fragmentar4);
+        frg4.setVisibility(View.GONE);
+        View frg5= findViewById(R.id.fragmentar5);
+        frg5.setVisibility(View.GONE);
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.VISIBLE);
+      }
+    });
 
 
+btnADC.setOnClickListener(new View.OnClickListener() {
+  @Override
+  public void onClick(View v) {
+    final AlertDialog.Builder builder2 = new AlertDialog.Builder(Main2Activity.this);
+    builder2.setTitle("COMUNICATE POR WHATSAPP");
+    builder2.setMessage("Selecciona una de las ciudades para comunicarte con nosotros.");
+    builder2.setPositiveButton("QUITO", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
 
 
+        String numberWithCountryCode="+593984727881";
+        String message="Hola, necesito informacion para solicitar productos a domicilio con Fruta Golosa.";
+        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+        sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplicationContext().startActivity(sendIntent);
 
+
+      }
+    });
+
+    builder2.setNegativeButton("GUAYAQUIL", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+
+
+        String numberWithCountryCode="+593984639341";
+        String message="Hola, necesito informacion para solicitar productos a domicilio con Fruta Golosa.";
+        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+        sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplicationContext().startActivity(sendIntent);
+
+      }
+    });
+
+    builder2.create();
+    builder2.show();
+  }
+});
 
 
 
@@ -334,13 +447,10 @@ public class Main2Activity extends AppCompatActivity
 
 
     //noinspection SimplifiableIfStatement
-    if (id == R.id.action_add) {
-      String numberWithCountryCode="+593984727881";
-      String message="Hola, necesito informacion.";
-      Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
-      Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-      sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      getApplicationContext().startActivity(sendIntent);
+    if (id == R.id.covid) {
+      Intent e = new Intent(Main2Activity.this, covidactivity.class);
+
+      startActivity(e);
     }
     if (id == R.id.insta) {
 
@@ -417,6 +527,10 @@ public class Main2Activity extends AppCompatActivity
           frg4.setVisibility(View.GONE);
           View frg5= findViewById(R.id.fragmentar5);
           frg5.setVisibility(View.GONE);
+          View frg6= findViewById(R.id.fragmentar6);
+          frg6.setVisibility(View.GONE);
+          View frg7= findViewById(R.id.fragmentar7);
+          frg7.setVisibility(View.GONE);
 
           loading.dismiss();
         }
@@ -437,6 +551,10 @@ public class Main2Activity extends AppCompatActivity
       frg4.setVisibility(View.GONE);
       View frg5= findViewById(R.id.fragmentar5);
       frg5.setVisibility(View.GONE);
+      View frg6= findViewById(R.id.fragmentar6);
+      frg6.setVisibility(View.GONE);
+      View frg7= findViewById(R.id.fragmentar7);
+      frg7.setVisibility(View.GONE);
     }
 
     else if (id == R.id.nav_FrutaFa) {
@@ -451,6 +569,10 @@ public class Main2Activity extends AppCompatActivity
       frg4.setVisibility(View.GONE);
       View frg5= findViewById(R.id.fragmentar5);
       frg5.setVisibility(View.GONE);
+      View frg6= findViewById(R.id.fragmentar6);
+      frg6.setVisibility(View.GONE);
+      View frg7= findViewById(R.id.fragmentar7);
+      frg7.setVisibility(View.GONE);
     }
 
     else if (id == R.id.nav_Contacto) {
@@ -465,6 +587,12 @@ public class Main2Activity extends AppCompatActivity
       frg4.setVisibility(View.VISIBLE);
       View frg5= findViewById(R.id.fragmentar5);
       frg5.setVisibility(View.GONE);
+      View frg6= findViewById(R.id.fragmentar6);
+      frg6.setVisibility(View.GONE);
+
+      View frg7= findViewById(R.id.fragmentar7);
+      frg7.setVisibility(View.GONE);
+
     }
 
 
@@ -624,7 +752,7 @@ public class Main2Activity extends AppCompatActivity
               .build();
 
       ApiInterface4 api2 = adapter2.create(ApiInterface4.class);
-      setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
       api2.comprarver(
               c,
               t,
@@ -634,59 +762,59 @@ public class Main2Activity extends AppCompatActivity
               new Callback<Response>() {
                 @Override
                 public void success(Response result, Response response) {
+if(response.getBody()!=null) {
+
+  BufferedReader reader = null;
+  String output = "";
 
 
-                  BufferedReader reader = null;
-                  String output = "";
+  try {
+    reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
 
-                  try {
-                    reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
-
-                    if (reader.readLine() != null) {
-                      output = reader.readLine();
+    output = reader.readLine();
 
 
-                      if (output.equals("1")) {
+    if (output.equals("1")) {
 
-                        notificacion10();
-                        TextView txtUser = findViewById(R.id.UsuarioTxt);
-                        txtUser.setText("Bienvenido " + nombreus + ",tienes 10% de descuento en tu compra.");
+      //notificacion10();
+      TextView txtUser = findViewById(R.id.UsuarioTxt);
+      txtUser.setText("Bienvenido " + nombreus + ",tienes 10% de descuento en tu compra.");
 
-                      }
-
-
-                      if (output.equals("2")) {
-
-                        TextView txtUser = findViewById(R.id.UsuarioTxt);
-                        txtUser.setText("Bienvenido " + nombreus + ", tienes 20% de descuento en tu compra");
-                        notificacion20();
+    }
 
 
-                      }
+    if (output.equals("2")) {
 
-                      if (output.equals("3")) {
-
-                        TextView txtUser = findViewById(R.id.UsuarioTxt);
-                        txtUser.setText("Bienvenido " + nombreus + ", tienes 30% de descuento en tu compra");
-                        notificacion30();
+      TextView txtUser = findViewById(R.id.UsuarioTxt);
+      txtUser.setText("Bienvenido " + nombreus + ", tienes 20% de descuento en tu compra");
+     // notificacion20();
 
 
-                      }
+    }
 
-                      if (output.equals("4")) {
-                        notificacion50();
-                        TextView txtUser = findViewById(R.id.UsuarioTxt);
-                        txtUser.setText("Bienvenido " + nombreus + ", tienes 50% de descuento en tu compra.");
+    if (output.equals("3")) {
+
+      TextView txtUser = findViewById(R.id.UsuarioTxt);
+      txtUser.setText("Bienvenido " + nombreus + ", tienes 30% de descuento en tu compra");
+     // notificacion30();
 
 
-                      }
+    }
 
-                    }  } catch(IOException e){
-                      e.printStackTrace();
-                    }
+    if (output.equals("4")) {
+     // notificacion50();
+      TextView txtUser = findViewById(R.id.UsuarioTxt);
+      txtUser.setText("Bienvenido " + nombreus + ", tienes 50% de descuento en tu compra.");
 
-                  }
+
+    }
+
+  } catch (IOException e) {
+    e.printStackTrace();
+  }
+
+}  }
 
                 @Override
                 public void failure(RetrofitError error) {

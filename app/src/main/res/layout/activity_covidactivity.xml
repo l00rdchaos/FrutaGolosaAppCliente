@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rt3"
+    tools:context=".covidactivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="0dp"
+            android:layout_height="181dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logcovid" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="MANUAL SANITARIO FRUTA GOLOSA EN PANDEMIA COVID-19
+Se desarrolla este manual con el objetivo de tener una normativa clara en esta crisis sanitaria por la pandemia por COVID-19.
+Dentro de nuestras políticas de higiene hemos establecido:
+•	Será primordial que tanto nuestro locales de Quito como Guayaquil permanezcan todo el tiempo impecables, colocando gel antibacterial para clientes como para nuestros equipo de trabajo, en la parte de la entrada tendremos una bandeja con agua y cloro para que todas las personas que ingresen al local puedan desinfectar sus zapatos, y obligar el uso de guantes y desinfección de ropa.
+•	En la etapa de emergencia, y en el tiempo necesario, no se permitirá el ingreso de clientes a los locales comerciales, llevando al uso de la aplicación y medios de comunicación telefónico como los principales métodos de transacción.
+•	Antes de manipular los alimentos se debe realizar un correcto lavado de manos con agua y jabón con una frecuencia mínima de 30 minutos. Realizamos el mismo procedimiento después de ejecutar algún tipo de actividad donde se puedan haber contaminado las manos.
+•	Todo el equipo del área de cocina debe contar con todos sus implementos tales como malla para el cabello, delantal, camiseta de trabajo, guantes, mascarilla, mantener las uñas cortas y limpias, no usar anillos, pulseras, aros, relojes, u otro elemento que pueda generar contaminación.
+•	El área de cocina de cada una de las trabajadoras debe realizarse la limpieza en cada momento de su puesto de trabajo, retirando continuamente la basura y desechos en la producción.
+Manipulación de la Fruta:
+•	Se debe priorizar la reducción del número de microorganismos presentes en el medio ambiente, por medio de agentes químicos y/o métodos físicos, a un nivel que no comprometa la inocuidad o la aptitud del alimento.
+•	La limpieza tanto de la frutilla como de la manzana, uva, uvilla, y demás, se la realiza con desinfectante de fruta y agua para luego secarla y proceder con el diseño.
+•	Se activa un protocolo de control en cada punto de fabricación, este tiene todas las medidas necesarias para garantizar la salubridad del alimento en todas las fases, toma de pedido, elaboración, empacado, transporte y manipulación en entrega.
+
+
+Almacenamiento de Alimentos
+•	El almacenamiento de los alimentos depende del tipo de producto que se va a guardar. El lugar de almacenamiento, para los productos que no requieran refrigeración o congelación, debe ser: fresco, seco, ventilado, limpio, separado de paredes, techo y suelo por un mínimo de 15 centímetros. Se debe utilizar siempre estantes o tarimas para apoyar las materias primas. Todas estas medidas ayudan a evitar la presencia de insectos y demás.
+Transporte del producto:
+•	Los medios de transporte de los productos alimenticios deberán limpiarse y mantenerse limpios y en caso necesario, desinfectados con productos que no dejen residuos tóxicos, esto se realizará a cada instante (cada vez que se entregue un arreglo o cuando se reciba alguno.
+•	Fruta Golosa maneja 3 filtros con el objetivo de garantizar que el producto final llegue a nuestros clientes con la mayor asepsia posible y puedan consumirlo sin ningún riesgo alguno.
+o	Primer filtro envoltura de papel celofán
+o	Funda plástica
+o	Funda quirúrgica
+
+Revisión de daño
+•	Fruta Golosa como protocolo de emergencia toma las medidas necesarias en caso de que se tenga una sospecha de contagio en algún colaborador:
+•	Entraría en aislamiento domiciliario preventivo.
+•	Se realizaría el procedimiento de doble desinfección del local comercial o lugar de trabajo.
+•	Se gestionará pruebas en el momento de COV-19 al resto del personal de manera inmediata dando por terminada la jornada laboral hasta tener resultados precisos.
+•	Hemos trabajado para que nuestros  protocolos de seguridad y sanitación de nuestra empresa minimicen los riesgos de contaminación en los productos que entregamos y así garantizar a nuestros clientes un producto alta confianza.
+Política obligatoria para empleados.
+•	Es obligación para todos los empleados usar todos los mecanismos de protección en sus lugares de vivienda, con la intención de no contagiar a sus familiares, convivientes y miembros del equipo.
+•	No se deberá permitir la visita de terceras personas a los lugares de domicilio, esto incurre en un riesgo para los convivientes y para la empresa.
+•	No se permite usar los salvoconductos para realizar servicios personales, al ser detectado, podría ser motivo de fuertes sanciones por la empresa.
+Para Fruta golosa el bienestar tanto de sus clientes como de sus colaboradores es lo más primordial.
+"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -3,9 +3,9 @@ package com.frutagolosa.fgapp.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,6 @@ import com.bumptech.glide.request.RequestOptions;
 import  com.frutagolosa.fgapp.R;
 
 import com.frutagolosa.fgapp.model.Arreglos;
-import com.frutagolosa.fgapp.model.Contact;
 
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class RecyclerAdapterArreglos extends RecyclerView.Adapter<RecyclerAdapte
         holder.etiNombre2.setText(a.toUpperCase()+arreglos.get(position).getNombre().substring(1));
         String ax=arreglos.get(position).getNombre().toLowerCase().replace(" ","").trim();
 
-        Glide.with(holder.foto.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +ax+".jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).placeholder(R.drawable.frutagolosa).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new CenterCrop(),new RoundedCorners(40)).apply(new RequestOptions().override(270,270)).into(holder.foto).waitForLayout();
+        Glide.with(holder.foto.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +ax+".jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new CenterCrop(),new RoundedCorners(40)).apply(new RequestOptions().override(270,270)).into(holder.foto).waitForLayout();
 
 
 

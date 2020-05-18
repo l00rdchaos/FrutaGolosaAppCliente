@@ -1,10 +1,9 @@
 package com.frutagolosa.fgapp.adapter;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.CountDownTimer;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.frutagolosa.fgapp.R;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import com.frutagolosa.fgapp.PersonajeVo;

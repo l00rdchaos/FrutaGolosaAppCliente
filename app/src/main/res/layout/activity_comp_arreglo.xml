@@ -31,7 +31,7 @@
       android:layout_height="1000dp"
       android:background="@color/cafe">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -437,7 +437,7 @@
           app:layout_constraintTop_toBottomOf="@+id/textView30"
           app:srcCompat="@drawable/statusicon" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
   </ScrollView>
 
 </RelativeLayout>

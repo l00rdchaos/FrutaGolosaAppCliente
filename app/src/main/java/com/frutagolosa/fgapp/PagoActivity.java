@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,7 +85,7 @@ public class PagoActivity extends AppCompatActivity {
     final TextView txtpreciof=(TextView) findViewById(R.id.txtpreciototalaa);
     final TextView txtinstruct1=(TextView) findViewById(R.id.instruct1a);
     final TextView nr1=(TextView) findViewById(R.id.nro1);
-    setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
     txtpreciof.setText("PRECIO TOTAL: "+precioTotal+ " USD");
     if (tp.equals("t")) {
 

@@ -12,8 +12,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +26,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
-import com.frutagolosa.fgapp.api.ApiInterface4;
 import com.frutagolosa.fgapp.api.ApiInterfaceVersion;
 
 import java.io.BufferedReader;

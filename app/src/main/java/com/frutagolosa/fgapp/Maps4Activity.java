@@ -10,11 +10,11 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.frutagolosa.fgapp.api.ApiInterfaceCoord;
-import com.frutagolosa.fgapp.model.Motorizado;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -67,7 +66,8 @@ public class Maps4Activity extends AppCompatActivity implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps4);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+
+        SupportMapFragment mapFragment = (SupportMapFragment)  getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -453,7 +453,6 @@ prec.setText("De un toque a la pantalla para marcar ubicacion o deje pulsado");
                             }
                             else {
 
-                                Toast.makeText(Maps4Activity.this, "Fruta Golosa: Ubicacion de motorizado actualizada", Toast.LENGTH_SHORT).show();
 
 
                                 final String Coordena = getIntent().getStringExtra(VerMotorizado.COORDENADAS);
@@ -484,7 +483,7 @@ prec.setText("De un toque a la pantalla para marcar ubicacion o deje pulsado");
                     @Override
                     public void failure(RetrofitError error) {
 
-                        Toast.makeText(Maps4Activity.this, "No se puede aplicar descuentos, revise su internet", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Maps4Activity.this, "Error de internet", Toast.LENGTH_LONG).show();
 
                     }
                 }
@@ -1258,7 +1257,10 @@ prec.setText("De un toque a la pantalla para marcar ubicacion o deje pulsado");
                 envdc.setVisibility(View.INVISIBLE);
                 Toast.makeText(Maps4Activity.this, "Verifique la direccion por favor", Toast.LENGTH_SHORT).show();
 
-            }else {  envdc.setVisibility(View.VISIBLE);}
+            }else {  envdc.setVisibility(View.VISIBLE);
+            //elimar esta linea de codigo para devolver los precios orignales
+                prec2.setText("$0");
+            }
 
         }catch (Exception e){
 
@@ -1754,7 +1756,32 @@ prec.setText("De un toque a la pantalla para marcar ubicacion o deje pulsado");
                 envdc.setVisibility(View.INVISIBLE);
                 Toast.makeText(Maps4Activity.this, "Verifique la direccion por favor", Toast.LENGTH_SHORT).show();
 
-            }else {  envdc.setVisibility(View.VISIBLE);}
+            }else {  envdc.setVisibility(View.VISIBLE);
+                //elimar esta linea de codigo para devolver los precios orignales
+
+
+                if(prec2.getText().toString().equals("4")){
+                    prec2.setText("$0");
+
+                }
+
+                if(prec2.getText().toString().equals("3")){
+                    prec2.setText("$0");
+
+                }
+
+                if(prec2.getText().toString().equals("2")){
+                    prec2.setText("$0");
+
+                }
+
+                if(prec2.getText().toString().equals("1")){
+                    prec2.setText("$0");
+
+                }
+
+
+            }
 
         }catch (Exception e){
 

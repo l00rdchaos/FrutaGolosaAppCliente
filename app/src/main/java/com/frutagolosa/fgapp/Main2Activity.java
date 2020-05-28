@@ -70,7 +70,7 @@ public class Main2Activity extends AppCompatActivity
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-toolbar.setLogo(R.drawable.frutagolosatres);
+toolbar.setLogo(R.drawable.frutagolosalinea);
     viewPager= findViewById(R.id.imageView4);
 
     final ImageAdapter adapter= new ImageAdapter(this);
@@ -379,7 +379,7 @@ btnADC.setOnClickListener(new View.OnClickListener() {
         sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getApplicationContext().startActivity(sendIntent);
 
-
+dialog.dismiss();
       }
     });
 
@@ -394,12 +394,13 @@ btnADC.setOnClickListener(new View.OnClickListener() {
         Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
         sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getApplicationContext().startActivity(sendIntent);
+        dialog.dismiss();
 
       }
     });
 
     builder2.create();
-    builder2.show();
+    try{    builder2.show();}catch (Exception e){}
   }
 });
 

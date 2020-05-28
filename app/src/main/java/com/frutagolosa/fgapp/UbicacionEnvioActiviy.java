@@ -27,6 +27,8 @@ import com.frutagolosa.fgapp.model.horas;
 import com.frutagolosa.fgapp.api.apiInterfaceFranjas;
 
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -182,63 +184,79 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
     NrecibeTxt.addTextChangedListener(watcher);
     TelerecibeTxt.addTextChangedListener(watcher);
 
-    CalendarView cale=(CalendarView)findViewById(R.id.CalendarTxt);
+    final CalendarView cale=(CalendarView)findViewById(R.id.CalendarTxt);
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(Calendar.DATE,Calendar.getInstance().getActualMinimum(Calendar.DATE));
+    long date = calendar.getTime().getTime();
+    cale.setMinDate(date);
+
     cale.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
       @Override
       public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
         int d = dayOfMonth;
-        int m = month+1;
-        int y= year;
-        final Spinner  FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
+        int m = month + 1;
+        int y = year;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, dayOfMonth);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        String p = String.valueOf(dayOfWeek);
+        final Spinner FranjaHoraria = (Spinner) findViewById(R.id.SpHorario);
         FranjaHoraria.setAdapter(null);
-        String d1=String.valueOf(d);
-        String m1=String.valueOf(m);
-        if(m1.length()==1){m1="0"+m1;}
-        String y1=String.valueOf(y);
-        date2 =d1+"/"+m1+"/"+y1;
-        String Ciudad=SpCiudad.getSelectedItem().toString().trim();
-        apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
-        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad);
-        call.enqueue(new Callback<List<horas>>() {
-          @Override
-          public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
-            if(response.body()!=null) {
-              horas = response.body();
+        String d1 = String.valueOf(d);
+        String m1 = String.valueOf(m);
+        if (m1.length() == 1) {
+          m1 = "0" + m1;
+        }
+        String y1 = String.valueOf(y);
+        date2 = d1 + "/" + m1 + "/" + y1;
+
+        if (dayOfWeek != 1) {
+
+          String Ciudad = SpCiudad.getSelectedItem().toString().trim();
+          apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
+          Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d=" + date2 + "&&c=" + Ciudad);
+          call.enqueue(new Callback<List<horas>>() {
+            @Override
+            public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
+              if (response.body() != null) {
+                horas = response.body();
 
 
-              Spinner FranjaHoraria = (Spinner) findViewById(R.id.SpHorario);
-              if (horas.size() >= 1) {
-                String[] s = new String[horas.size()];
-                for (int i = 0; i < horas.size(); i++) {
-                  s[i] = horas.get(i).getHora();
-                  final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
-                  a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                  //Setting the ArrayAdapter data on the Spinner
-                  FranjaHoraria.setAdapter(a);
+                Spinner FranjaHoraria = (Spinner) findViewById(R.id.SpHorario);
+                if (horas.size() >= 1) {
+                  String[] s = new String[horas.size()];
+                  for (int i = 0; i < horas.size(); i++) {
+                    s[i] = horas.get(i).getHora();
+                    final ArrayAdapter a = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, s);
+                    a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    //Setting the ArrayAdapter data on the Spinner
+                    FranjaHoraria.setAdapter(a);
+                  }
+                } else {
+
+                  ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.NO, android.R.layout.simple_spinner_item);
+                  FranjaHoraria.setAdapter(adapter3);
+
+
                 }
-              } else {
-
-                ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.NO, android.R.layout.simple_spinner_item);
-                FranjaHoraria.setAdapter(adapter3);
-
-
               }
-            }  }
+            }
 
 
+            @Override
+            public void onFailure(Call<List<horas>> call, Throwable t) {
+              ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.NO, android.R.layout.simple_spinner_item);
+              FranjaHoraria.setAdapter(adapter3);
+            }
+          });
 
 
+        }else{
 
-          @Override
-          public void onFailure(Call<List<horas>> call, Throwable t) {
-            ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(),R.array.NO, android.R.layout.simple_spinner_item);
-            FranjaHoraria.setAdapter(adapter3);
-          }
-        });
+          Toast.makeText(UbicacionEnvioActiviy.this, "No trabajamos los dias domingos", Toast.LENGTH_SHORT).show();
 
-
-      }
-    });
+        }
+      } });
 
 //////////////////////////////////////////////////////////////////
 

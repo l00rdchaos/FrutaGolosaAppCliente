@@ -369,7 +369,7 @@
             android:background="@color/colorPrimaryDark"
             android:text="Enviar pago por whatsapp"
             android:textColor="#EFE4E4"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

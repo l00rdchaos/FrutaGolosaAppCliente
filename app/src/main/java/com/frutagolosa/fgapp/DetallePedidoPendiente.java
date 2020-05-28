@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.net.Uri;
@@ -76,7 +77,7 @@ public class DetallePedidoPendiente extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido_pendiente);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         final String IDPEDIDO=getIntent().getStringExtra(PedidoPendienteActiviy.IdPEDIDOA);
         final String idarrelgo=getIntent().getStringExtra(PedidoPendienteActiviy.IdArregloA);
         final String Fecha_Pedido=getIntent().getStringExtra(PedidoPendienteActiviy.FechaPedidoA);
@@ -181,7 +182,7 @@ public class DetallePedidoPendiente extends AppCompatActivity {
                         Uri uri = Uri.parse("https://docs.google.com/forms/d/1SRfJgcegserO8Rx8glBPqQzYVQP8GlWkgfriGiFlKJA/edit?ts=5cc22222");
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-
+                        dialog.dismiss();
 
                     }
                 });
@@ -191,7 +192,7 @@ public class DetallePedidoPendiente extends AppCompatActivity {
                         Uri uri = Uri.parse("https://goo.gl/forms/Bx0m4Sh4hQ5oewXi1");
                         Intent intent2 = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent2);
-
+dialog.dismiss();
 
                     }
                 });
@@ -214,13 +215,14 @@ public class DetallePedidoPendiente extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 BorrarPedido();
 
-
+                        dialog.dismiss();
 
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
                 });
                 builder.create();
@@ -315,6 +317,7 @@ TextView ViewFabicado=findViewById(R.id.ViewFabticado);
             ViewFabicado.setText("Foto de fabricado\n hora: "+TiempoFab);
             btnVerEncuesta.setVisibility(View.VISIBLE);
             ViewEncuesta.setVisibility(View.VISIBLE);
+            btnVerEncuesta.setVisibility(View.VISIBLE);
         }
 
         if (Estado.equals("Completado")){
@@ -325,6 +328,51 @@ TextView ViewFabicado=findViewById(R.id.ViewFabticado);
             ImgArreglolisto.setVisibility(View.GONE);
             ViewFabicado.setVisibility(View.GONE);
             btnBorrarPedido.setVisibility(View.VISIBLE);
+
+            SharedPreferences preferences=getSharedPreferences("GP", Context.MODE_PRIVATE);
+            final String GP=preferences.getString("califico","no");
+
+
+            if(GP.equals("no")) {
+                builder2.setTitle("Calificanos en google play");
+                builder2.setMessage("Nos ayudarias mucho con tus estrellas para seguir mejorando este servicio para ti :)");
+                builder2.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String url = "https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        startActivity(i);
+
+                        SharedPreferences preferences = getSharedPreferences("gp", Context.MODE_PRIVATE);
+
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("califico", "si");
+
+                        editor.commit();
+
+                        dialog.dismiss();
+
+                    }
+                });
+                builder2.setNegativeButton("Mas tarde", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                        SharedPreferences preferences = getSharedPreferences("gp", Context.MODE_PRIVATE);
+
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("califico", "no");
+
+                        editor.commit();
+
+
+                    }
+                });
+                builder2.create();
+                builder2.show();
+            }
         }
 
 

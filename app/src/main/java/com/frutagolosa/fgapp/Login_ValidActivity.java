@@ -321,12 +321,13 @@ public class Login_ValidActivity extends AppCompatActivity {
                                   Intent f = new Intent(Login_ValidActivity.this, birthdayactivity.class);
                                   notificacion();
                                   startActivity(f);
+                                  finish();
                                   try {
 
                                   } catch (Exception e) {
 
                                   }
-                                  finish();
+                               
                                 }
 
                               }
@@ -449,8 +450,8 @@ public class Login_ValidActivity extends AppCompatActivity {
         txtcorreous.setVisibility(View.VISIBLE);
         txtnombreus.setVisibility(View.VISIBLE);
         try {
-
-          FirebaseAuth.getInstance().signOut();
+//Codenotificacion();
+          //FirebaseAuth.getInstance().signOut();
         }catch (Exception e){
 
         }
@@ -579,6 +580,7 @@ public class Login_ValidActivity extends AppCompatActivity {
         EnviarCorreo();
           Button btnpdcodwsp = (Button) findViewById(R.id.btnpedcodwsp);
           btnpdcodwsp.setVisibility(View.VISIBLE);
+        dialog.dismiss();
 
       }
     });
@@ -592,6 +594,7 @@ public class Login_ValidActivity extends AppCompatActivity {
           EditText phones = (EditText) findViewById(R.id.txtpohne);
           String number = phones.getText().toString().replaceFirst("0","+593").trim();
           resendVerificationCode(number, mResendToken);
+        dialog.dismiss();
 
       }
     });
@@ -599,8 +602,8 @@ public class Login_ValidActivity extends AppCompatActivity {
 
 
     builder.create();
-    builder.show();
 
+    try{    builder.show();}catch (Exception e){}
 
   }
 

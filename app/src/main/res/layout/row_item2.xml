@@ -138,6 +138,7 @@
         android:fontFamily="@font/roboto_condensed_bold"
         android:text="VER RUTA EN MAPA"
         android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"

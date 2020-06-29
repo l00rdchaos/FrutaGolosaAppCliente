@@ -49,7 +49,7 @@ public class RecyclerAdapterArreglos extends RecyclerView.Adapter<RecyclerAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         String x;
-        holder.cardView.setBackgroundColor(Color.parseColor("#3DE09ED8"));
+
 
         holder.txtInformacion.setText(arreglos.get(position).getValor());
 
@@ -58,7 +58,7 @@ public class RecyclerAdapterArreglos extends RecyclerView.Adapter<RecyclerAdapte
         holder.etiNombre2.setText(a.toUpperCase()+arreglos.get(position).getNombre().substring(1));
         String ax=arreglos.get(position).getNombre().toLowerCase().replace(" ","").trim();
 
-        Glide.with(holder.foto.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +ax+".jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new CenterCrop(),new RoundedCorners(40)).apply(new RequestOptions().override(270,270)).into(holder.foto).waitForLayout();
+        Glide.with(holder.foto.getContext()).asBitmap().load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +ax+".jpg").transition(BitmapTransitionOptions.withCrossFade(1000)).diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true).transform(new CenterCrop(),new RoundedCorners(10)).apply(new RequestOptions().override(270,270)).into(holder.foto).waitForLayout();
 
 
 

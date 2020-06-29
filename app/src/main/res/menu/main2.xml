@@ -14,9 +14,9 @@
 
     <item
         android:id="@+id/insta"
-        android:icon="@drawable/ins"
+        android:icon="@drawable/iconblack"
         android:title="I"
-
+        android:visible="false"
         app:showAsAction="always" />
 
 
@@ -24,7 +24,8 @@
 
     <item
         android:id="@+id/covid"
-        android:icon="@drawable/logcovid"
+        android:icon="@drawable/iconblack"
         android:title="w"
+
         app:showAsAction="always" />
 </menu>

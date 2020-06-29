@@ -436,7 +436,7 @@ dialog.dismiss();
     return true;
   }
 
-  @Override
+/*  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
@@ -498,7 +498,7 @@ dialog.dismiss();
 
 
     return super.onOptionsItemSelected(item);
-  }
+  }*/
 
   @SuppressWarnings("StatementWithEmptyBody")
   @Override
@@ -780,7 +780,7 @@ if(response.getBody()!=null) {
 
       //notificacion10();
       TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + ",tienes 10% de descuento en tu compra.");
+      txtUser.setText("Bienvenido " + nombreus + "\nTienes 10% de descuento en tu compra.");
 
     }
 
@@ -788,7 +788,7 @@ if(response.getBody()!=null) {
     if (output.equals("2")) {
 
       TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + ", tienes 20% de descuento en tu compra");
+      txtUser.setText("Bienvenido " + nombreus + " \nTienes 20% de descuento en tu compra");
      // notificacion20();
 
 
@@ -797,7 +797,7 @@ if(response.getBody()!=null) {
     if (output.equals("3")) {
 
       TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + ", tienes 30% de descuento en tu compra");
+      txtUser.setText("Bienvenido " + nombreus + " \nTienes 30% de descuento en tu compra");
      // notificacion30();
 
 
@@ -806,7 +806,7 @@ if(response.getBody()!=null) {
     if (output.equals("4")) {
      // notificacion50();
       TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + ", tienes 50% de descuento en tu compra.");
+      txtUser.setText("Bienvenido " + nombreus + "\n tienes 50% de descuento en tu compra.");
 
 
     }

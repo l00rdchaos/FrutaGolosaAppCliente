@@ -24,7 +24,8 @@
       android:layout_marginRight="0dp"
       android:layout_marginBottom="0dp"
       android:background="@color/colorAccent"
-      android:text="@string/comprarbtn" />
+      android:text="@string/comprarbtn"
+      android:textSize="24sp" />
 
   <ScrollView
       android:layout_width="match_parent"
@@ -35,21 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/cafe"
+        android:background="@color/rt"
         android:minHeight="800dp">
-
-      <ImageView
-          android:id="@+id/ImgCompPrin"
-          android:layout_width="0dp"
-          android:layout_height="283dp"
-          android:contentDescription="@string/comp1"
-          android:scaleType="centerCrop"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:srcCompat="@drawable/ari" />
-
 
       <Button
           android:id="@+id/flechaizq"
@@ -67,6 +55,7 @@
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toStartOf="@+id/cantidadTxt"
           app:layout_constraintStart_toStartOf="parent" />
+
 
       <Button
           android:id="@+id/flechadec"
@@ -86,32 +75,17 @@
           app:layout_constraintHorizontal_bias="0.777"
           app:layout_constraintStart_toEndOf="@+id/cantidadTxt" />
 
-      <TextView
-          android:id="@+id/cantidadTxt"
-          android:layout_width="21dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginLeft="8dp"
-          android:layout_marginEnd="8dp"
-          android:layout_marginRight="8dp"
-          android:layout_marginBottom="60dp"
-          android:text="@string/cantidad"
-          android:textSize="30sp"
-          android:visibility="gone"
-          app:layout_constraintBottom_toBottomOf="@+id/LimpiarRadio"
-          app:layout_constraintEnd_toStartOf="@+id/flechadec"
-          app:layout_constraintStart_toEndOf="@+id/flechaizq" />
-
-      <Button
-          android:id="@+id/LimpiarRadio"
-          style="@style/Widget.AppCompat.Button.Colored"
+      <ImageView
+          android:id="@+id/ImgCompPrin"
           android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:background="@color/colorPrimary"
-          android:text="@string/limpiar"
-          android:visibility="gone"
-          tools:layout_editor_absoluteX="205dp"
-          tools:layout_editor_absoluteY="800dp" />
+          android:layout_height="283dp"
+          android:contentDescription="@string/comp1"
+          android:scaleType="centerCrop"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ari" />
 
       <ImageView
           android:id="@+id/imgcd"
@@ -163,13 +137,46 @@
           app:srcCompat="@drawable/motoa" />
 
 
+      <ImageView
+          android:id="@+id/imageView10"
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+          android:layout_marginTop="32dp"
+          app:layout_constraintEnd_toStartOf="@+id/imageView12"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView29"
+          app:srcCompat="@drawable/mapsicon" />
+
+      <ImageView
+          android:id="@+id/imageView12"
+          android:layout_width="0dp"
+          android:layout_height="107dp"
+          android:layout_marginTop="16dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/imageView10"
+          app:layout_constraintTop_toBottomOf="@+id/textView30"
+          app:srcCompat="@drawable/statusicon" />
+
+      <TextView
+          android:id="@+id/cantidadTxt"
+          android:layout_width="21dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="@string/cantidad"
+          android:textSize="30sp"
+          android:visibility="gone"
+          app:layout_constraintEnd_toStartOf="@+id/flechadec"
+          app:layout_constraintStart_toEndOf="@+id/flechaizq"
+          tools:layout_editor_absoluteY="800dp" />
+
       <TextView
 
           android:id="@+id/NombArreglo2"
           android:layout_width="0dp"
           android:layout_height="55dp"
 
-          android:background="#FFF6FF"
+          android:background="@color/rt"
           android:fontFamily="@font/roboto_condensed_bold"
           android:text="@string/nombre_arreglom"
           android:textAlignment="center"
@@ -216,23 +223,11 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/NombArreglo" />
 
-      <ImageView
-          android:id="@+id/imageView8"
-          android:layout_width="253dp"
-          android:layout_height="92dp"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:srcCompat="@drawable/frutagolosa" />
-
       <TextView
           android:id="@+id/ViewPrecio"
           android:layout_width="0dp"
           android:layout_height="49dp"
-          android:background="#FFF6FF"
+          android:background="@color/rt"
           android:fontFamily="@font/roboto_condensed_bold"
           android:text="TextView"
           android:textAlignment="center"
@@ -416,26 +411,6 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/textView32" />
-
-      <ImageView
-          android:id="@+id/imageView10"
-          android:layout_width="0dp"
-          android:layout_height="107dp"
-          android:layout_marginTop="32dp"
-          app:layout_constraintEnd_toStartOf="@+id/imageView12"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView29"
-          app:srcCompat="@drawable/mapsicon" />
-
-      <ImageView
-          android:id="@+id/imageView12"
-          android:layout_width="0dp"
-          android:layout_height="107dp"
-          android:layout_marginTop="16dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toEndOf="@+id/imageView10"
-          app:layout_constraintTop_toBottomOf="@+id/textView30"
-          app:srcCompat="@drawable/statusicon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </ScrollView>

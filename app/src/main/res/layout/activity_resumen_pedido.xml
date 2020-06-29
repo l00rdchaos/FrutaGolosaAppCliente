@@ -5,7 +5,7 @@
     android:id="@+id/scrollView4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/rt2"
+    android:background="@color/rt"
     tools:context=".ResumenPedidoActivity">
 
   <Button
@@ -20,7 +20,7 @@
       android:layout_marginStart="0dp"
       android:layout_marginLeft="0dp"
       android:layout_marginTop="580dp"
-      android:layout_marginEnd="208dp"
+      android:layout_marginEnd="250dp"
       android:layout_marginRight="208dp"
       android:layout_marginBottom="0dp"
       android:background="@color/colorAccent"
@@ -36,16 +36,15 @@
       android:layout_alignParentEnd="true"
       android:layout_alignParentRight="true"
       android:layout_alignParentBottom="true"
-      android:layout_marginStart="208dp"
-      android:layout_marginLeft="208dp"
+      android:layout_marginStart="250dp"
+      android:layout_marginLeft="250dp"
       android:layout_marginTop="580dp"
       android:layout_marginEnd="0dp"
       android:layout_marginRight="0dp"
       android:layout_marginBottom="0dp"
       android:background="@color/colorAccent"
-      android:text="@string/tarjeta_de_creditoa"
+      android:text="Tarjeta"
       android:textColor="@color/common_google_signin_btn_text_dark_default" />
-
 
 
   <ScrollView
@@ -55,8 +54,48 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF6FF">
+        android:background="@color/rt">
 
+
+      <Button
+          android:id="@+id/btnDescuento"
+          android:layout_width="191dp"
+          android:layout_height="38dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:background="@color/colorAccent"
+          android:text="Pulse Para Aplicar Su Descuento"
+          android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+          android:visibility="gone"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/txtdescuento"
+          app:layout_constraintTop_toBottomOf="@+id/ImgCompArr" />
+
+
+      <ImageView
+          android:id="@+id/ImgCompArr"
+          android:layout_width="0dp"
+          android:layout_height="224dp"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="50dp"
+          android:scaleType="fitXY"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView27"
+          app:srcCompat="@drawable/frutagolosa" />
+
+      <ImageView
+          android:id="@+id/imageView15"
+          android:layout_width="0dp"
+          android:layout_height="44dp"
+          android:layout_marginStart="200dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView27"
+          app:srcCompat="@drawable/frutagolosa" />
 
       <TextView
           android:id="@+id/textView27"
@@ -72,7 +111,6 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
           tools:text="Descripción de su pedido" />
-
 
       <TextView
           android:id="@+id/NombreArregloPr"
@@ -215,6 +253,7 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/CalleSecPR" />
 
+
       <TextView
           android:id="@+id/DetalleUBPR"
           android:layout_width="0dp"
@@ -257,7 +296,6 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/GloboOTG" />
-
 
       <TextView
           android:id="@+id/PrecioFinal"
@@ -321,56 +359,17 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/TxtEspecificacionrp" />
 
-      <ImageView
-          android:id="@+id/ImgCompArr"
-          android:layout_width="0dp"
-          android:layout_height="224dp"
-          android:layout_marginStart="50dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="50dp"
-          android:scaleType="fitXY"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView27"
-          app:srcCompat="@drawable/frutagolosa" />
-
-      <ImageView
-          android:id="@+id/imageView15"
-          android:layout_width="0dp"
-          android:layout_height="44dp"
-          android:layout_marginStart="200dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView27"
-          app:srcCompat="@drawable/frutagolosa" />
-
       <TextView
           android:id="@+id/txtdescuento"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginStart="16dp"
-          android:visibility="gone"
           android:layout_marginTop="8dp"
           android:fontFamily="@font/roboto_condensed_bold"
           android:text="Descuento"
+          android:visibility="gone"
           app:layout_constraintEnd_toStartOf="@+id/btnDescuento"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/ImgCompArr" />
-
-      <Button
-          android:id="@+id/btnDescuento"
-          android:layout_width="191dp"
-          android:layout_height="38dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
-          android:visibility="gone"
-          android:background="@color/colorAccent"
-          android:text="Pulse Para Aplicar Su Descuento"
-          android:textColor="@color/common_google_signin_btn_text_dark_pressed"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toEndOf="@+id/txtdescuento"
           app:layout_constraintTop_toBottomOf="@+id/ImgCompArr" />
 
       <TextView
@@ -403,10 +402,10 @@
       android:layout_marginTop="0dp"
       android:layout_marginEnd="0dp"
       android:layout_marginRight="0dp"
-      android:background="#00B4A1"
+      android:background="@color/colorAccent"
       android:fontFamily="@font/roboto_condensed_bold"
       android:text="@string/textopreciofinala"
       android:textAlignment="center"
-      android:textColor="@android:color/white"
+      android:textColor="@color/rt"
       android:textSize="20sp" />
 </RelativeLayout>

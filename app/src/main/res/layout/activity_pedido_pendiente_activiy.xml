@@ -4,9 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFF6FF"
+    android:background="@color/rt"
 
     tools:context=".PedidoPendienteActiviy">
+
+  <ImageView
+      android:id="@+id/imageView3"
+      android:layout_width="0dp"
+      android:layout_height="144dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="64dp"
+      android:layout_marginEnd="8dp"
+      android:contentDescription="@string/logo"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/recyclerView3"
+      app:srcCompat="@drawable/frutagolosa" />
+
+  <TextView
+      android:id="@+id/textView22"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      android:text="@string/aqui_puede_ver_sus_pedidos_pendientes_y_pulsarlos_para_ver_detalles"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
   <androidx.recyclerview.widget.RecyclerView
 
@@ -24,34 +50,7 @@
       app:layout_constraintTop_toBottomOf="@+id/textView22">
 
 
-
   </androidx.recyclerview.widget.RecyclerView>
-
-  <TextView
-      android:id="@+id/textView22"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="8dp"
-      android:text="@string/aqui_puede_ver_sus_pedidos_pendientes_y_pulsarlos_para_ver_detalles"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <ImageView
-      android:id="@+id/imageView3"
-      android:layout_width="0dp"
-      android:layout_height="144dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="64dp"
-      android:layout_marginEnd="8dp"
-      android:contentDescription="@string/logo"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/recyclerView3"
-      app:srcCompat="@drawable/frutagolosa" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

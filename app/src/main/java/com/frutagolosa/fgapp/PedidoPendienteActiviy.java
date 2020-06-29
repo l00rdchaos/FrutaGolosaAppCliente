@@ -76,7 +76,7 @@ public class PedidoPendienteActiviy extends AppCompatActivity {
         finish();
 
       }
-    },300000);
+    },500000);
 
 
 

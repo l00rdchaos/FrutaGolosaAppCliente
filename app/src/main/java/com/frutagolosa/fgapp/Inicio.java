@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.frutagolosa.fgapp.api.ApiInterfaceVersion;
 
@@ -36,32 +38,93 @@ public class Inicio extends AppCompatActivity {
     final Button btnreiniciarapp=findViewById(R.id.btnReiniciarApp);
     final Button btncerrarapp=findViewById(R.id.btnCerrarApp);
     final Button btnActualizarApp=findViewById(R.id.btnActualizarApp);
+    final Button btncnt=findViewById(R.id.buttonctn);
 
 
 
 
 
-    final ProgressDialog asycdialog;
-    asycdialog = new ProgressDialog(Inicio.this);
-    asycdialog.setMessage("Cargando...");
-    asycdialog.getWindow().setGravity(Gravity.CENTER_VERTICAL);
-    asycdialog.getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
-    asycdialog.setCancelable(false);
 
-    asycdialog.show();
-    Handler handler=new Handler();
-    handler.postDelayed(new Runnable() {
-      @Override
-      public void run() {
+    SharedPreferences preferencesx=getSharedPreferences("birthdate", Context.MODE_PRIVATE);
+    String vd=preferencesx.getString("vd","0");
+    int i= Integer.parseInt(vd);
+    if(i<=3){
+
+       i=i+1;
+      SharedPreferences preferences = getSharedPreferences("birthdate", Context.MODE_PRIVATE);
+      SharedPreferences.Editor editor = preferences.edit();
+      String j=String.valueOf(i);
+      editor.putString("vd", j);
+      editor.commit();
+      final VideoView videoview = (VideoView) findViewById(R.id.videoView);
+      Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.videofg);
+      videoview.setVideoURI(uri);
+      videoview.start();
+
+      videoview.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          if(videoview.isPlaying()){
+            videoview.pause();
+
+          }else{
+
+            videoview.start();
+          }
 
 
-        SharedPreferences preferences=getSharedPreferences("login", Context.MODE_PRIVATE);
-        String nombreus=preferences.getString("nombreus","Registrese");
-        String mailus=preferences.getString("mailus","No");
-        String telefonous=preferences.getString("telefonous","No");
+        }
+      });
+
+      btncnt.setVisibility(View.VISIBLE);
+      btncnt.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+          cargar();
+
+        }
+      });
+
+    }else {
+      final VideoView videoview = (VideoView) findViewById(R.id.videoView);
+      videoview.setVisibility(View.GONE);
+      TextView tt=(TextView)findViewById(R.id.textView49);
+      tt.setVisibility(View.GONE);
+      cargar();
+    }
 
 
-        if(nombreus.equals("Registrese")) {
+
+
+
+  }
+
+
+private void cargar(){
+
+
+  final ProgressDialog asycdialog;
+  asycdialog = new ProgressDialog(Inicio.this);
+  asycdialog.setMessage("Cargando...");
+  asycdialog.getWindow().setGravity(Gravity.CENTER_VERTICAL);
+  asycdialog.getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
+  asycdialog.setCancelable(false);
+
+  asycdialog.show();
+  Handler handler=new Handler();
+  handler.postDelayed(new Runnable() {
+    @Override
+    public void run() {
+
+
+      SharedPreferences preferences=getSharedPreferences("login", Context.MODE_PRIVATE);
+      String nombreus=preferences.getString("nombreus","Registrese");
+      String mailus=preferences.getString("mailus","No");
+      String telefonous=preferences.getString("telefonous","No");
+
+
+      if(nombreus.equals("Registrese")) {
 
 
 
@@ -123,73 +186,73 @@ public class Inicio extends AppCompatActivity {
 
 
       }
-        else{
+      else{
 
-          SharedPreferences preferencesx=getSharedPreferences("birthdate", Context.MODE_PRIVATE);
-          String bd=preferencesx.getString("bdate","no");
-   if(bd.equals("no")){
-
-     Intent d = new Intent(Inicio.this,birthdayactivity.class);
-     startActivity(d);
-
-     finish();
-     asycdialog.dismiss();
-
-   }else{
-
-     Intent d = new Intent(Inicio.this, Main2Activity.class);
-     startActivity(d);
-
-     finish();
-
-     asycdialog.dismiss();
-          }
+        SharedPreferences preferencesx=getSharedPreferences("birthdate", Context.MODE_PRIVATE);
+        String bd=preferencesx.getString("bdate","no");
 
 
-          asycdialog.dismiss();}
-      }
-    },3000);
+        if(bd.equals("no")){
+
+          Intent d = new Intent(Inicio.this,birthdayactivity.class);
+          startActivity(d);
+
+          finish();
+          asycdialog.dismiss();
+
+        }else{
+
+          Intent d = new Intent(Inicio.this, Main2Activity.class);
+          startActivity(d);
+
+          finish();
+
+          asycdialog.dismiss();
+        }
 
 
-    btncerrarapp.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        finish();
-      }
-    });
+        asycdialog.dismiss();}
+    }
+  },3000);
 
-    btnreiniciarapp.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
-      }
-    });
+  final Button btnreiniciarapp=findViewById(R.id.btnReiniciarApp);
+  final Button btncerrarapp=findViewById(R.id.btnCerrarApp);
+  final Button btnActualizarApp=findViewById(R.id.btnActualizarApp);
+  final Button btncnt=findViewById(R.id.buttonctn);
+  final VideoView videoview = (VideoView) findViewById(R.id.videoView);
+  btncnt.setVisibility(View.INVISIBLE);
+  videoview.setVisibility(View.GONE);
+  btncerrarapp.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      finish();
+    }
+  });
 
-    btnActualizarApp.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        String url = "https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
-      }
-    });
+  btnreiniciarapp.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      Intent intent = getIntent();
+      finish();
+      startActivity(intent);
+    }
+  });
 
-
-
-
-
-
-
-
-
-
-
-  }
+  btnActualizarApp.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      String url = "https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp";
+      Intent i = new Intent(Intent.ACTION_VIEW);
+      i.setData(Uri.parse(url));
+      startActivity(i);
+    }
+  });
 
 
 
+
+
+
+}
 
 }

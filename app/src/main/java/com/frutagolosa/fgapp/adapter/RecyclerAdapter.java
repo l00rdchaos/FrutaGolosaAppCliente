@@ -65,7 +65,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     holder.casaempresaedificio.setText(contacts.get(position).getCasaempresaedificio());
     holder.referencia.setText(contacts.get(position).getReferencia());
     holder.portada_tarjeta.setText(contacts.get(position).getPortada_tarjeta());
-    holder.estado.setText(contacts.get(position).getEstado());
+   // holder.estado.setText("Estado: \n"+contacts.get(position).getEstado());
     String estad=contacts.get(position).getEstado().toString();
     holder.globo.setText(contacts.get(position).getGlobo());
     holder.coordenadas.setText(contacts.get(position).getCoordenadas());
@@ -107,13 +107,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
 
     if(estad.equals("Entregado")){
-      holder.estadofoto.setImageResource(R.drawable.semaforo5);
+      holder.estadofoto.setImageResource(R.drawable.semaforo4);
 
 
     }
 
     if(estad.equals("Completado")){
-      holder.estadofoto.setImageResource(R.drawable.semaforo6);
+      holder.estadofoto.setImageResource(R.drawable.semaforo5);
 
 
     }

@@ -14,6 +14,8 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,7 +70,6 @@ public class CompArreglo extends AppCompatActivity {
 
 
       Glide.with(this).load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(AD);
-
 
 
     prec2arr.setText(precio+ " USD");
@@ -136,17 +137,7 @@ public class CompArreglo extends AppCompatActivity {
 
     //---------------Radio botones
 
-    final Button LPRG = (Button) (findViewById(R.id.LimpiarRadio));
-    LPRG.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
 
-
-        cantidad[0] = 1;
-        String c = "" + cantidad[0];
-        cantidadtext.setText(c);
-      }
-    }); //boton del clicklister
 
 
 

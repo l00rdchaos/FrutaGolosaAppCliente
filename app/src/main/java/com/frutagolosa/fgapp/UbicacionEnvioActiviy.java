@@ -158,13 +158,11 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
         if(s.toString().trim().length()<3||NrecibeTxt.getText().toString().trim().isEmpty()||TelerecibeTxt.getText().toString().length()<10){
 
 
-          EnvDic.setBackgroundColor(getResources().getColor(R.color.gris2));
 
 
 
         } else {
 
-          EnvDic.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         }
       }
 
@@ -208,10 +206,10 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
           m1 = "0" + m1;
         }
         String y1 = String.valueOf(y);
-        date2 = d1 + "/" + m1 + "/" + y1;
+
 
         if (dayOfWeek != 1) {
-
+          date2 = d1 + "/" + m1 + "/" + y1;
           String Ciudad = SpCiudad.getSelectedItem().toString().trim();
           apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
           Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d=" + date2 + "&&c=" + Ciudad);
@@ -231,6 +229,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
                     a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     //Setting the ArrayAdapter data on the Spinner
                     FranjaHoraria.setAdapter(a);
+                    EnvDic.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                   }
                 } else {
 
@@ -247,6 +246,8 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
             public void onFailure(Call<List<horas>> call, Throwable t) {
               ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.NO, android.R.layout.simple_spinner_item);
               FranjaHoraria.setAdapter(adapter3);
+              EnvDic.setEnabled(false);
+              EnvDic.setBackgroundColor(getResources().getColor(R.color.gris2));
             }
           });
 
@@ -254,7 +255,10 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
         }else{
 
           Toast.makeText(UbicacionEnvioActiviy.this, "No trabajamos los dias domingos", Toast.LENGTH_SHORT).show();
-
+          ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.NO, android.R.layout.simple_spinner_item);
+          FranjaHoraria.setAdapter(adapter3);
+          EnvDic.setEnabled(false);
+          EnvDic.setBackgroundColor(getResources().getColor(R.color.gris2));
         }
       } });
 
@@ -276,7 +280,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
 
 
-        if (NrecibeTxt.getText().toString().trim().isEmpty()||TelerecibeTxt.getText().toString().trim().isEmpty()||hora.equals("ENTREGAS NO DISPONIBLES")) {
+        if (NrecibeTxt.getText().toString().trim().isEmpty()||TelerecibeTxt.getText().toString().trim().isEmpty()||hora.equals("ENTREGAS NO DISPONIBLES")||Ciudad.equals("SELECCIONE CIUDAD")) {
           Toast.makeText(getApplicationContext(), "Por favor, rellene todos los campos en blanco, revise que haya horas disponibles.", Toast.LENGTH_SHORT).show();
           if (!compruebaConexion(getApplicationContext())) {
             Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();

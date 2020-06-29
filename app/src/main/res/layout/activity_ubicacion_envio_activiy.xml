@@ -4,31 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFF6FF"
+    android:background="@color/rt"
     tools:context=".UbicacionEnvioActiviy"
     tools:ignore="LabelFor">
 
 
-    <Button
-        android:id="@+id/btnEnvDireccion"
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="580dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp"
-        android:background="@color/colorAccent"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:text="Aceptar"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="24sp" />
+  <Button
+      android:id="@+id/btnEnvDireccion"
+      android:layout_width="match_parent"
+      android:layout_height="66dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginLeft="0dp"
+      android:layout_marginTop="580dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginRight="0dp"
+      android:layout_marginBottom="0dp"
+      android:background="@color/colorAccent"
+      android:fontFamily="@font/roboto_condensed_bold"
+      android:text="Aceptar"
+      android:textColor="@color/common_google_signin_btn_text_dark_default"
+      android:textSize="24sp" />
 
   <ScrollView
       android:layout_width="match_parent"
@@ -39,22 +39,15 @@
         android:layout_height="wrap_content">
 
 
-      <TextView
-          android:id="@+id/textView3"
+      <CalendarView
+          android:id="@+id/CalendarTxt"
           android:layout_width="0dp"
-          android:layout_height="22dp"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
-          android:fontFamily="@font/roboto_condensed_bold"
-          android:text="Elija Ciudad"
-          android:textAlignment="center"
-          android:textAllCaps="false"
-          android:textSize="14sp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintHorizontal_bias="0.492"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView5" />
+          app:layout_constraintTop_toBottomOf="@+id/EditTxtTelfRecib" />
 
       <EditText
 
@@ -73,6 +66,79 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/NombreQRecibeTxt"
           tools:targetApi="o" />
+
+      <EditText
+          android:id="@+id/EditTxtTelfRecib"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:ems="10"
+          android:hint="Escriba telefono de quien recibe aqui"
+          android:importantForAutofill="no"
+          android:inputType="phone"
+          android:maxLength="10"
+          android:textAlignment="center"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView7"
+          tools:targetApi="o" />
+
+      <ImageView
+          android:id="@+id/imageView7"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginBottom="40dp"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView2"
+          app:srcCompat="@drawable/frutagolosa" />
+
+      <Spinner
+          android:id="@+id/SpHorario"
+          android:layout_width="0dp"
+          android:layout_height="41dp"
+          android:layout_marginTop="8dp"
+          android:background="@drawable/fondospinner"
+          android:textAlignment="center"
+          android:textColor="#FF0000"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+      <Spinner
+          android:id="@+id/spCiudad"
+          android:layout_width="0dp"
+          android:layout_height="41dp"
+          android:layout_marginTop="8dp"
+          android:background="@drawable/fondospinner"
+          android:textAlignment="center"
+          android:textColor="#FF0000"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+      <TextView
+          android:id="@+id/textView3"
+          android:layout_width="0dp"
+          android:layout_height="22dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="@font/roboto_condensed_bold"
+          android:text="Elija Ciudad"
+          android:textAlignment="center"
+          android:textAllCaps="false"
+          android:textSize="14sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
 
       <TextView
           android:id="@+id/NombreQRecibeTxt"
@@ -104,22 +170,6 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/NombreQRecibe" />
-
-      <EditText
-          android:id="@+id/EditTxtTelfRecib"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:ems="10"
-          android:hint="Escriba telefono de quien recibe aqui"
-          android:importantForAutofill="no"
-          android:inputType="phone"
-          android:maxLength="10"
-          android:textAlignment="center"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView7"
-          tools:targetApi="o" />
 
       <TextView
           android:id="@+id/textView11"
@@ -153,41 +203,6 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/spCiudad" />
 
-
-      <CalendarView
-          android:id="@+id/CalendarTxt"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="32dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.492"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/EditTxtTelfRecib" />
-
-      <Spinner
-          android:id="@+id/SpHorario"
-          android:layout_width="0dp"
-          android:layout_height="41dp"
-          android:layout_marginTop="8dp"
-          android:background="@drawable/fondospinner"
-          android:textAlignment="center"
-          android:textColor="#FF0000"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-      <Spinner
-          android:id="@+id/spCiudad"
-          android:layout_width="0dp"
-          android:layout_height="41dp"
-          android:layout_marginTop="8dp"
-          android:background="@drawable/fondospinner"
-          android:textAlignment="center"
-          android:textColor="#FF0000"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
       <TextView
           android:id="@+id/textView2"
           android:layout_width="0dp"
@@ -212,21 +227,6 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/CalendarTxt" />
-
-      <ImageView
-          android:id="@+id/imageView7"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="8dp"
-          android:layout_marginBottom="40dp"
-          android:visibility="gone"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView2"
-          app:srcCompat="@drawable/frutagolosa" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

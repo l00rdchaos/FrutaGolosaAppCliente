@@ -1,0 +1,12 @@
+keytool -list -v -keystore C:\Users\cesar\Music\key2\frutagapp.jks -alias frutagolosa
+clave frutaroot
+frutaroot
+
+
+31:5F:E2:51:4A:4C:4A:CE:99:B3:3A:A4:AC:6F:F9:39:09:CC:C7:6A
+
+
+
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=66:C5:B2:6C:3B:19:11:5F:BA:6F:B5:3C:A6:2A:BB:39:1C:EE:6F:7F:DCcom.frutagolosa.fgapp
+
+C5:B2:6C:3B:19:11:5F:BA:6F:B5:3C:A6:2A:BB:39:1C:EE:6F:7F:DC

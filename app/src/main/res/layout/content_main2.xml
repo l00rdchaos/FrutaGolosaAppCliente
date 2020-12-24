@@ -18,15 +18,15 @@
 
         android:id="@+id/PedidopendienteBTN"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="580dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
@@ -37,6 +37,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
+
+
+
 
     <ScrollView
 
@@ -103,9 +106,27 @@
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
+
                 app:layout_constraintEnd_toEndOf="@+id/btnSINchoc"
                 app:layout_constraintStart_toEndOf="@+id/btnConCHoc"
                 app:layout_constraintTop_toBottomOf="@+id/btnSINchoc" />
+
+
+            <Button
+                android:id="@+id/btnDesayunos"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@android:color/background_light"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:text="Desayunos"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/btnCajasConF"
+                app:layout_constraintStart_toEndOf="@+id/btnSINchoc"
+                app:layout_constraintTop_toBottomOf="@+id/btnFrutaFlo" />
+
 
             <Button
                 android:id="@+id/btnConCHoc"
@@ -271,6 +292,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnAFestivos" />
+
+
+            <fragment
+                android:id="@+id/fragmentar8"
+                android:name="com.frutagolosa.fgapp.DesayunosFragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAFestivos" />
+
+
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

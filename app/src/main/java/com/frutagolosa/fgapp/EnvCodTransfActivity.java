@@ -96,6 +96,8 @@ public class EnvCodTransfActivity extends AppCompatActivity {
   String KEY_NOMBRE = "nombre";
   String Banco = "";
 
+
+
   private ApiInterface3 apiInterface;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +156,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
     final EditText cuentatxt = (EditText) findViewById(R.id.copytxtnoCuenta);
 
     final ImageView ImgPay = (ImageView) findViewById(R.id.imgpaypal);
+    final ImageView ImgPP=(ImageView)findViewById(R.id.imgpayphone);
 
 
     if (ppa.equals("1")) {
@@ -233,6 +236,86 @@ public class EnvCodTransfActivity extends AppCompatActivity {
 
       }
       insertUser();
+
+    }
+
+    if (ppa.equals("2")) {
+      ImageView si = (ImageView) findViewById(R.id.SubirComp);
+      TextView nro1 = (TextView) findViewById(R.id.nro1);
+      TextView nro2 = (TextView) findViewById(R.id.nro2);
+      TextView nro3 = (TextView) findViewById(R.id.nro3);
+      TextView indicador1 = (TextView) findViewById(R.id.indicadorCedula);
+      TextView indicador2 = (TextView) findViewById(R.id.indicadorcuenta);
+      TextView indicador3 = (TextView) findViewById(R.id.indicadornombre);
+      TextView instruccion1 = (TextView) findViewById(R.id.instruct1a);
+      TextView instruccion2 = (TextView) findViewById(R.id.instruct2);
+      TextView instruccion3 = (TextView) findViewById(R.id.instruct3);
+      final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      listoco.setVisibility(View.GONE);
+      nombretxt.setVisibility(View.GONE);
+      cedtxt.setVisibility(View.GONE);
+      cuentatxt.setVisibility(View.GONE);
+      si.setVisibility(View.GONE);
+      nro1.setVisibility(View.GONE);
+      nro2.setVisibility(View.GONE);
+      nro3.setVisibility(View.GONE);
+      indicador1.setVisibility(View.GONE);
+      indicador2.setVisibility(View.GONE);
+      indicador3.setVisibility(View.GONE);
+      instruccion2.setVisibility(View.GONE);
+      instruccion3.setVisibility(View.GONE);
+
+      instruccion1.setText("Ha realizado con Payphone, pulse el boton aceptar para enviar su pedido a nuestros acesores, si tiene algun " +
+              "inconveniente o desea comunicarse con nosotros, puede hacerlo en la pantalla de seleccion de Arreglos, a traves de nuestros telefonosos" +
+              "o nuestras redes sociales.");
+
+      imgLista = "1";
+      btnBolivariano.setVisibility(View.GONE);
+      btnProdubanco.setVisibility(View.GONE);
+      btnGuayaquil.setVisibility(View.GONE);
+      btnPichincha.setVisibility(View.GONE);
+      btnPacifico.setVisibility(View.GONE);
+      ImgPP.setVisibility(View.VISIBLE);
+      Banco = "Payphone";
+      actionBar.hide();
+      if (imgLista.equals("0")) {
+
+        Toast.makeText(EnvCodTransfActivity.this, "Por favor suba foto del pago", Toast.LENGTH_SHORT).show();
+
+      } else {
+        if (!compruebaConexion(getApplicationContext())) {
+          Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
+        } else {
+
+          String fpago = "nada";
+          if (ppa.equals("1")) {
+            fpago = "PayPhone";
+          } else {
+            fpago = Banco;
+          }
+          // Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
+          //   "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
+
+          //     try {
+          //   LongOperation l = new LongOperation();
+          //    l.execute();  //sends the email in background
+
+
+          //   } catch (Exception e) {
+
+
+          //     Log.e("SendMail", e.getMessage(), e);
+
+
+          //   }
+
+
+
+        }
+
+
+      }
+      insertUser2();
 
     }
 
@@ -516,6 +599,150 @@ public class EnvCodTransfActivity extends AppCompatActivity {
                         }
 
                       } }
+
+              @Override
+              public void failure(RetrofitError error) {
+                Toast.makeText(EnvCodTransfActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+
+              }
+            }
+    );
+
+
+  }
+  public void insertUser2() {
+    CalendarView FechaPedidoCalendar = findViewById(R.id.FechaActualCalendar);
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    String datea = sdf.format(new Date(FechaPedidoCalendar.getDate()));
+    SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+    String nombreus = preferences.getString("nombreus", "Registrese");
+    String mailus = preferences.getString("mailus", "No");
+    String telefonous = preferences.getString("telefonous", "No");
+
+
+    final int cantidadpass = getIntent().getIntExtra(PagoActivity.Cantidadpassm, -1);
+    final String Nombpass = getIntent().getStringExtra(PagoActivity.NombreQuienRecibe);
+    final String TelPass = getIntent().getStringExtra(PagoActivity.TelefonoQuienRecibe);
+    final String Horapass = getIntent().getStringExtra(PagoActivity.FranjaHorariaQueRecibe);
+    final String FechaPass = getIntent().getStringExtra(PagoActivity.DiaEntrega);
+    final String DireccionPass = getIntent().getStringExtra(PagoActivity.Direccionpass);
+    final String PrecioViajePassa = getIntent().getStringExtra(PagoActivity.PrecioViajePass);
+    final String CallePrinPassad = getIntent().getStringExtra(PagoActivity.CallePrincPassss);
+    final String CalleSecPassa = getIntent().getStringExtra(PagoActivity.CalleSecPass);
+    final String ReferPass = getIntent().getStringExtra(PagoActivity.RefereciaPass);
+    final String DetaUBPassa = getIntent().getStringExtra(PagoActivity.DetalleUbicacionPass);
+    final String DetaAggPassa = getIntent().getStringExtra(PagoActivity.DetalleAGGPass);
+    final String GloboTarjPass = getIntent().getStringExtra(PagoActivity.GloboOTarjetaPass);
+    final String precioArreglo = getIntent().getStringExtra(ResumenPedidoActivity.PrecioArreglo);
+    final String IdArreglo = getIntent().getStringExtra(ResumenPedidoActivity.NombreArreglo);
+    final String precioTotal = getIntent().getStringExtra(ResumenPedidoActivity.PrecioTotal);
+
+    final String sector = getIntent().getStringExtra(ResumenPedidoActivity.Sector);
+    final String numeracion = getIntent().getStringExtra(ResumenPedidoActivity.Numeracion);
+    final String especificacion = getIntent().getStringExtra(DetalleUbicacionesActivity.Especificacion);
+    final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
+    String a = datea;
+    String b = telefonous;
+    String c = nombreus;
+    String d = mailus;
+    String e = Nombpass;
+    String f = TelPass;
+    String g = FechaPass;
+    String h = Horapass;
+    String i = CallePrinPassad;
+    String j = numeracion;
+    String k = CalleSecPassa;
+    String l = DetaUBPassa;
+    String m = ReferPass;
+    String n = IdArreglo;
+    String o = precioTotal;
+    String p = Banco.toUpperCase();
+    String q = Nombpass;
+    String r = DetaAggPassa;
+    String s = especificacion;
+    String t = "keyaccount";
+    String v = sector;
+    String w = "FRUTAGOLOSA";
+    String x = "NO";
+    String cc = "https://frutagolosa.com/FrutaGolosaApp/uploads/" + FechaPass.replace("/", "a") + xf2 + ".png";
+    String y = GloboTarjPass;
+    String z = "Por Confirmar";
+    String aa = "motorizado";
+    String bb = DireccionPass;
+    String dd = Ciudad;
+    String ee = PrecioViajePassa.replace("$","");
+
+    RestAdapter adapter = new RestAdapter.Builder()
+            .setEndpoint(ROOT_URL)
+            .build();
+
+    RegisterAPI api = adapter.create(RegisterAPI.class);
+
+
+    api.inseruser(
+            a,
+            b,
+            c,
+            d,
+            e,
+            f,
+            g,
+            h,
+            i,
+            j,
+            k,
+            l,
+            m,
+            n,
+            o,
+            p,
+            q,
+            r,
+            s,
+            t,
+            v,
+            w,
+            x,
+            y,
+            z,
+            aa,
+            bb,
+            cc,
+            dd,
+            ee,
+
+
+            new Callback<Response>() {
+              @Override
+              public void success(Response result, Response response) {
+                if(response.getBody()!=null) {
+                  BufferedReader reader = null;
+
+                  String output = "";
+
+                  try {
+                    reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
+
+                    output = reader.readLine();
+                  } catch (IOException e) {
+                    e.printStackTrace();
+                  }
+                  if (output.equals("Pedido Registrado Exitosamente")) {
+                    Toast.makeText(EnvCodTransfActivity.this, output, Toast.LENGTH_LONG).show();
+                    Intent d = new Intent(EnvCodTransfActivity.this, Inicio.class);
+                    //  subircontador();
+                    notificacion();
+                    startActivity(d);
+
+                    finish();
+                  } else {
+
+
+                    Toast.makeText(EnvCodTransfActivity.this, output, Toast.LENGTH_SHORT).show();
+
+                  }
+
+                } }
 
               @Override
               public void failure(RetrofitError error) {

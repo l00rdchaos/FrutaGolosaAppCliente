@@ -40,11 +40,14 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class CompArreglo extends AppCompatActivity {
+  //Variables INICIALES
   public static final String NombreArreglo="nombrearreglo" ;
   public static final String cantidadArreglos="cantidadArreglos" ;
   public static final String PrecioArreglo="precioarreglo" ;
+  public static final String TipodeArreglo="tipoArreglo";
   int x;
   CountDownTimer mcountdowntimer;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -57,8 +60,11 @@ public class CompArreglo extends AppCompatActivity {
 
     final String IdArreglo2 = getIntent().getStringExtra(ConChocolateFragment.IdArreglo);
     final String precio = getIntent().getStringExtra(ConChocolateFragment.Precio).trim();
+    final String tipodearreglo=getIntent().getStringExtra(DesayunosFragment.Tipo);
     final int id = getResources().getIdentifier(IdArreglo+1, "drawable", getPackageName());
     final ImageView AD = (ImageView) findViewById(R.id.ImgCompPrin);
+
+   // Toast.makeText(CompArreglo.this,"Marca 1.",Toast.LENGTH_SHORT).show();
 
     //----------------------------------------------------Accion de botones
     TextView na = (TextView) findViewById(R.id.NombArreglo);
@@ -185,7 +191,7 @@ public class CompArreglo extends AppCompatActivity {
               @Override
               public void run() {
 
-                String version="1.8.2";
+                String version="1.8.3";
 
                 RestAdapter adapter = new RestAdapter.Builder()
                         .setEndpoint("https://frutagolosa.com/FrutaGolosaApp/version.php?z="+version)
@@ -217,6 +223,8 @@ public class CompArreglo extends AppCompatActivity {
                           Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
                           f.putExtra(PrecioArreglo, precio);
                           f.putExtra(NombreArreglo, IdArreglo);
+                          f.putExtra(TipodeArreglo,tipodearreglo);
+                         // Toast.makeText(CompArreglo.this,tipodearreglo,Toast.LENGTH_SHORT).show();
                           startActivity(f);
                           loading.dismiss();
 

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,6 +65,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
     final int cantpassAnt = getIntent().getIntExtra(CompArreglo.cantidadArreglos,-1);
     final String precio = getIntent().getStringExtra(CompArreglo.PrecioArreglo);
     final String IdArreglo = getIntent().getStringExtra(CompArreglo.NombreArreglo);
+    final String tipoArreglo=getIntent().getStringExtra(CompArreglo.TipodeArreglo);
 //---------------------------------------------------------------------------------
 
   date2= new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
@@ -82,11 +84,18 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
         FranjaHoraria.setAdapter(adapter3);
 
 
+        if(tipoArreglo=="DESAYUNO"){
+          ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.CiudadesDesayuno, android.R.layout.simple_spinner_item);
+          SpCiudad.setAdapter(adapter4);
 
 
+        }else{
 
-    ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.Ciudades, android.R.layout.simple_spinner_item);
-    SpCiudad.setAdapter(adapter4);
+          ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.Ciudades, android.R.layout.simple_spinner_item);
+          SpCiudad.setAdapter(adapter4);
+        }
+
+
 
 
     final Button EnvDic = (Button) findViewById(R.id.btnEnvDireccion);
@@ -100,7 +109,8 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
         String Ciudad=SpCiudad.getSelectedItem().toString().trim();
         apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
-        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad);
+        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad+"&&t="+tipoArreglo);
+
         call.enqueue(new Callback<List<horas>>() {
           @Override
           public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
@@ -117,6 +127,8 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
                   a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                   //Setting the ArrayAdapter data on the Spinner
                   FranjaHoraria.setAdapter(a);
+                  EnvDic.setEnabled(true);
+                  EnvDic.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 }
               } else {
 
@@ -230,6 +242,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
                     //Setting the ArrayAdapter data on the Spinner
                     FranjaHoraria.setAdapter(a);
                     EnvDic.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    EnvDic.setEnabled(true);
                   }
                 } else {
 

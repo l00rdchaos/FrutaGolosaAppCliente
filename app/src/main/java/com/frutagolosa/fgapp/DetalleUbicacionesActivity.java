@@ -56,6 +56,7 @@ public class DetalleUbicacionesActivity extends AppCompatActivity {
     public static final String Especificacion="especificacion" ;
     public static final String ROOT_URL = "https://frutagolosa.com/FrutaGolosaApp";
     public static final String CiudadA="ciudadd" ;
+
     private final int xf = (int) (Math.random() * 10000);
     private final String xf2 = String.valueOf(xf);
 

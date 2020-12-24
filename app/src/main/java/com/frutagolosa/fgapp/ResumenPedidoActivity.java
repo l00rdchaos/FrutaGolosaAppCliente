@@ -53,6 +53,7 @@ public class ResumenPedidoActivity extends AppCompatActivity {
     public static final String TPp="TPP" ;
     public static final String ContadorpedidosA="DescuentoAa2" ;
     public static final String CiudadA="ciudadd" ;
+
     public  int preciototal=1;
     public  String preciototal2="a";
     public  int preciototale=1;
@@ -547,21 +548,28 @@ dac=precio*30;
 
         final Button btnb = (Button) findViewById(R.id.btnPagar);
         final Button btnb2 = (Button) findViewById(R.id.btnpagar2);
+        final Button btnb3=(Button)findViewById(R.id.btnpagar3);
 
 
         preciototal2= String.valueOf(preciototale);
 
 
         btnb.setOnClickListener(new View.OnClickListener() {
+
+
+
+
             @Override
             public void onClick(View v) {
 
-
-
                 Intent d = new Intent(ResumenPedidoActivity.this, PagoActivity.class);
-String tp="t";
+                String tp="t";
+
+
+
+
                 final String Ciudad = getIntent().getStringExtra(DetalleUbicacionesActivity.CiudadA);
-             preciototal2= String.valueOf(preciototale);
+                preciototal2= String.valueOf(preciototale);
                 d.putExtra(NombreQuienRecibe, Nombpass);
                 d.putExtra(TelefonoQuienRecibe, TelPass);
                 d.putExtra(DiaEntrega, FechaPass);
@@ -623,6 +631,85 @@ String tp="t";
 
             }
         });
+
+
+
+        btnb3.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                Intent d = new Intent(ResumenPedidoActivity.this, PagoActivity.class);
+                String tp="pp";
+
+
+                final String Ciudad = getIntent().getStringExtra(DetalleUbicacionesActivity.CiudadA);
+                preciototal2= String.valueOf(preciototale);
+                d.putExtra(NombreQuienRecibe, Nombpass);
+                d.putExtra(TelefonoQuienRecibe, TelPass);
+                d.putExtra(DiaEntrega, FechaPass);
+                d.putExtra(FranjaHorariaQueRecibe, Horapass);
+                d.putExtra(Cantidadpassm,cantidadpass);
+                d.putExtra(Direccionpass,DireccionPass);
+                d.putExtra(PrecioViajePass,PrecioViajePassa);
+                d.putExtra(CallePrincPassss,CallePrinPassad);
+                d.putExtra(CalleSecPass,CalleSecPassa);
+                d.putExtra(RefereciaPass,ReferPass);
+                d.putExtra(DetalleUbicacionPass,DetaUBPassa);
+                d.putExtra(DetalleAGGPass,DetaAggPassa);
+                d.putExtra(GloboOTarjetaPass,GloboTarjPass);
+                d.putExtra(PrecioArreglo, precioArreglo);
+                d.putExtra(NombreArreglo,IdArreglo.toUpperCase());
+                d.putExtra(PrecioTotal,preciototal2);
+                d.putExtra(Sector,sector);
+                d.putExtra(Numeracion,numeracion);
+                d.putExtra(Especificacion,especificacion);
+                d.putExtra(TPp,tp);
+                d.putExtra(PrecioTotalA,preciototale);
+                d.putExtra(ContadorpedidosA,contadorpedidos);
+                d.putExtra(CiudadA,Ciudad);
+                startActivity(d);
+
+            }
+        }); //boton del clicklister
+//
+//        btnb3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                preciototal2= String.valueOf(preciototale);
+//                Intent d = new Intent(ResumenPedidoActivity.this, PagoActivity.class);
+//
+//                String tp="pp";
+//                d.putExtra(NombreQuienRecibe, Nombpass);
+//                d.putExtra(TelefonoQuienRecibe, TelPass);
+//                d.putExtra(DiaEntrega, FechaPass);
+//                d.putExtra(FranjaHorariaQueRecibe, Horapass);
+//                d.putExtra(Cantidadpassm,cantidadpass);
+//                d.putExtra(Direccionpass,DireccionPass);
+//                d.putExtra(PrecioViajePass,PrecioViajePassa);
+//                d.putExtra(CallePrincPassss,CallePrinPassad);
+//                d.putExtra(CalleSecPass,CalleSecPassa);
+//                d.putExtra(RefereciaPass,ReferPass);
+//                d.putExtra(DetalleUbicacionPass,DetaUBPassa);
+//                d.putExtra(DetalleAGGPass,DetaAggPassa);
+//                d.putExtra(GloboOTarjetaPass,GloboTarjPass);
+//                d.putExtra(PrecioArreglo, precioArreglo);
+//                d.putExtra(NombreArreglo,IdArreglo.toUpperCase());
+//                d.putExtra(PrecioTotal,preciototal2);
+//                d.putExtra(Sector,sector);
+//                d.putExtra(TPp,tp);
+//                d.putExtra(Numeracion,numeracion);
+//                d.putExtra(Especificacion,especificacion);
+//                d.putExtra(PrecioTotalA,preciototale);
+//                d.putExtra(ContadorpedidosA,contadorpedidos);
+//                startActivity(d);
+//
+//
+//
+//
+//            }
+//        });
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);

@@ -120,7 +120,12 @@
 
     </string-array>
 
-    <string-array name="NO">z
+    <string-array name="CiudadesDesayuno">
+        <item>SELECCIONE CIUDAD</item>
+        <item>QUITO</item>
+    </string-array>
+
+    <string-array name="NO">
         <item>ENTREGAS NO DISPONIBLES</item>
 
 

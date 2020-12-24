@@ -52,7 +52,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,ConChocolateFragment.OnFragmentInteractionListener,SinChocolateFragment.OnFragmentInteractionListener,FrutasFloresFragm.OnFragmentInteractionListener, BlankFragmenta.OnFragmentInteractionListener, FestivosFragment.OnFragmentInteractionListener,CajasConFrutasFragment.OnFragmentInteractionListener,Peluches.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,ConChocolateFragment.OnFragmentInteractionListener,SinChocolateFragment.OnFragmentInteractionListener,FrutasFloresFragm.OnFragmentInteractionListener, BlankFragmenta.OnFragmentInteractionListener, FestivosFragment.OnFragmentInteractionListener,CajasConFrutasFragment.OnFragmentInteractionListener,Peluches.OnFragmentInteractionListener,DesayunosFragment.OnFragmentInteractionListener {
 
   public static final String ska="codigoarreglo" ;
   public static final String ska2="codigoarreglo" ;
@@ -70,7 +70,7 @@ public class Main2Activity extends AppCompatActivity
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-toolbar.setLogo(R.drawable.frutagolosalinea);
+    toolbar.setLogo(R.drawable.frutagolosalinea);
     viewPager= findViewById(R.id.imageView4);
 
     final ImageAdapter adapter= new ImageAdapter(this);
@@ -93,7 +93,11 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
     Button btnAF=(Button) findViewById(R.id.btnAFestivos);
     Button btnADC=(Button) findViewById(R.id.btnADomicilio);
 
+
     Button btnPelu=(Button) findViewById(R.id.btnNPeluches);
+    Button btnDES=(Button) findViewById(R.id.btnDesayunos);
+
+
 
     setTitle("");
 
@@ -122,6 +126,9 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
     frg6.setVisibility(View.GONE);
     View frg7= findViewById(R.id.fragmentar7);
     frg7.setVisibility(View.GONE);
+    View frg8= findViewById(R.id.fragmentar8);
+    frg8.setVisibility(View.GONE);
+
 
     //////////////////////////////////////////////////////////////////////
     btnAF.setOnClickListener(new View.OnClickListener() {
@@ -141,27 +148,33 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
         frg6.setVisibility(View.GONE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.GONE);
-        
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
+
       }
     });
 
     btnCF.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          View frg= findViewById(R.id.fragmentar);
-          frg.setVisibility(View.GONE);
-          View frg2= findViewById(R.id.fragmentar2);
-          frg2.setVisibility(View.GONE);
-          View frg3= findViewById(R.id.fragmentar3);
-          frg3.setVisibility(View.GONE);
-          View frg4= findViewById(R.id.fragmentar4);
-          frg4.setVisibility(View.GONE);
-          View frg5= findViewById(R.id.fragmentar5);
-          frg5.setVisibility(View.GONE);
-          View frg6= findViewById(R.id.fragmentar6);
-          frg6.setVisibility(View.VISIBLE);
+        View frg= findViewById(R.id.fragmentar);
+        frg.setVisibility(View.GONE);
+        View frg2= findViewById(R.id.fragmentar2);
+        frg2.setVisibility(View.GONE);
+        View frg3= findViewById(R.id.fragmentar3);
+        frg3.setVisibility(View.GONE);
+        View frg4= findViewById(R.id.fragmentar4);
+        frg4.setVisibility(View.GONE);
+        View frg5= findViewById(R.id.fragmentar5);
+        frg5.setVisibility(View.GONE);
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.VISIBLE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.GONE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
       }
     });
 
@@ -183,6 +196,9 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
         frg6.setVisibility(View.GONE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.GONE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
       }
     });
 
@@ -249,6 +265,9 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
             frg6.setVisibility(View.GONE);
             View frg7= findViewById(R.id.fragmentar7);
             frg7.setVisibility(View.GONE);
+            View frg8= findViewById(R.id.fragmentar8);
+            frg8.setVisibility(View.GONE);
+
 
             loading.dismiss();
 
@@ -277,6 +296,9 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
         frg6.setVisibility(View.GONE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.GONE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
       }
     });
 
@@ -297,6 +319,9 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
         frg6.setVisibility(View.GONE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.GONE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
       }
     });
 
@@ -317,6 +342,9 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
         frg6.setVisibility(View.GONE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.GONE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
       }
     });
 
@@ -337,6 +365,9 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
         frg6.setVisibility(View.GONE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.GONE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
       }
     });
 
@@ -357,52 +388,85 @@ toolbar.setLogo(R.drawable.frutagolosalinea);
         frg6.setVisibility(View.GONE);
         View frg7= findViewById(R.id.fragmentar7);
         frg7.setVisibility(View.VISIBLE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.GONE);
+
       }
     });
 
 
-btnADC.setOnClickListener(new View.OnClickListener() {
-  @Override
-  public void onClick(View v) {
-    final AlertDialog.Builder builder2 = new AlertDialog.Builder(Main2Activity.this);
-    builder2.setTitle("COMUNICATE POR WHATSAPP");
-    builder2.setMessage("Selecciona una de las ciudades para comunicarte con nosotros.");
-    builder2.setPositiveButton("QUITO", new DialogInterface.OnClickListener() {
+    btnDES.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(DialogInterface dialog, int which) {
+      public void onClick(View view) {
 
 
-        String numberWithCountryCode="+593984727881";
-        String message="Hola, necesito informacion para solicitar productos a domicilio con Fruta Golosa.";
-        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-        sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplicationContext().startActivity(sendIntent);
+        View frg= findViewById(R.id.fragmentar);
+        frg.setVisibility(View.GONE);
+        View frg2= findViewById(R.id.fragmentar2);
+        frg2.setVisibility(View.GONE);
+        View frg3= findViewById(R.id.fragmentar3);
+        frg3.setVisibility(View.GONE);
+        View frg4= findViewById(R.id.fragmentar4);
+        frg4.setVisibility(View.GONE);
+        View frg5= findViewById(R.id.fragmentar5);
+        frg5.setVisibility(View.GONE);
+        View frg6= findViewById(R.id.fragmentar6);
+        frg6.setVisibility(View.GONE);
+        View frg7= findViewById(R.id.fragmentar7);
+        frg7.setVisibility(View.GONE);
+        View frg8= findViewById(R.id.fragmentar8);
+        frg8.setVisibility(View.VISIBLE);
 
-dialog.dismiss();
+
       }
     });
 
-    builder2.setNegativeButton("GUAYAQUIL", new DialogInterface.OnClickListener() {
+
+
+
+
+    btnADC.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(DialogInterface dialog, int which) {
+      public void onClick(View v) {
+        final AlertDialog.Builder builder2 = new AlertDialog.Builder(Main2Activity.this);
+        builder2.setTitle("COMUNICATE POR WHATSAPP");
+        builder2.setMessage("Selecciona una de las ciudades para comunicarte con nosotros.");
+        builder2.setPositiveButton("QUITO", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
 
 
-        String numberWithCountryCode="+593984639341";
-        String message="Hola, necesito informacion para solicitar productos a domicilio con Fruta Golosa.";
-        Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-        sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplicationContext().startActivity(sendIntent);
-        dialog.dismiss();
+            String numberWithCountryCode="+593984727881";
+            String message="Hola, necesito informacion para solicitar productos a domicilio con Fruta Golosa.";
+            Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+            sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(sendIntent);
 
+            dialog.dismiss();
+          }
+        });
+
+        builder2.setNegativeButton("GUAYAQUIL", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+
+
+            String numberWithCountryCode="+593984639341";
+            String message="Hola, necesito informacion para solicitar productos a domicilio con Fruta Golosa.";
+            Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + numberWithCountryCode + "&text=" + message);
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+            sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(sendIntent);
+            dialog.dismiss();
+
+          }
+        });
+
+        builder2.create();
+        try{    builder2.show();}catch (Exception e){}
       }
     });
-
-    builder2.create();
-    try{    builder2.show();}catch (Exception e){}
-  }
-});
 
 
 
@@ -609,7 +673,7 @@ dialog.dismiss();
     else if (id == R.id.nav_Siga) {
 
       Intent e = new Intent(Main2Activity.this, PedidoPendienteActiviy.class);
-      
+
       startActivity(e);
     }
 
@@ -763,59 +827,59 @@ dialog.dismiss();
               new Callback<Response>() {
                 @Override
                 public void success(Response result, Response response) {
-if(response.getBody()!=null) {
+                  if(response.getBody()!=null) {
 
-  BufferedReader reader = null;
-  String output = "";
-
-
-  try {
-    reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
+                    BufferedReader reader = null;
+                    String output = "";
 
 
-    output = reader.readLine();
+                    try {
+                      reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
 
-    if (output.equals("1")) {
-
-      //notificacion10();
-      TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + "\nTienes 10% de descuento en tu compra.");
-
-    }
+                      output = reader.readLine();
 
 
-    if (output.equals("2")) {
+                      if (output.equals("1")) {
 
-      TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + " \nTienes 20% de descuento en tu compra");
-     // notificacion20();
+                        //notificacion10();
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + "\nTienes 10% de descuento en tu compra.");
 
-
-    }
-
-    if (output.equals("3")) {
-
-      TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + " \nTienes 30% de descuento en tu compra");
-     // notificacion30();
+                      }
 
 
-    }
+                      if (output.equals("2")) {
 
-    if (output.equals("4")) {
-     // notificacion50();
-      TextView txtUser = findViewById(R.id.UsuarioTxt);
-      txtUser.setText("Bienvenido " + nombreus + "\n tienes 50% de descuento en tu compra.");
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + " \nTienes 20% de descuento en tu compra");
+                        // notificacion20();
 
 
-    }
+                      }
 
-  } catch (IOException e) {
-    e.printStackTrace();
-  }
+                      if (output.equals("3")) {
 
-}  }
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + " \nTienes 30% de descuento en tu compra");
+                        // notificacion30();
+
+
+                      }
+
+                      if (output.equals("4")) {
+                        // notificacion50();
+                        TextView txtUser = findViewById(R.id.UsuarioTxt);
+                        txtUser.setText("Bienvenido " + nombreus + "\n tienes 50% de descuento en tu compra.");
+
+
+                      }
+
+                    } catch (IOException e) {
+                      e.printStackTrace();
+                    }
+
+                  }  }
 
                 @Override
                 public void failure(RetrofitError error) {

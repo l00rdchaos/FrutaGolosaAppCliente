@@ -103,7 +103,7 @@ String date2;
                                             SharedPreferences.Editor editor = preferences.edit();
                                             editor.putString("bdate", date2);
                                             editor.commit();
-                                            Intent d = new Intent(birthdayactivity.this, Inicio.class);
+                                            Intent d = new Intent(birthdayactivity.this, Main2Activity.class);
                                             startActivity(d);
                                             finish();
                                         }

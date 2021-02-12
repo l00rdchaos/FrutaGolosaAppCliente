@@ -109,7 +109,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
         String Ciudad=SpCiudad.getSelectedItem().toString().trim();
         apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
-        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad+"&&t="+tipoArreglo);
+        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad+"&&t="+tipoArreglo+"&&a="+IdArreglo);
 
         call.enqueue(new Callback<List<horas>>() {
           @Override

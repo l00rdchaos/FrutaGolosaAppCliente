@@ -232,9 +232,6 @@ public class Login_ValidActivity extends AppCompatActivity {
                                 reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
                                 output = reader.readLine();
-                              } catch (IOException e) {
-                                e.printStackTrace();
-                              }
 
                               Toast.makeText(Login_ValidActivity.this, output, Toast.LENGTH_LONG).show();
                               if(output.equals("No se registro")){
@@ -244,8 +241,9 @@ public class Login_ValidActivity extends AppCompatActivity {
                                 envcodcod.setEnabled(true);
                               }
                               else {
+
+                                auth.getCurrentUser().delete();
                                 Intent f = new Intent(Login_ValidActivity.this, Inicio.class);
-                                notificacion();
                                 startActivity(f);
                                 finish();
                                 try {
@@ -254,6 +252,9 @@ public class Login_ValidActivity extends AppCompatActivity {
 
                                 }
                                 finish();
+                              }
+                              } catch (IOException e) {
+                                e.printStackTrace();
                               }
 
                             }

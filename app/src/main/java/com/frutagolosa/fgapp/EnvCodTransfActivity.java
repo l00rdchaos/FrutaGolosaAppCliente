@@ -205,32 +205,6 @@ public class EnvCodTransfActivity extends AppCompatActivity {
       } else {
         if (!compruebaConexion(getApplicationContext())) {
           Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
-        } else {
-
-          String fpago = "nada";
-          if (ppa.equals("1")) {
-            fpago = "Paypal";
-          } else {
-            fpago = Banco;
-          }
-         // Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
-               //   "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
-
-     //     try {
-         //   LongOperation l = new LongOperation();
-        //    l.execute();  //sends the email in background
-
-
-       //   } catch (Exception e) {
-
-
-       //     Log.e("SendMail", e.getMessage(), e);
-
-
-       //   }
-
-
-
         }
 
 
@@ -286,30 +260,6 @@ public class EnvCodTransfActivity extends AppCompatActivity {
         if (!compruebaConexion(getApplicationContext())) {
           Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
         } else {
-
-          String fpago = "nada";
-          if (ppa.equals("1")) {
-            fpago = "PayPhone";
-          } else {
-            fpago = Banco;
-          }
-          // Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
-          //   "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
-
-          //     try {
-          //   LongOperation l = new LongOperation();
-          //    l.execute();  //sends the email in background
-
-
-          //   } catch (Exception e) {
-
-
-          //     Log.e("SendMail", e.getMessage(), e);
-
-
-          //   }
-
-
 
         }
 
@@ -395,27 +345,6 @@ public class EnvCodTransfActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
           } else {
 
-                String fpago = "nada";
-                if (ppa.equals("1")) {
-                  fpago = "Paypal";
-                } else {
-                  fpago = Banco;
-                }
-            //    Asunto = "COPIAR EN EXCEL\n\n" + datea + "," + telefonous + "," + nombreus + "," + mailus + "," + Nombpass + "," + TelPass + "," + FechaPass + "," + Horapass + "," + CallePrinPassad + "," + numeracion + "," + CalleSecPassa + "," + DetaUBPassa + "," + ReferPass +
-               //         "," + IdArreglo + "," + precioTotal + "," + fpago + "," + Nombpass + "," + DetaAggPassa + "," + especificacion + ",keyaccount," + PrecioViajePassa + " " + sector + ",FRUTAGOLOSA,NO," + GloboTarjPass + "\n\nCoordenadas:, " + DireccionPass;
-
-            //   try {
-           //    LongOperation l = new LongOperation();
-          //      l.execute();  //sends the email in background
-
-
-            // } catch (Exception e) {
-
-
-                // Log.e("SendMail", e.getMessage(), e);
-
-
-               // }
 
            uploadImage();
 

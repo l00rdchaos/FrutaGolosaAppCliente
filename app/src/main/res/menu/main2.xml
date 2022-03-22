@@ -6,26 +6,14 @@
     <item
         android:id="@+id/facebo"
         android:enabled="false"
-        android:icon="@drawable/facebook"
-        android:visible="false"
+        android:icon="@drawable/iconblack"
+        android:visible="true"
         android:title="F"
         app:showAsAction="always" />
 
 
-    <item
-        android:id="@+id/insta"
-        android:icon="@drawable/iconblack"
-        android:title="I"
-        android:visible="false"
-        app:showAsAction="always" />
 
 
 
 
-    <item
-        android:id="@+id/covid"
-        android:icon="@drawable/iconblack"
-        android:title="w"
-
-        app:showAsAction="always" />
 </menu>

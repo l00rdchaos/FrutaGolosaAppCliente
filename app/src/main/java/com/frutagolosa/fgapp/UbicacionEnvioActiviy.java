@@ -195,10 +195,11 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
     TelerecibeTxt.addTextChangedListener(watcher);
 
     final CalendarView cale=(CalendarView)findViewById(R.id.CalendarTxt);
+    cale.setMinDate(System.currentTimeMillis() - 1000);
     Calendar calendar = Calendar.getInstance();
     calendar.set(Calendar.DATE,Calendar.getInstance().getActualMinimum(Calendar.DATE));
-    long date = calendar.getTime().getTime();
-    cale.setMinDate(date);
+
+
 
     cale.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
       @Override
@@ -224,12 +225,14 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
           date2 = d1 + "/" + m1 + "/" + y1;
           String Ciudad = SpCiudad.getSelectedItem().toString().trim();
           apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
+
           Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d=" + date2 + "&&c=" + Ciudad);
           call.enqueue(new Callback<List<horas>>() {
             @Override
             public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
               if (response.body() != null) {
                 horas = response.body();
+                Toast.makeText(UbicacionEnvioActiviy.this, response.body().toString(), Toast.LENGTH_SHORT).show();
 
 
                 Spinner FranjaHoraria = (Spinner) findViewById(R.id.SpHorario);

@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "28.0.3"
     defaultConfig {
         buildToolsVersion "28.0.3"
         applicationId "com.frutagolosa.fgapp"
         minSdkVersion 23
-        targetSdkVersion 29
-        versionCode 72
-        versionName "2.0.2"
+        targetSdkVersion 30
+        versionCode 74
+        versionName "2.0.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         lintOptions {
             checkReleaseBuilds false // Add this
@@ -17,9 +17,14 @@ android {
         }
     }
     buildTypes {
+        debug {
+            manifestPlaceholders = [ mapApiKeyValue:"AIzaSyD537Wi4f8y08gPlVaMuvgoVVKRm8HZn2Y"]
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [ mapApiKeyValue:"AIzaSyDvfcLX1nCEY85FdylAjaZDl10d7dCkKlM"]
         }
     }
     productFlavors {
@@ -27,6 +32,8 @@ android {
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

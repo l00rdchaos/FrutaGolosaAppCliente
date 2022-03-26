@@ -29,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.frutagolosa.fgapp.api.ApiInterfaceVersion;
+import com.frutagolosa.fgapp.model.Pedido;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,32 +53,20 @@ public class CompArreglo extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_comp_arreglo);
-
     final TextView cantidadtext = (TextView) (findViewById(R.id.cantidadTxt));
-
-
     final String IdArreglo = getIntent().getStringExtra(ConChocolateFragment.IdArreglo).replace(" ","").toLowerCase();
-
     final String IdArreglo2 = getIntent().getStringExtra(ConChocolateFragment.IdArreglo);
     final String precio = getIntent().getStringExtra(ConChocolateFragment.Precio).trim();
     final String tipodearreglo=getIntent().getStringExtra(DesayunosFragment.Tipo);
     final int id = getResources().getIdentifier(IdArreglo+1, "drawable", getPackageName());
     final ImageView AD = (ImageView) findViewById(R.id.ImgCompPrin);
-
-   // Toast.makeText(CompArreglo.this,"Marca 1.",Toast.LENGTH_SHORT).show();
-
-    //----------------------------------------------------Accion de botones
     TextView na = (TextView) findViewById(R.id.NombArreglo);
     TextView na2 = (TextView) findViewById(R.id.NombArreglo2);
     TextView prec = (TextView) findViewById(R.id.PrecioArreglo);
     TextView prec2arr = (TextView) findViewById(R.id.ViewPrecio);
 
-    // Cambios de imagen segun el arreglo---------------------------------
-
 
       Glide.with(this).load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +IdArreglo+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(AD);
-
-
     prec2arr.setText(precio+ " USD");
 
 
@@ -85,114 +74,44 @@ public class CompArreglo extends AppCompatActivity {
     na.setText(IdArreglo);
     na2.setText(IdArreglo2);
     prec.setText(precio + " USD");
-
-
-
-
-
-
-
     mcountdowntimer = new CountDownTimer(5000, 1000) {
-
-
       @Override
       public void onTick(long millisUntilFinished) {
 
       }
-
       @Override
       public void onFinish() {
         start();
-
         llenarimagen();
-
-
-
       }
 
     }.start();
-
-
-
-
-    Button flechaizquierda = (Button) (findViewById(R.id.flechaizq));
-    Button flechaderecha = (Button) (findViewById(R.id.flechadec));
-    final int[] cantidad = {1};
-
-    flechaizquierda.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (cantidad[0] > 1) {
-          cantidad[0] = cantidad[0] - 1;
-
-          String a = "" + cantidad[0];
-          cantidadtext.setText(a);
-        }
-
-      }
-    }); //boton del clicklister
-
-    flechaderecha.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        cantidad[0] = cantidad[0] + 1;
-        String b = "" + cantidad[0];
-        cantidadtext.setText(b);
-      }
-    }); //boton del clicklister
-
-    //---------------Radio botones
-
-
-
-
-
-
-
-
-
     setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
     //btn comprar----------------
     Button btncomprar = (Button) (findViewById(R.id.btnComp));
     final AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+
     btncomprar.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
         SharedPreferences preferences=getSharedPreferences("login", Context.MODE_PRIVATE);
         String nombreus=preferences.getString("nombreus","Registrese");
         String mailus=preferences.getString("mailus","No");
         String telefonous=preferences.getString("telefonous","No");
-
-
         if(nombreus.equals("Registrese")) {
           Intent ra = new Intent(CompArreglo.this, Login_ValidActivity.class);
-
           startActivity(ra);
-
         }
         else {
-
-
-
-          String tomastring = cantidadtext.toString();
-          int cant = cantidad[0];
           if (!compruebaConexion(getApplicationContext())) {
             Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
           } else {
             final ProgressDialog loading = ProgressDialog.show(CompArreglo.this, "Cargando...", "Espere por favor");
-
-
-
             Handler handler=new Handler();
             handler.postDelayed(new Runnable() {
               @Override
               public void run() {
-
-                String version="2.0.3";
-
+                String version="2.0.5";
                 RestAdapter adapter = new RestAdapter.Builder()
                         .setEndpoint("https://frutagolosa.com/FrutaGolosaApp/version.php?z="+version)
                         .build();
@@ -202,10 +121,6 @@ public class CompArreglo extends AppCompatActivity {
                 String z=version;
                 api.evaluaversion(
                         z,
-
-
-
-
                         new Callback<Response>() {
                           @Override
                           public void success(Response result, Response response) {
@@ -219,11 +134,12 @@ public class CompArreglo extends AppCompatActivity {
                         output = reader.readLine();
                         if (output.equals("Actual")) {
 
-
+                          Pedido pedido= new Pedido();
                           Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
-                          f.putExtra(PrecioArreglo, precio);
-                          f.putExtra(NombreArreglo, IdArreglo);
-                          f.putExtra(TipodeArreglo,tipodearreglo);
+                          pedido.setNombre_arreglo(IdArreglo.toUpperCase());
+                          pedido.setPrecio_arreglo(precio);
+                          pedido.setTipo_arreglo(tipodearreglo);
+                          f.putExtra("PEDIDO",pedido);
                          // Toast.makeText(CompArreglo.this,tipodearreglo,Toast.LENGTH_SHORT).show();
                           startActivity(f);
                           loading.dismiss();
@@ -239,39 +155,26 @@ public class CompArreglo extends AppCompatActivity {
                               Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp");
                               Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                               startActivity(intent);
-
-
                             }
                           });
                           builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
-
                             }
                           });
                           builder2.create();
                           builder2.show();
-
-
                           Toast.makeText(CompArreglo.this, output, Toast.LENGTH_SHORT).show();
                           loading.dismiss();
-
                         }
-
                       } catch (IOException e) {
                         e.printStackTrace();
                       }
-
-
                     }  }
-
                           @Override
                           public void failure(RetrofitError error) {
                             loading.dismiss();
                             Toast.makeText(CompArreglo.this, "Problemas de conexion, servidor o red, revise que este conectado a datos o tenga Wifi", Toast.LENGTH_LONG).show();
-
-
                           }
                         }
                 );

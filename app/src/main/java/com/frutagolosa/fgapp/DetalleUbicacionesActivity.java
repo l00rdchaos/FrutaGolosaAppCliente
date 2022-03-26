@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.frutagolosa.fgapp.api.RegisterApiPendiente;
+import com.frutagolosa.fgapp.model.Pedido;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,48 +37,23 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class DetalleUbicacionesActivity extends AppCompatActivity {
-    public static final String NombreQuienRecibe="NombreQuienRecibe" ;
-    public static final String TelefonoQuienRecibe="TelfQuienRecibe" ;
-    public static final String DiaEntrega="DiaQueRecibe" ;
-    public static final String FranjaHorariaQueRecibe="HoraQueRecibe" ;
-    public static final String Cantidadpassm="ad" ;
-    public static final String Direccionpass="bc" ;
-    public static final String PrecioViajePass="precioviaje";
-    public static final String CallePrincPassss="dasddsadsadfv" ;
-    public static final String CalleSecPass="qwevxc" ;
-    public static final String RefereciaPass="tr" ;
-    public static final String DetalleUbicacionPass="ert" ;
-    public static final String DetalleAGGPass="sdfsrdf" ;
-    public static final String GloboOTarjetaPass="vtfgd" ;
-    public static final String NombreArreglo="nombrearreglo" ;
-    public static final String PrecioArreglo="precioarreglo" ;
-    public static final String Sector="sector" ;
-    public static final String Numeracion="numeraciona" ;
-    public static final String Especificacion="especificacion" ;
+
     public static final String ROOT_URL = "https://frutagolosa.com/FrutaGolosaApp";
-    public static final String CiudadA="ciudadd" ;
+
 
     private final int xf = (int) (Math.random() * 10000);
     private final String xf2 = String.valueOf(xf);
 
+    //Recibe variables del intent anterior---------------------------------------------
+    final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
+    //---------------------------------------------------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_ubicaciones);
 
-        final int cantidadpass=getIntent().getIntExtra(Maps4Activity.Cantidadpassm,-1);
-        final String Nombpass=getIntent().getStringExtra(Maps4Activity.NombreQuienRecibe);
-        final String TelPass=getIntent().getStringExtra(Maps4Activity.TelefonoQuienRecibe);
-        final String Horapass=getIntent().getStringExtra(Maps4Activity.FranjaHorariaQueRecibe);
-        final String FechaPass=getIntent().getStringExtra(Maps4Activity.DiaEntrega);
-        final String DireccionPassr=getIntent().getStringExtra(Maps4Activity.Direccionpassa);
 
-        final String PrecioViajePassa=getIntent().getStringExtra(Maps4Activity.PrecioViajePass);
-        final String precioArreglo = getIntent().getStringExtra(Maps4Activity.PrecioArreglo);
-        final String IdArreglo = getIntent().getStringExtra(Maps4Activity.NombreArreglo);
-        final String sector = getIntent().getStringExtra(Maps4Activity.Sector);
-        final String Ciudad = getIntent().getStringExtra(UbicacionEnvioActiviy.CiudadA);
 
         final EditText CallePrin=(EditText) findViewById(R.id.EdtCallePrin);
         final EditText CallSec=(EditText) findViewById(R.id.EdtCalleSec);
@@ -87,7 +63,7 @@ public class DetalleUbicacionesActivity extends AppCompatActivity {
         final EditText Especificaciona=(EditText) findViewById(R.id.TxtEspecifiacion);
         final EditText CasaADD=(EditText) findViewById(R.id.EdtNombCEE);
         final TextView SectorTxt=(TextView)findViewById(R.id.SectorTXt);
-        SectorTxt.setText(sector);
+        SectorTxt.setText(pedido.getSector());
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
@@ -327,26 +303,17 @@ insertPendiente();
 
                                                 Intent ba = new Intent(DetalleUbicacionesActivity.this, ResumenPedidoActivity.class);
 
-                                                ba.putExtra(NombreQuienRecibe, Nombpass);
-                                                ba.putExtra(TelefonoQuienRecibe, TelPass);
-                                                ba.putExtra(DiaEntrega, FechaPass);
-                                                ba.putExtra(FranjaHorariaQueRecibe, Horapass);
-                                                ba.putExtra(Cantidadpassm, cantidadpass);
-                                                ba.putExtra(Direccionpass, DireccionPassr);
-                                                ba.putExtra(PrecioViajePass, PrecioViajePassa);
-                                                ba.putExtra(CallePrincPassss, callprin);
-                                                ba.putExtra(CalleSecPass, callsec);
-                                                ba.putExtra(RefereciaPass, refer);
-                                                ba.putExtra(DetalleUbicacionPass, CasaEmpEdif);
-                                                ba.putExtra(DetalleAGGPass, detagg);
-                                                ba.putExtra(GloboOTarjetaPass, MotivGlob);
-                                                ba.putExtra(PrecioArreglo, precioArreglo);
-                                                ba.putExtra(NombreArreglo, IdArreglo);
-                                                ba.putExtra(Numeracion, Numerac);
-                                                ba.putExtra(Especificacion, especificacion);
-                                                ba.putExtra(Sector, sector);
-                                                ba.putExtra(CiudadA, Ciudad);
+
+                                                pedido.setCalle_principal(callprin);
+                                                pedido.setCalle_secundaria(callsec);
+                                                pedido.setReferencia(refer);
+                                                pedido.setDetalle_ubicacion(CasaEmpEdif);
+                                                pedido.setDetaAgg(detagg);
+                                                pedido.setMotivo(MotivGlob);
+                                                pedido.setNumeracion(Numerac);
+                                                pedido.setEspecificacion(especificacion);
                                                 loading.dismiss();
+                                                ba.putExtra("PEDIDO",pedido);
                                                 startActivity(ba);
 
 

@@ -30,7 +30,7 @@ import retrofit.client.Response;
 
 public class Inicio extends AppCompatActivity {
   private ApiInterfaceVersion apiInterface;
-  String version="2.0.3";
+  String version="2.0.4";
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

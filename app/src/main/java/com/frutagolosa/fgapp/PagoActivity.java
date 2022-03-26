@@ -13,12 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -31,6 +29,7 @@ import android.widget.Toast;
 
 import com.frutagolosa.fgapp.api.APIService;
 import com.frutagolosa.fgapp.model.BienResponse;
+import com.frutagolosa.fgapp.model.Pedido;
 import com.frutagolosa.fgapp.model.Post2;
 import com.frutagolosa.fgapp.model.PostUser;
 import com.frutagolosa.fgapp.model.idclient;
@@ -47,31 +46,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PagoActivity extends AppCompatActivity {
-  public static final String NombreQuienRecibe = "NombreQuienRecibe";
-  public static final String TelefonoQuienRecibe = "TelfQuienRecibe";
-  public static final String DiaEntrega = "DiaQueRecibe";
-  public static final String FranjaHorariaQueRecibe = "HoraQueRecibe";
-  public static final String Cantidadpassm = "ad";
-  public static final String Direccionpass = "bc";
-  public static final String PrecioViajePass = "asdasd";
-  public static final String CallePrincPassss = "dasd";
-  public static final String CalleSecPass = "qweasdasd";
-  public static final String RefereciaPass = "tr";
-  public static final String DetalleUbicacionPass = "ert";
-  public static final String DetalleAGGPass = "sdfsrdf";
-  public static final String GloboOTarjetaPass = "vtfgd";
-  public static final String NombreArreglo = "nombrearreglo";
-  public static final String cantidadArreglos = "cantidadArreglos";
-  public static final String PrecioArreglo = "precioarreglo";
-  public static final String PrecioTotal = "preciototal";
-  public static final String Sector = "sector";
-  public static final String Numeracion = "numeracion";
-  public static final String PrecioTotalA = "precioTotasdasdalA";
-  public static final String Especificacion = "especificacion";
-  public static final String ContadorpedidosA="DescuentoAa2" ;
-    public static final String CiudadA="ciudadd" ;
-  public static final String pp = "ppx";
-  public static final String BANCO = "BANCO";
+
   private Button buttonurl;
   private Button butverf;
   private  Button btnpayphoneenviar;
@@ -94,35 +69,12 @@ public class PagoActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_pago);
-
-
-    final int cantidadpass = getIntent().getIntExtra(ResumenPedidoActivity.Cantidadpassm, -1);
-    final String Nombpass = getIntent().getStringExtra(ResumenPedidoActivity.NombreQuienRecibe);
-    final String TelPass = getIntent().getStringExtra(ResumenPedidoActivity.TelefonoQuienRecibe);
-    final String Horapass = getIntent().getStringExtra(ResumenPedidoActivity.FranjaHorariaQueRecibe);
-    final String FechaPass = getIntent().getStringExtra(ResumenPedidoActivity.DiaEntrega);
-    final String DireccionPass = getIntent().getStringExtra(ResumenPedidoActivity.Direccionpass);
-    final String PrecioViajePassa = getIntent().getStringExtra(ResumenPedidoActivity.PrecioViajePass);
-    final String CallePrinPassad = getIntent().getStringExtra(ResumenPedidoActivity.CallePrincPassss);
-    final String CalleSecPassa = getIntent().getStringExtra(ResumenPedidoActivity.CalleSecPass);
-    final String ReferPass = getIntent().getStringExtra(ResumenPedidoActivity.RefereciaPass);
-    final String DetaUBPassa = getIntent().getStringExtra(ResumenPedidoActivity.DetalleUbicacionPass);
-    final String DetaAggPassa = getIntent().getStringExtra(ResumenPedidoActivity.DetalleAGGPass);
-    final String GloboTarjPass = getIntent().getStringExtra(ResumenPedidoActivity.GloboOTarjetaPass);
-    final String precioArreglo = getIntent().getStringExtra(ResumenPedidoActivity.PrecioArreglo);
-    final String IdArreglo = getIntent().getStringExtra(ResumenPedidoActivity.NombreArreglo);
-    final String precioTotal = getIntent().getStringExtra(ResumenPedidoActivity.PrecioTotal);
-    final String sector = getIntent().getStringExtra(ResumenPedidoActivity.Sector);
-    final String numeracion = getIntent().getStringExtra(ResumenPedidoActivity.Numeracion);
-    final String especificacion = getIntent().getStringExtra(ResumenPedidoActivity.Especificacion);
-    final String preciototal = getIntent().getStringExtra(ResumenPedidoActivity.PrecioTotalA);
-    final String tp = getIntent().getStringExtra(ResumenPedidoActivity.TPp);
-    final String contadorpedidos = getIntent().getStringExtra(ResumenPedidoActivity.ContadorpedidosA);
+    final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
     final WebView mywebview = (WebView) findViewById(R.id.webViewa);
-    final WebView mywebviewpp = (WebView) findViewById(R.id.webViewapp);
+
     Button btnPaypal = (Button) findViewById(R.id.btnPaypal);
     Button btnPayPhone=(Button)findViewById(R.id.btnPayPhone);
-   // Button buttonpayphone=(Button)findViewById(R.id.buttonpayphone);
+    // Button buttonpayphone=(Button)findViewById(R.id.buttonpayphone);
 
     butverf=findViewById(R.id.buttonppverifica);
 
@@ -144,7 +96,7 @@ public class PagoActivity extends AppCompatActivity {
     final TextView txtinstruct1=(TextView) findViewById(R.id.instruct1a);
     final TextView nr1=(TextView) findViewById(R.id.nro1);
     setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-    txtpreciof.setText("PRECIO TOTAL: "+precioTotal+ " USD");
+    txtpreciof.setText("PRECIO TOTAL: "+pedido.getPrecioTotal()+ " USD");
 
 
     textnumberpp=(TextView)findViewById(R.id.textViewpp);
@@ -155,173 +107,13 @@ public class PagoActivity extends AppCompatActivity {
     textcompraexito=findViewById(R.id.textcompraexito);
 
 
-    mywebviewpp.getSettings().setJavaScriptEnabled(true);
-    mywebviewpp.getSettings().setAllowFileAccess(true);
-    mywebviewpp.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-    mywebviewpp.getSettings().setSupportMultipleWindows(true);
 
-
-    mywebviewpp.setWebChromeClient(new WebChromeClient() {
-
-
-      @Override
-      public boolean onCreateWindow(WebView view, boolean isDialog,
-                                    boolean isUserGesture, Message resultMsg) {
-
-        WebView newWebView = new WebView(PagoActivity.this);
-        newWebView.getSettings().setJavaScriptEnabled(true);
-        newWebView.getSettings().setSupportZoom(true);
-        newWebView.getSettings().setBuiltInZoomControls(true);
-        newWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        newWebView.getSettings().setSupportMultipleWindows(true);
-        view.addView(newWebView);
-        WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-        transport.setWebView(newWebView);
-        resultMsg.sendToTarget();
-
-        newWebView.setWebViewClient(new WebViewClient() {
-          @Override
-          public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-          }
-        });
-
-        return true;
-      }
-    });
-
-    mywebviewpp.setWebViewClient(new WebViewClient(){
-
-      @Override
-      public boolean shouldOverrideUrlLoading(WebView view, String url){
-        view.loadUrl(url);
-        return true;
-      }
-
-
-      @Override
-      public void onPageFinished(WebView view, String url) {
-
-        final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
-        if(url.equals("https://frutagolosa.com/FrutaGolosaApp/PayPhone/app/confirmado.html")){
-          String banco = "Payphone";
-          Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
-          String ppa = "2";
-          d.putExtra(NombreQuienRecibe, Nombpass);
-          d.putExtra(TelefonoQuienRecibe, TelPass);
-          d.putExtra(DiaEntrega, FechaPass);
-          d.putExtra(FranjaHorariaQueRecibe, Horapass);
-          d.putExtra(Cantidadpassm, cantidadpass);
-          d.putExtra(Direccionpass, DireccionPass);
-          d.putExtra(PrecioViajePass, PrecioViajePassa);
-          d.putExtra(CallePrincPassss, CallePrinPassad);
-          d.putExtra(CalleSecPass, CalleSecPassa);
-          d.putExtra(RefereciaPass, ReferPass);
-          d.putExtra(DetalleUbicacionPass, DetaUBPassa);
-          d.putExtra(DetalleAGGPass, DetaAggPassa);
-          d.putExtra(GloboOTarjetaPass, GloboTarjPass);
-          d.putExtra(PrecioArreglo, precioArreglo);
-          d.putExtra(NombreArreglo, IdArreglo);
-          d.putExtra(PrecioTotal, precioTotal);
-          d.putExtra(Sector, sector);
-          d.putExtra(Numeracion, numeracion);
-          d.putExtra(Especificacion, especificacion);
-          d.putExtra(PrecioTotal, precioTotal);
-          d.putExtra(ContadorpedidosA,contadorpedidos);
-          d.putExtra(pp, ppa);
-          d.putExtra(BANCO, banco);
-          d.putExtra(CiudadA,Ciudad);
-          startActivity(d);
-
-
-
-        }
-
-        if(url.equals("https://frutagolosa.com/FrutaGolosaApp/PayPhone/app/cancelar.html")){
-          mywebviewpp.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPal/pay.php?a=" + precioTotal);
-
-        }
-
-
-      }
-
-
-
-
-    });
-
-    mywebviewpp.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPhone/app/pay.php?a=" + precioTotal);
-
-
-
-    mywebview.getSettings().setJavaScriptEnabled(true);
-    mywebview.setWebChromeClient(new WebChromeClient());
-    mywebview.setWebViewClient(new WebViewClient(){
-      @Override
-      public boolean shouldOverrideUrlLoading(WebView view, String url){
-        view.loadUrl(url);
-        return true;
-      }
-      @Override
-      public void onPageFinished(WebView view, String url) {
-
-        final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
-        if(url.equals("https://frutagolosa.com/FrutaGolosaApp/PayPal/confirmado.html")){
-          String banco = "Paypal";
-          Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
-          String ppa = "1";
-          d.putExtra(NombreQuienRecibe, Nombpass);
-          d.putExtra(TelefonoQuienRecibe, TelPass);
-          d.putExtra(DiaEntrega, FechaPass);
-          d.putExtra(FranjaHorariaQueRecibe, Horapass);
-          d.putExtra(Cantidadpassm, cantidadpass);
-          d.putExtra(Direccionpass, DireccionPass);
-          d.putExtra(PrecioViajePass, PrecioViajePassa);
-          d.putExtra(CallePrincPassss, CallePrinPassad);
-          d.putExtra(CalleSecPass, CalleSecPassa);
-          d.putExtra(RefereciaPass, ReferPass);
-          d.putExtra(DetalleUbicacionPass, DetaUBPassa);
-          d.putExtra(DetalleAGGPass, DetaAggPassa);
-          d.putExtra(GloboOTarjetaPass, GloboTarjPass);
-          d.putExtra(PrecioArreglo, precioArreglo);
-          d.putExtra(NombreArreglo, IdArreglo);
-          d.putExtra(PrecioTotal, precioTotal);
-          d.putExtra(Sector, sector);
-          d.putExtra(Numeracion, numeracion);
-          d.putExtra(Especificacion, especificacion);
-          d.putExtra(PrecioTotal, precioTotal);
-          d.putExtra(ContadorpedidosA,contadorpedidos);
-          d.putExtra(pp, ppa);
-          d.putExtra(BANCO, banco);
-          d.putExtra(CiudadA,Ciudad);
-          startActivity(d);
-
-
-
-        }
-
-        if(url.equals("https://fgrutagolosa.com/FrutaGolosaApp/PayPal/cancelar.html")){
-          mywebview.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPal/pay.php?a=" + precioTotal);
-
-        }
-
-
-      }
-
-
-
-
-    });
-
-    mywebview.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPal/pay.php?a=" + precioTotal);
-
-    if (tp.equals("t")) {
+    if (pedido.getTipo().equals("t")) {
 
       mywebview.setVisibility(View.GONE);
       nr1.setVisibility(View.VISIBLE);
       txtinstruct1.setVisibility(View.VISIBLE);
-      mywebviewpp.setVisibility(View.GONE);
+
       btnpayphoneenviar.setVisibility(View.GONE);
       butverf.setVisibility(View.GONE);
       textnumberpp.setVisibility(View.GONE);
@@ -335,12 +127,12 @@ public class PagoActivity extends AppCompatActivity {
       buttonppfin.setVisibility(View.GONE);
     }
 
-    if (tp.equals("p")) {
+    if (pedido.getTipo().equals("p")) {
 
 
-     // btnTransferencia.setVisibility(View.VISIBLE);
+      btnTransferencia.setVisibility(View.VISIBLE);
       mywebview.setVisibility(View.VISIBLE);
-      mywebviewpp.setVisibility(View.GONE);
+
       btnpacifico.setVisibility(View.GONE);
       btnpichincha.setVisibility(View.GONE);
       btnprodubanco.setVisibility(View.GONE);
@@ -360,35 +152,43 @@ public class PagoActivity extends AppCompatActivity {
       buttonppvertransid.setVisibility(View.GONE);
       textcompraexito.setVisibility(View.GONE);
       buttonppfin.setVisibility(View.GONE);
-   //   mywebview.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPal/pay.php?a=" + precioTotal);
     }
 
 
-    if (tp.equals("pp")) {
+    if (pedido.getTipo().equals("pp")) {
 
-      //btnTransferencia.setVisibility(View.VISIBLE);
-      mywebview.setVisibility(View.GONE);
-      mywebviewpp.setVisibility(View.VISIBLE);
+///PRIMERO
       btnpacifico.setVisibility(View.GONE);
       btnpichincha.setVisibility(View.GONE);
       btnprodubanco.setVisibility(View.GONE);
       btnbolivariano.setVisibility(View.GONE);
       btnguayaquil.setVisibility(View.GONE);
+      mywebview.setVisibility(View.GONE);
       nr1.setVisibility(View.GONE);
       txtinstruct1.setVisibility(View.GONE);
-      btnpayphoneenviar.setVisibility(View.GONE);
-      butverf.setVisibility(View.GONE);
-      textnumberpp.setVisibility(View.GONE);
-      numberpayphone.setVisibility(View.GONE);
-      textverifica.setVisibility(View.GONE);
-      buttonurl.setVisibility(View.GONE);
 
+      btnpayphoneenviar.setVisibility(View.GONE);
+      butverf.setVisibility(View.VISIBLE);
+      textnumberpp.setVisibility(View.VISIBLE);
+      numberpayphone.setVisibility(View.VISIBLE);
+      textverifica.setVisibility(View.VISIBLE);
+      buttonurl.setVisibility(View.GONE);
       textrealicepago.setVisibility(View.GONE);
       textDescargeapp.setVisibility(View.GONE);
       buttonppvertransid.setVisibility(View.GONE);
       textcompraexito.setVisibility(View.GONE);
       buttonppfin.setVisibility(View.GONE);
-   mywebviewpp.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPhone/app/pay.php?a=" + precioTotal);
+
+//      btnTransferencia.setVisibility(View.VISIBLE);
+//      mywebview.setVisibility(View.GONE);
+//      mywebviewpp.setVisibility(View.VISIBLE);
+//      btnpacifico.setVisibility(View.GONE);
+//      btnpichincha.setVisibility(View.GONE);
+//      btnprodubanco.setVisibility(View.GONE);
+//      btnbolivariano.setVisibility(View.GONE);
+//      btnguayaquil.setVisibility(View.GONE);
+//      nr1.setVisibility(View.GONE);
+//      txtinstruct1.setVisibility(View.GONE);
     }
 
     btnPaypal.setOnClickListener(new View.OnClickListener() {
@@ -404,7 +204,7 @@ public class PagoActivity extends AppCompatActivity {
         btnTransferencia.setVisibility(View.VISIBLE);
         nr1.setVisibility(View.GONE);
         txtinstruct1.setVisibility(View.GONE);
-        mywebviewpp.setVisibility(View.GONE);
+
         btnpayphoneenviar.setVisibility(View.GONE);
         butverf.setVisibility(View.GONE);
         textnumberpp.setVisibility(View.GONE);
@@ -430,7 +230,7 @@ public class PagoActivity extends AppCompatActivity {
         mywebview.setVisibility(View.GONE);
         nr1.setVisibility(View.VISIBLE);
         txtinstruct1.setVisibility(View.VISIBLE);
-        mywebviewpp.setVisibility(View.GONE);
+
         btnpayphoneenviar.setVisibility(View.GONE);
         butverf.setVisibility(View.GONE);
         textnumberpp.setVisibility(View.GONE);
@@ -458,7 +258,7 @@ public class PagoActivity extends AppCompatActivity {
         btnguayaquil.setVisibility(View.GONE);
         nr1.setVisibility(View.GONE);
         txtinstruct1.setVisibility(View.GONE);
-        mywebviewpp.setVisibility(View.GONE);
+
         mywebview.setVisibility(View.GONE);
         butverf.setVisibility(View.VISIBLE);
         btnpayphoneenviar.setVisibility(View.GONE);
@@ -478,84 +278,52 @@ public class PagoActivity extends AppCompatActivity {
 
 
 
+    mywebview.getSettings().setJavaScriptEnabled(true);
+    mywebview.setWebChromeClient(new WebChromeClient());
+    mywebview.setWebViewClient(new WebViewClient(){
+      @Override
+      public boolean shouldOverrideUrlLoading(WebView view, String url){
+        view.loadUrl(url);
+        return true;
+      }
+      @Override
+      public void onPageFinished(WebView view, String url) {
+
+        final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
+        if(url.equals("https://frutagolosa.com/FrutaGolosaApp/PayPal/confirmado.html")){
+          String banco = "Paypal";
+          sendBank(banco,pedido,"1");
+
+
+        }
+
+        if(url.equals("https://fgrutagolosa.com/FrutaGolosaApp/PayPal/cancelar.html")){
+          mywebview.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPal/pay.php?a=" + pedido.getPrecioTotal());
+
+        }
+
+
+      }
 
 
 
 
-      final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
-
-
+    });
+    mywebview.loadUrl("https://frutagolosa.com/FrutaGolosaApp/PayPal/pay.php?a=" + pedido.getPrecioTotal());
 
     btnpacifico.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
         String banco = "Pacifico";
-        Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
-        String ppa = "0";
-        d.putExtra(NombreQuienRecibe, Nombpass);
-        d.putExtra(TelefonoQuienRecibe, TelPass);
-        d.putExtra(DiaEntrega, FechaPass);
-        d.putExtra(FranjaHorariaQueRecibe, Horapass);
-        d.putExtra(Cantidadpassm, cantidadpass);
-        d.putExtra(Direccionpass, DireccionPass);
-        d.putExtra(PrecioViajePass, PrecioViajePassa);
-        d.putExtra(CallePrincPassss, CallePrinPassad);
-        d.putExtra(CalleSecPass, CalleSecPassa);
-        d.putExtra(RefereciaPass, ReferPass);
-        d.putExtra(DetalleUbicacionPass, DetaUBPassa);
-        d.putExtra(DetalleAGGPass, DetaAggPassa);
-        d.putExtra(GloboOTarjetaPass, GloboTarjPass);
-        d.putExtra(PrecioArreglo, precioArreglo);
-        d.putExtra(NombreArreglo, IdArreglo);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(Sector, sector);
-        d.putExtra(Numeracion, numeracion);
-        d.putExtra(Especificacion, especificacion);
-        d.putExtra(ContadorpedidosA,contadorpedidos);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(pp, ppa);
-        d.putExtra(BANCO, banco);
-         d.putExtra(CiudadA,Ciudad);
-
-        startActivity(d);
-
+       sendBank(banco,pedido,"0");
       }
     }); //boton del clicklister
 
     btnpichincha.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
         String banco = "Pichincha";
-        Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
-        String ppa = "0";
-        d.putExtra(NombreQuienRecibe, Nombpass);
-        d.putExtra(TelefonoQuienRecibe, TelPass);
-        d.putExtra(DiaEntrega, FechaPass);
-        d.putExtra(FranjaHorariaQueRecibe, Horapass);
-        d.putExtra(Cantidadpassm, cantidadpass);
-        d.putExtra(Direccionpass, DireccionPass);
-        d.putExtra(PrecioViajePass, PrecioViajePassa);
-        d.putExtra(CallePrincPassss, CallePrinPassad);
-        d.putExtra(CalleSecPass, CalleSecPassa);
-        d.putExtra(RefereciaPass, ReferPass);
-        d.putExtra(DetalleUbicacionPass, DetaUBPassa);
-        d.putExtra(DetalleAGGPass, DetaAggPassa);
-        d.putExtra(GloboOTarjetaPass, GloboTarjPass);
-        d.putExtra(PrecioArreglo, precioArreglo);
-        d.putExtra(NombreArreglo, IdArreglo);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(Sector, sector);
-        d.putExtra(Numeracion, numeracion);
-        d.putExtra(Especificacion, especificacion);
-        d.putExtra(ContadorpedidosA,contadorpedidos);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(pp, ppa);
-        d.putExtra(BANCO, banco);
-          d.putExtra(CiudadA,Ciudad);
-        startActivity(d);
-
+       sendBank(banco,pedido,"0");
       }
     }); //boton del clicklister
 
@@ -564,33 +332,7 @@ public class PagoActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         String banco = "Guayaquil";
-        Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
-        String ppa = "0";
-        d.putExtra(NombreQuienRecibe, Nombpass);
-        d.putExtra(TelefonoQuienRecibe, TelPass);
-        d.putExtra(DiaEntrega, FechaPass);
-        d.putExtra(FranjaHorariaQueRecibe, Horapass);
-        d.putExtra(Cantidadpassm, cantidadpass);
-        d.putExtra(Direccionpass, DireccionPass);
-        d.putExtra(PrecioViajePass, PrecioViajePassa);
-        d.putExtra(CallePrincPassss, CallePrinPassad);
-        d.putExtra(CalleSecPass, CalleSecPassa);
-        d.putExtra(RefereciaPass, ReferPass);
-        d.putExtra(DetalleUbicacionPass, DetaUBPassa);
-        d.putExtra(DetalleAGGPass, DetaAggPassa);
-        d.putExtra(GloboOTarjetaPass, GloboTarjPass);
-        d.putExtra(PrecioArreglo, precioArreglo);
-        d.putExtra(NombreArreglo, IdArreglo);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(Sector, sector);
-        d.putExtra(Numeracion, numeracion);
-        d.putExtra(Especificacion, especificacion);
-        d.putExtra(ContadorpedidosA,contadorpedidos);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(pp, ppa);
-        d.putExtra(BANCO, banco);
-          d.putExtra(CiudadA,Ciudad);
-        startActivity(d);
+        sendBank(banco,pedido,"0");
 
       }
     }); //boton del clicklister
@@ -600,33 +342,7 @@ public class PagoActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         String banco = "Bolivariano";
-        Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
-        String ppa = "0";
-        d.putExtra(NombreQuienRecibe, Nombpass);
-        d.putExtra(TelefonoQuienRecibe, TelPass);
-        d.putExtra(DiaEntrega, FechaPass);
-        d.putExtra(FranjaHorariaQueRecibe, Horapass);
-        d.putExtra(Cantidadpassm, cantidadpass);
-        d.putExtra(Direccionpass, DireccionPass);
-        d.putExtra(PrecioViajePass, PrecioViajePassa);
-        d.putExtra(CallePrincPassss, CallePrinPassad);
-        d.putExtra(CalleSecPass, CalleSecPassa);
-        d.putExtra(RefereciaPass, ReferPass);
-        d.putExtra(DetalleUbicacionPass, DetaUBPassa);
-        d.putExtra(DetalleAGGPass, DetaAggPassa);
-        d.putExtra(GloboOTarjetaPass, GloboTarjPass);
-        d.putExtra(PrecioArreglo, precioArreglo);
-        d.putExtra(NombreArreglo, IdArreglo);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(Sector, sector);
-        d.putExtra(Numeracion, numeracion);
-        d.putExtra(Especificacion, especificacion);
-        d.putExtra(ContadorpedidosA,contadorpedidos);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(pp, ppa);
-        d.putExtra(BANCO, banco);
-          d.putExtra(CiudadA,Ciudad);
-        startActivity(d);
+        sendBank(banco,pedido,"0");
 
       }
     }); //boton del clicklister
@@ -634,36 +350,8 @@ public class PagoActivity extends AppCompatActivity {
     btnprodubanco.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
         String banco = "Produbanco";
-        Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
-        String ppa = "0";
-        d.putExtra(NombreQuienRecibe, Nombpass);
-        d.putExtra(TelefonoQuienRecibe, TelPass);
-        d.putExtra(DiaEntrega, FechaPass);
-        d.putExtra(FranjaHorariaQueRecibe, Horapass);
-        d.putExtra(Cantidadpassm, cantidadpass);
-        d.putExtra(Direccionpass, DireccionPass);
-        d.putExtra(PrecioViajePass, PrecioViajePassa);
-        d.putExtra(CallePrincPassss, CallePrinPassad);
-        d.putExtra(CalleSecPass, CalleSecPassa);
-        d.putExtra(RefereciaPass, ReferPass);
-        d.putExtra(DetalleUbicacionPass, DetaUBPassa);
-        d.putExtra(DetalleAGGPass, DetaAggPassa);
-        d.putExtra(GloboOTarjetaPass, GloboTarjPass);
-        d.putExtra(PrecioArreglo, precioArreglo);
-        d.putExtra(NombreArreglo, IdArreglo);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(Sector, sector);
-        d.putExtra(Numeracion, numeracion);
-        d.putExtra(Especificacion, especificacion);
-        d.putExtra(ContadorpedidosA,contadorpedidos);
-        d.putExtra(PrecioTotal, precioTotal);
-        d.putExtra(pp, ppa);
-        d.putExtra(BANCO, banco);
-          d.putExtra(CiudadA,Ciudad);
-        startActivity(d);
-
+        sendBank(banco,pedido,"0");
       }
     }); //boton del clicklister
 
@@ -675,7 +363,30 @@ public class PagoActivity extends AppCompatActivity {
 
     ///////////PAYPHONE/////////
 
+    butverf.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        String numerotelefono=numberpayphone.getText().toString();
+        // Toast.makeText(PagoActivity.this, "REntro",Toast.LENGTH_SHORT).show();
+        userget(numerotelefono);
+      }
+    });
 
+    btnpayphoneenviar.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        ///Datos de Entrada
+        int valorfinal= Integer.parseInt(pedido.getPrecio_arreglo())*100;
+        String numerotelefono=numberpayphone.getText().toString();
+        Random r = new Random();
+        String idvalorDado = String.valueOf(r.nextInt(10000));
+
+
+        datospayphone(valorfinal,numerotelefono,idvalorDado);
+
+
+      }
+    });
 
 
 
@@ -685,9 +396,263 @@ public class PagoActivity extends AppCompatActivity {
     }
   }
 
+  public void datospayphone(Integer valorfinal, String numerotelefono,String idvalorDado){
+    final String authHeader="Bearer 4k7ObhvtbqllouEaaXnxt52ycIMk63E8tB-zfrRLA2j0xVbdeghQdORzE3fsGlB1DvjglEwktp8kqmaKT5PH8iLDXULsMSe6aKAeVR-jcLMRGXe0H2kRtT5LJc2OfRKfx_VS1kvg4gpwfa_DiZ5jP3BaxD-kOLGBMWoFCRC3yLj8bFO15vB-ll0cPzjMc7wkagv53ZcwBpOPpUmlEvxMDNvWxEid_SyO4GRUQbTjN5W49AyIUNoaYDbDeXb5oALORqAKGYjV2zrOwhhmxva8yLRrRaNfi38L8Jh49HFxMCrGbm_c0VzzWp0WPo_t8KZUKAGF9w";
+    final String phoneNumber=numerotelefono;
+    final String countryCode="593";
+    final Integer amount=valorfinal;
+    final Integer amountWithoutTax=valorfinal;
+    final String clientTransactionId="fg"+idvalorDado;
+    final String  storeId="6495fc14-f0a1-47ed-ad45-38376803f914";
+
+    Retrofit retrofit=new Retrofit.Builder()
+            .baseUrl("https://pay.payphonetodoesposible.com/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    APIService jsonHolderApi=retrofit.create(APIService.class);
+
+    jsonHolderApi.getPost(
+            authHeader,
+            phoneNumber,
+            countryCode,
+            amount,
+            amountWithoutTax,
+            clientTransactionId,storeId).enqueue(new Callback<BienResponse>() {
+      @Override
+      public void onResponse(Call<BienResponse> call, Response<BienResponse> response) {
+
+        Log.d("Resp: ",response.toString());
+
+
+        if(response.isSuccessful()){
+
+          final String idpp= String.valueOf(response.body().getTransactionId());
+          Toast.makeText(PagoActivity.this, "Revise PayPhone",Toast.LENGTH_SHORT).show();
+          buttonppvertransid.setVisibility(View.VISIBLE);
+          btnpayphoneenviar.setVisibility(View.GONE);
+          buttonppvertransid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              estado(idpp);
+
+            }
+          });
+
+
+
+        }else{
+          Toast.makeText(PagoActivity.this, "Registrate", Toast.LENGTH_LONG).show();
+
+        }
+
+      }
+
+      @Override
+      public void onFailure(Call<BienResponse> call, Throwable t) {
+        Toast.makeText(PagoActivity.this, "Error",Toast.LENGTH_SHORT).show();
+      }
+    });
+
+
+
+  }
+  ///////////FIN PAYPHONE/////////
+
+//////////VERIF. TransaccionId////////////
+
+  public void estado(String idcode){
+
+    Retrofit retrofit=new Retrofit.Builder()
+            .baseUrl("https://pay.payphonetodoesposible.com/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+    APIService jsonHolderApi=retrofit.create(APIService.class);
+
+    Call<idclient> call= jsonHolderApi.getIdUser(  "Bearer 4k7ObhvtbqllouEaaXnxt52ycIMk63E8tB-zfrRLA2j0xVbdeghQdORzE3fsGlB1DvjglEwktp8kqmaKT5PH8iLDXULsMSe6aKAeVR-jcLMRGXe0H2kRtT5LJc2OfRKfx_VS1kvg4gpwfa_DiZ5jP3BaxD-kOLGBMWoFCRC3yLj8bFO15vB-ll0cPzjMc7wkagv53ZcwBpOPpUmlEvxMDNvWxEid_SyO4GRUQbTjN5W49AyIUNoaYDbDeXb5oALORqAKGYjV2zrOwhhmxva8yLRrRaNfi38L8Jh49HFxMCrGbm_c0VzzWp0WPo_t8KZUKAGF9w",
+            idcode);
+    call.enqueue(new Callback <idclient>() {
+      @Override
+      public void onResponse(Call<idclient> call, Response<idclient> response) {
+        if (!response.isSuccessful()){
+
+          Toast.makeText(PagoActivity.this,"Algo salio mal",Toast.LENGTH_LONG).show();
+          return;
+        }
+        idclient postList=response.body();
+        Integer idestado = postList.getStatusCode();
+        String isestadostring= String.valueOf(idestado);
+
+
+
+        if(idestado==1){
+          Toast.makeText(PagoActivity.this,"PAGO PENDIENTE",Toast.LENGTH_LONG).show();
+
+        }if(idestado==2){
+          Toast.makeText(PagoActivity.this,"PAGO CANCELADO",Toast.LENGTH_LONG).show();
+
+        }if(idestado==3){
+          Toast.makeText(PagoActivity.this,"PAGO COMPLETADO",Toast.LENGTH_LONG).show();
+
+
+          final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
+          String banco = "PayPhone";
+
+          sendBank(banco,pedido,"2");
+
+
+        }
+
+      }
+
+
+
+      @Override
+      public void onFailure(Call<idclient> call, Throwable t) {
+
+        Toast.makeText(PagoActivity.this,"Algo salio mal",Toast.LENGTH_LONG).show();
+
+      }
+    });
 
 
 
 
+  }
+
+
+  //////////////////////////////
+
+
+  ///////////VERIFICAR PAYPHONE/////////
+
+
+  public void userget(String numerotelefono){
+    final String n=numerotelefono;
+    Retrofit retrofit=new Retrofit.Builder()
+            .baseUrl("https://pay.payphonetodoesposible.com/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+
+
+    APIService jsonHolderApi=retrofit.create(APIService.class);
+
+    Call<PostUser> call= jsonHolderApi.getUser(  "Bearer 4k7ObhvtbqllouEaaXnxt52ycIMk63E8tB-zfrRLA2j0xVbdeghQdORzE3fsGlB1DvjglEwktp8kqmaKT5PH8iLDXULsMSe6aKAeVR-jcLMRGXe0H2kRtT5LJc2OfRKfx_VS1kvg4gpwfa_DiZ5jP3BaxD-kOLGBMWoFCRC3yLj8bFO15vB-ll0cPzjMc7wkagv53ZcwBpOPpUmlEvxMDNvWxEid_SyO4GRUQbTjN5W49AyIUNoaYDbDeXb5oALORqAKGYjV2zrOwhhmxva8yLRrRaNfi38L8Jh49HFxMCrGbm_c0VzzWp0WPo_t8KZUKAGF9w",
+            n,593);
+
+    call.enqueue(new Callback<PostUser>() {
+      @Override
+      public void onResponse(Call<PostUser> call, Response<PostUser> response) {
+
+        if (!response.isSuccessful()){
+          Log.d("Resp:",response.toString());
+          Log.d("Resp:",response.message());
+          textverifica.setVisibility(View.GONE);
+          buttonurl.setVisibility(View.VISIBLE);
+          btnpayphoneenviar.setVisibility(View.GONE);
+          butverf.setVisibility(View.GONE);
+          textrealicepago.setVisibility(View.GONE);
+
+          textDescargeapp.setVisibility(View.VISIBLE);
+
+          final String url= "https://play.google.com/store/apps/details?id=payPhone_Android.PayPhone_Android";
+          buttonurl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              textDescargeapp.setVisibility(View.GONE);
+              textverifica.setVisibility(View.VISIBLE);
+              butverf.setVisibility(View.VISIBLE);
+              buttonurl.setVisibility(View.GONE);
+              Uri uri = Uri.parse(url);
+              Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+              startActivity(intent);
+            }
+          });
+
+
+
+          Toast.makeText(PagoActivity.this, "Descargue la APP",Toast.LENGTH_LONG).show();
+
+
+        }else{
+
+
+          // Log.d("Resp:", "response 33: "+new Gson().toJson(response.raw().cacheResponse()) );
+
+
+          Toast.makeText(PagoActivity.this, "REGISTRADO PAYPHONE",Toast.LENGTH_SHORT).show();
+          textrealicepago.setVisibility(View.VISIBLE);
+          numberpayphone.setVisibility(View.VISIBLE);
+          textverifica.setVisibility(View.GONE);
+          btnpayphoneenviar.setVisibility(View.VISIBLE);
+          butverf.setVisibility(View.GONE);
+          buttonurl.setVisibility(View.GONE);
+
+
+
+
+        }
+
+
+      }
+
+      @Override
+      public void onFailure(Call<PostUser> call, Throwable t) {
+
+      }
+    });
+
+
+  }
+
+  private void sendBank(String banco, Pedido pedido, String ppa){
+    Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
+    pedido.setBanco(banco);
+    pedido.setPpa(ppa);
+    startActivity(d);
+  }
+
+
+  public void finalizarbutton(View view) {
+    final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
+    String banco = "PayPhone";
+    sendBank(banco,pedido,"2");
+  }
+
+
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        finish();
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  public boolean onCreateOptionsMenu(Menu menu) {
+    return true;
+  }
+
+  public class CustomJavaScriptInterface {
+    Context mContext;
+
+    /**
+     * Instantiate the interface and set the context
+     */
+    CustomJavaScriptInterface(Context c) {
+      mContext = c;
+    }
+
+
+    /**
+     * retrieve the ids
+     */
+    public void getIds(final String myIds) {
+
+
+
+    }
+  }
 
 }

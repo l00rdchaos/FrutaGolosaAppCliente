@@ -19,10 +19,17 @@
 
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
+
+     Esta es la clave de google maps release
+    AIzaSyDvfcLX1nCEY85FdylAjaZDl10d7dCkKlM
+
+    para test
+
+    AIzaSyDrkIpItHDaZbK5Fc9i-9QT6jchkWJskRI
     -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
 
-AIzaSyDvfcLX1nCEY85FdylAjaZDl10d7dCkKlM
+
 
 
 </string>

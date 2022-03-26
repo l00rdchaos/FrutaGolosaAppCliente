@@ -44,66 +44,68 @@
 
 
     <string-array name="Ubicaciones">
-        <item>FRUTA GOLOSA</item>
-        <item>Belisario Quevedo</item>
-        <item>Mariscal Sucre</item>
-        <item>Rumipamba</item>
-        <item>Jipijapa</item>
-        <item>Cochapamba</item>
-        <item>Concepcion</item>
-        <item>Kennedy</item>
-        <item>San Isidro Del Inca</item>
-        <item>Cotocollao</item>
-        <item>Comite del pueblo</item>
-        <item>Condado</item>
-        <item>Carcelen</item>
-        <item>Carapungo</item>
-        <item>Llano Grande</item>
-        <item>Pusuqui</item>
-        <item>Calderon</item>
-        <item>Las Marianas</item>
-        <item>LLano Chico</item>
-        <item>Centro de Quito</item>
-        <item>CHIMBACALLE</item>
-        <item>MAGDALENA</item>
-        <item>CHILIBULO</item>
-        <item>FERROVIARIA</item>
-        <item>SAN BARTOLO</item>
-        <item>MENA</item>
-        <item>SOLANDA</item>
-        <item>ARGELIA</item>
-        <item>CHILLOGALLO</item>
-        <item>QUITUMBE</item>
-        <item>GUAMANI</item>
-        <item>TURUBAMBA</item>
-        <item>ECUATORIANA</item>
-        <item>ESPE</item>
-        <item>SANGOLQUI</item>
-        <item>NAYON</item>
-        <item>PUENGASI</item>
-        <item>CUMBAYA</item>
-        <item>TUMBACO</item>
+        <item>$0 BELISARIO QUEVEDO (NORTE)</item>
+        <item>$0 MARISCAL SUCRE (NORTE)</item>
+        <item>$0 INAQUITO (NORTE)</item>
+        <item>$0 JIPIJAPA (NORTE)</item>
+        <item>$0 COCHAPAMBA (NORTE)</item>
+        <item>$0 CONCEPCION (NORTE)</item>
+        <item>$0 KENNEDY (NORTE)</item>
+        <item>$0 SAN ISIDRO DEL INCA (NORTE)</item>
+        <item>$0 COTOCOLLAO (NORTE)</item>
+        <item>$0 PONCEANO (NORTE)</item>
+        <item>$0 COMITE DEL PUEBLO (NORTE)</item>
+        <item>$0 CONDADO (NORTE)</item>
+        <item>$0 CARCELEN (NORTE)</item>
+        <item>$0 CARAPUNGO (NORTE)</item>
+        <item>$6 LLANO GRANDE (NORTE)</item>
+        <item>$6 PUSUQUI (NORTE)</item>
+        <item>$6 CALDERON (NORTE)</item>
+        <item>$6 MARIANAS (NORTE)</item>
+        <item>$6 LLANO CHICO (NORTE)</item>
+        <item>$0 CENTRO DE QUITO (CENTRO)</item>
+        <item>$0 MAGDALENA (SUR)</item>
+        <item>$0 CHILIBULO (SUR)</item>
+        <item>$0 FERROVIARIA (SUR)</item>
+        <item>$0 SAN BARTOLO (SUR)</item>
+        <item>$0 MENA (SUR)</item>
+        <item>$0 SOLANDA (SUR)</item>
+        <item>$0 ARGELIA (SUR)</item>
+        <item>$0 CHILLOGALLO (SUR)</item>
+        <item>$0 QUITUMBE (SUR)</item>
+        <item>$0 GUAMANI (SUR)</item>
+        <item>$0 TURUBAMBA (SUR)</item>
+        <item>$5 ECUATORIANA (SUR)</item>
+        <item>$4 CONOCOTO (VALLE)</item>
+        <item>$4 ESPE (VALLE)</item>
+        <item>$7 SANGOLQUI (VALLE)</item>
+        <item>$4 NAYON (VALLE)</item>
+        <item>$0 CUMBAYA (VALLE)</item>
+        <item>$4 TUMBACO (VALLE)</item>
+        <item>$0 RUMIPAMBA</item>
     </string-array>
 
     <string-array name="UbicacionesG">
-        <item>SAUCES</item>
         <item>SUBURBIO</item>
-        <item>FLORIDA</item>
-        <item>RIO CENTRO SUR</item>
-        <item>CENTRO DE DURAN</item>
-        <item>URB PUERTO AZUL</item>
-        <item>GAYACAYANES</item>
-        <item>BASE NAVAL</item>
-        <item>PUNTILLA</item>
-        <item>RECREO</item>
-        <item>LAGUNA CLUB</item>
-        <item>BASTION POPULAR</item>
-        <item>PLAYITA</item>
-        <item>DURAN YAGUACHI</item>
-        <item>CERRO BLANCO</item>
-        <item>PLAZA LAGOS</item>
-        <item>ELECTROQUIL</item>
-        <item>LA JOYA</item>
+        <item>$0 SAUCES HASTA LA UNIVERSIDAD AGRARIA (NO SUBURBIO)</item>
+        <item>$0 AEROPUERTO - MALL EL SUR -BABAHOYO</item>
+        <item>$0 SAUCES LAS TEJAS</item>
+        <item>$0 GUASMO SUR PUERTO MARITIMO</item>
+        <item>$0 PUNTILLA PLAZA NAVONA</item>
+        <item>$0 URB. ALCANCE FLORIDA</item>
+        <item>$0 RIO CENTRO SUR HASTA FERTISA</item>
+        <item>$0 CENTRO DE DURAN HASTA ABEL GILBERT</item>
+        <item>$0 URB. PUERTO AZUL HASTA URB. PORTO FINO </item>
+        <item>$0 GUAYACANES - SAMANES</item>
+        <item>$0 PLAZA LAGOS - CENTRO COMERCIAL EL DORADO</item>
+        <item>$0 LA JOYA - CIUDAD SANTIAGO</item>
+        <item>$0 BASE NAVAL SUR HASTA GUASMO SUR</item>
+        <item>$0 PASCUALES 6</item>
+        <item>$0 URB. LAGUNA CLUB HASTA URB. VIA AL SOL</item>
+        <item>$0 BASTION POPULAR HASTA PASCUALES</item>
+        <item>$5 VIA DURAN YAGUACHI HASTA VIA DURAN TAMBO</item>
+        <item>$5 CERRO BLANCO - PLANTA HOLCIM</item>
+        <item>$5 COMPANIA ELECTROQUIL - VALLE ALTO</item>
 
     </string-array>
 

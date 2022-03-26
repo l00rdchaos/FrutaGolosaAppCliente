@@ -24,8 +24,10 @@ import android.widget.Toast;
 
 
 import com.frutagolosa.fgapp.api.ApiClient;
+import com.frutagolosa.fgapp.model.Pedido;
 import com.frutagolosa.fgapp.model.horas;
 import com.frutagolosa.fgapp.api.apiInterfaceFranjas;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -62,10 +64,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
     final CalendarView FechaRecibe= (CalendarView) findViewById(R.id.CalendarTxt);
 
 //Recibe variables del intent anterior---------------------------------------------
-    final int cantpassAnt = getIntent().getIntExtra(CompArreglo.cantidadArreglos,-1);
-    final String precio = getIntent().getStringExtra(CompArreglo.PrecioArreglo);
-    final String IdArreglo = getIntent().getStringExtra(CompArreglo.NombreArreglo);
-    final String tipoArreglo=getIntent().getStringExtra(CompArreglo.TipodeArreglo);
+    final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
 //---------------------------------------------------------------------------------
 
   date2= new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
@@ -84,7 +83,7 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
         FranjaHoraria.setAdapter(adapter3);
 
 
-        if(tipoArreglo=="DESAYUNO"){
+       if(pedido.getTipo_arreglo()=="DESAYUNO"){
           ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.CiudadesDesayuno, android.R.layout.simple_spinner_item);
           SpCiudad.setAdapter(adapter4);
 
@@ -109,8 +108,8 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
         String Ciudad=SpCiudad.getSelectedItem().toString().trim();
         apiInterfacef = ApiClient.getApiClient().create(apiInterfaceFranjas.class);
-        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad+"&&t="+tipoArreglo+"&&a="+IdArreglo);
-
+      //  Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad+"&&t="+tipoArreglo+"&&a="+IdArreglo);
+        Call<List<horas>> call = apiInterfacef.getHora("https://frutagolosa.com/FrutaGolosaApp/horas.php?d="+date2+"&&c="+Ciudad+"&&t="+"&&a=");
         call.enqueue(new Callback<List<horas>>() {
           @Override
           public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
@@ -159,40 +158,12 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
     });
 
-//Pasar al siguiente activiy con validacion de campos en blanco--------------------------------------
-
-
-
-    TextWatcher watcher = new TextWatcher() {
-      @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {
-        String horax =  FranjaHoraria.getSelectedItem().toString().trim();
-        if(s.toString().trim().length()<3||NrecibeTxt.getText().toString().trim().isEmpty()||TelerecibeTxt.getText().toString().length()<10){
 
 
 
 
 
-        } else {
 
-        }
-      }
-
-      @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        //YOUR CODE
-      }
-
-      @Override
-      public void afterTextChanged(Editable s) {
-
-
-      }
-    };
-
-
-    NrecibeTxt.addTextChangedListener(watcher);
-    TelerecibeTxt.addTextChangedListener(watcher);
 
     final CalendarView cale=(CalendarView)findViewById(R.id.CalendarTxt);
     cale.setMinDate(System.currentTimeMillis() - 1000);
@@ -232,9 +203,6 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
             public void onResponse(Call<List<horas>> call, Response<List<horas>> response) {
               if (response.body() != null) {
                 horas = response.body();
-                Toast.makeText(UbicacionEnvioActiviy.this, response.body().toString(), Toast.LENGTH_SHORT).show();
-
-
                 Spinner FranjaHoraria = (Spinner) findViewById(R.id.SpHorario);
                 if (horas.size() >= 1) {
                   String[] s = new String[horas.size()];
@@ -319,15 +287,12 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
           String  TelRecibePass=TelerecibeTxt.getText().toString().replace(","," ").trim();
 
           Intent b = new Intent(UbicacionEnvioActiviy.this, Maps4Activity.class);
-
-          b.putExtra(NombreQuienRecibe, NombRecibePass);
-          b.putExtra(TelefonoQuienRecibe, TelRecibePass);
-          b.putExtra(DiaEntrega,date2 );
-          b.putExtra(FranjaHorariaQueRecibe, hora);
-          b.putExtra(canipass,cantpassAnt);
-          b.putExtra(PrecioArreglo, precio);
-          b.putExtra(NombreArreglo,IdArreglo);
-          b.putExtra(CiudadA,Ciudad);
+          pedido.setNombre_recibe(NombRecibePass);
+          pedido.setTelefono_recibe(TelRecibePass);
+          pedido.setDia_entrega(date2);
+          pedido.setFranja_horaria(hora);
+          pedido.setCiudad(Ciudad);
+          b.putExtra("PEDIDO",pedido);
           startActivity(b);
         }
       }
@@ -340,24 +305,6 @@ public class UbicacionEnvioActiviy extends AppCompatActivity {
 
 
     //--------------------------------------------------------------------------------------------------
-
-  }
-  private void showListinSpinner(){
-    //String array to store all the book names
-    String[] items = new String[horas.size()];
-
-    //Traversing through the whole list to get all the names
-    for(int i=0; i<horas.size(); i++){
-      //Storing names to string array
-      items[i] = horas.get(i).getHora();
-    }
-  Spinner FranjaHoraria= (Spinner) findViewById(R.id.SpHorario);
-    //Spinner spinner = (Spinner) findViewById(R.id.spinner1);
-    ArrayAdapter<String> adapter;
-    adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, items);
-    //setting adapter to spinner
-    FranjaHoraria.setAdapter(adapter);
-    //Creating an array adapter for list view
 
   }
 

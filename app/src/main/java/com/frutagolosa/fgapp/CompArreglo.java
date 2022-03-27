@@ -107,100 +107,86 @@ public class CompArreglo extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
           } else {
             final ProgressDialog loading = ProgressDialog.show(CompArreglo.this, "Cargando...", "Espere por favor");
-            Handler handler=new Handler();
-            handler.postDelayed(new Runnable() {
+
+            new Thread(new Runnable(){
               @Override
               public void run() {
-                String version="2.0.4";
-                RestAdapter adapter = new RestAdapter.Builder()
-                        .setEndpoint("https://frutagolosa.com/FrutaGolosaApp/version.php?z="+version)
-                        .build();
+                try {
+                  String version="2.0.5";
+                  RestAdapter adapter = new RestAdapter.Builder()
+                          .setEndpoint("https://frutagolosa.com/FrutaGolosaApp/version.php")
+                          .build();
 
-                ApiInterfaceVersion api = adapter.create(ApiInterfaceVersion.class);
-                setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                String z=version;
-                api.evaluaversion(
-                        z,
-                        new Callback<Response>() {
-                          @Override
-                          public void success(Response result, Response response) {
-                    if(response.getBody()!=null) {
-                      BufferedReader reader = null;
-                      String output = "";
-
-                      try {
-                        reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
-
-                        output = reader.readLine();
-                        Toast.makeText(CompArreglo.this, output.toString(), Toast.LENGTH_SHORT).show();
-                        if (output.equals("Actual")) {
-
-                          Pedido pedido= new Pedido();
-                          Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
-                          pedido.setNombre_arreglo(IdArreglo.toUpperCase());
-                          pedido.setPrecio_arreglo(precio);
-                          pedido.setTipo_arreglo(tipodearreglo);
-                          f.putExtra("PEDIDO",pedido);
-                         // Toast.makeText(CompArreglo.this,tipodearreglo,Toast.LENGTH_SHORT).show();
-                          startActivity(f);
-                          loading.dismiss();
-
-
-                        } else {
-
-                          builder2.setTitle("Actualice su app");
-                          builder2.setMessage("Tenemos mejoras importantes en nuestra app, por favor actualiza para poder comprar y seguir disfrutando.");
-                          builder2.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                  ApiInterfaceVersion api = adapter.create(ApiInterfaceVersion.class);
+                  setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                  String z=version;
+                  api.evaluaversion(
+                          z,
+                          new Callback<Response>() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                              Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp");
-                              Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                              startActivity(intent);
-                            }
-                          });
-                          builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                          });
-                          builder2.create();
-                          builder2.show();
-                          Toast.makeText(CompArreglo.this, output, Toast.LENGTH_SHORT).show();
-                          loading.dismiss();
-                        }
+                            public void success(Response result, Response response) {
+                              if(response.getBody()!=null) {
+                                BufferedReader reader = null;
+                                String output = "";
 
-                        Pedido pedido= new Pedido();
-                        Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
-                        pedido.setNombre_arreglo(IdArreglo.toUpperCase());
-                        pedido.setPrecio_arreglo(precio);
-                        pedido.setTipo_arreglo(tipodearreglo);
-                        f.putExtra("PEDIDO",pedido);
-                        // Toast.makeText(CompArreglo.this,tipodearreglo,Toast.LENGTH_SHORT).show();
-                        startActivity(f);
-                        loading.dismiss();
-                      } catch (IOException e) {
-                        e.printStackTrace();
-                      }
-                    }  }
-                          @Override
-                          public void failure(RetrofitError error) {
-                            loading.dismiss();
-                            Toast.makeText(CompArreglo.this, "Problemas de conexion, servidor o red, revise que este conectado a datos o tenga Wifi", Toast.LENGTH_LONG).show();
+                                try {
+                                  reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
+
+                                  output = reader.readLine();
+
+                                  if(output.equals("Actual")) {
+
+                                    Pedido pedido= new Pedido();
+                                    Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
+                                    pedido.setNombre_arreglo(IdArreglo.toUpperCase());
+                                    pedido.setPrecio_arreglo(precio);
+                                    pedido.setTipo_arreglo(tipodearreglo);
+                                    f.putExtra("PEDIDO",pedido);
+                                    // Toast.makeText(CompArreglo.this,tipodearreglo,Toast.LENGTH_SHORT).show();
+                                    startActivity(f);
+
+
+                                  } else {
+
+                                    builder2.setTitle("Actualice su app");
+                                    builder2.setMessage("Tenemos mejoras importantes en nuestra app, por favor actualiza para poder comprar y seguir disfrutando.");
+                                    builder2.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                      @Override
+                                      public void onClick(DialogInterface dialog, int which) {
+                                        Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.frutagolosa.fgapp");
+                                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                        startActivity(intent);
+                                      }
+                                    });
+                                    builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                      @Override
+                                      public void onClick(DialogInterface dialog, int which) {
+                                      }
+                                    });
+                                    builder2.create();
+                                    builder2.show();
+                                    Toast.makeText(CompArreglo.this, output, Toast.LENGTH_SHORT).show();
+                                  }
+                                  loading.dismiss();
+
+
+                                } catch (IOException e) {
+                                  e.printStackTrace();
+                                }
+                              }  }
+                            @Override
+                            public void failure(RetrofitError error) {
+                              loading.dismiss();
+                              Toast.makeText(CompArreglo.this, error.toString(), Toast.LENGTH_LONG).show();
+                            }
                           }
-                        }
-                );
+                  );
 
-
-
-
-
-
-
-
+                } catch (Exception ex) {
+                  ex.printStackTrace();
+                }
               }
-            },3000);
-
-
+            }).start();
 
 
 

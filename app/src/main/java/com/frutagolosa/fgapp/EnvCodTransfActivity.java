@@ -25,6 +25,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +47,7 @@ import com.frutagolosa.fgapp.api.BorrarIntentoApi;
 import com.frutagolosa.fgapp.api.RegisterAPI;
 import com.frutagolosa.fgapp.api.RegisterApiContador;
 import com.frutagolosa.fgapp.model.Pedido;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -464,7 +466,8 @@ public class EnvCodTransfActivity extends AppCompatActivity {
                         if (output.equals("Pedido Registrado Exitosamente")) {
                           Toast.makeText(EnvCodTransfActivity.this, output, Toast.LENGTH_LONG).show();
                           Intent d = new Intent(EnvCodTransfActivity.this, Inicio.class);
-
+                          Gson gson = new Gson();
+                          Log.d("json =" , gson.toJson(pedido));
                           startActivity(d);
 
                           finish();
@@ -519,7 +522,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
 
   public void uploadImage() {
     final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
-    final String FechaPass = getIntent().getStringExtra(pedido.getDia_entrega()).replace("/", "a");
+    final String FechaPass =pedido.getDia_entrega().replace("/", "a");
     SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
     final String telefonous = preferences.getString("telefonous", "No");
 

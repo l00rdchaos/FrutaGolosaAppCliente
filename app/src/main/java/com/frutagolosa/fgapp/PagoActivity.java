@@ -608,6 +608,7 @@ public class PagoActivity extends AppCompatActivity {
     Intent d = new Intent(PagoActivity.this, EnvCodTransfActivity.class);
     pedido.setBanco(banco);
     pedido.setPpa(ppa);
+    d.putExtra("PEDIDO",pedido);
     startActivity(d);
   }
 

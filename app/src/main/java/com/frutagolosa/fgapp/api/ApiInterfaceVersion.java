@@ -9,7 +9,7 @@ import retrofit.http.POST;
 public interface ApiInterfaceVersion {
   @FormUrlEncoded
   @POST("/version.php")
-  public void evaluaversion(
+ void evaluaversion(
 
           @Field("z") String z,
 

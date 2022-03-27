@@ -8,8 +8,8 @@ android {
         applicationId "com.frutagolosa.fgapp"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 74
-        versionName "2.0.4"
+        versionCode 75
+        versionName "2.0.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         lintOptions {
             checkReleaseBuilds false // Add this

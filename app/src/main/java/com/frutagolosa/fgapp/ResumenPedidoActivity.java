@@ -33,7 +33,7 @@ import retrofit.client.Response;
 
 public class ResumenPedidoActivity extends AppCompatActivity {
     //Recibe variables del intent anterior---------------------------------------------
-    final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
+
     //---------------------------------------------------------------------------------
 
     public  int preciototal=1;
@@ -48,11 +48,11 @@ public class ResumenPedidoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumen_pedido);
-
+        final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
 
 
         ImageView imgcomparr=findViewById(R.id.ImgCompArr);
-        Glide.with(this).asBitmap().transform(new CenterCrop(),new RoundedCorners(10)).load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +pedido.getNombre_arreglo()+"1.jpg").into(imgcomparr);
+        Glide.with(this).asBitmap().transform(new CenterCrop(),new RoundedCorners(10)).load("https://frutagolosa.com/FrutaGolosaApp/Administrador/images/" +pedido.getNombre_arreglo().toLowerCase()+"1.jpg").into(imgcomparr);
 
         TextView sectortxt=(TextView) findViewById(R.id.TxtSector);
         TextView NA=(TextView) findViewById(R.id.NombreArregloPr);
@@ -74,7 +74,7 @@ public class ResumenPedidoActivity extends AppCompatActivity {
         TextView Especificaciontxa=(TextView) findViewById(R.id.TxtEspecificacionrp);
         final TextView textpreciofinal=(TextView) findViewById(R.id.textpreciofinal);
         final TextView descuentotxt=(TextView) findViewById(R.id.txtdescuento);
-final Button btndescuento=(Button)findViewById(R.id.btnDescuento);
+        final Button btndescuento=(Button)findViewById(R.id.btnDescuento);
         SharedPreferences preferences2=getSharedPreferences("login", Context.MODE_PRIVATE);
         String c=preferences2.getString("mailus","No");
         String t=preferences2.getString("telefonous","No");
@@ -96,14 +96,14 @@ final Button btndescuento=(Button)findViewById(R.id.btnDescuento);
         GloboTA.setText("MOTIVO: "+pedido.getMotivo());
         Detagg.setText("EN TARJETA: "+pedido.getDetaAgg());
         Numerac.setText("NUMERACION O PISO :"+pedido.getNumeracion());
-        Especificaciontxa.setText("ESPECIFICACION :"+pedido.getEspecificacion());
+        Especificaciontxa.setText("");
         sectortxt.setText("SECTOR: "+pedido.getSector());
 
 
 
         try{
              precio = Integer.parseInt(pedido.getPrecio_arreglo());
-             preciof=Integer.parseInt(pedido.getPrecio_viaje().substring(1,2));
+             preciof=Integer.parseInt(pedido.getPrecio_viaje());
         }
         catch (NumberFormatException ex){
             ex.printStackTrace();
@@ -114,6 +114,7 @@ final Button btndescuento=(Button)findViewById(R.id.btnDescuento);
 
         preciototale=precio+preciof;
         textpreciofinal.setText("PRECIO TOTAL: "+String.valueOf(preciototale)+" USD");
+
 
         btndescuento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,7 +195,7 @@ dac=precio*30;
 
                 Intent d = new Intent(ResumenPedidoActivity.this, PagoActivity.class);
                 String tp="t";
-                pedido.setPrecioTotal(String.valueOf(preciototal));
+                pedido.setPrecioTotal(String.valueOf(preciototale));
                 pedido.setTipo(tp);
                 d.putExtra("PEDIDO",pedido);
                 startActivity(d);
@@ -207,7 +208,7 @@ dac=precio*30;
             public void onClick(View v) {
                 Intent d = new Intent(ResumenPedidoActivity.this, PagoActivity.class);
                 String tp="p";
-                pedido.setPrecioTotal(String.valueOf(preciototal));
+                pedido.setPrecioTotal(String.valueOf(preciototale));
                 pedido.setTipo(tp);
                 d.putExtra("PEDIDO",pedido);
                 startActivity(d);
@@ -221,7 +222,7 @@ dac=precio*30;
             public void onClick(View v) {
                 Intent d = new Intent(ResumenPedidoActivity.this, PagoActivity.class);
                 String tp="pp";
-                pedido.setPrecioTotal(String.valueOf(preciototal));
+                pedido.setPrecioTotal(String.valueOf(preciototale));
                 pedido.setTipo(tp);
                 d.putExtra("PEDIDO",pedido);
                 startActivity(d);
@@ -230,7 +231,7 @@ dac=precio*30;
             }
         }); //boton del clicklister
 //
-//  
+//
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);

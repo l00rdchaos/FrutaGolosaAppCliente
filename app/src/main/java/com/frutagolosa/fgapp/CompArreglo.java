@@ -111,7 +111,7 @@ public class CompArreglo extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
               @Override
               public void run() {
-                String version="2.0.5";
+                String version="2.0.4";
                 RestAdapter adapter = new RestAdapter.Builder()
                         .setEndpoint("https://frutagolosa.com/FrutaGolosaApp/version.php?z="+version)
                         .build();
@@ -132,6 +132,7 @@ public class CompArreglo extends AppCompatActivity {
                         reader = new BufferedReader(new InputStreamReader(result.getBody().in()));
 
                         output = reader.readLine();
+                        Toast.makeText(CompArreglo.this, output.toString(), Toast.LENGTH_SHORT).show();
                         if (output.equals("Actual")) {
 
                           Pedido pedido= new Pedido();
@@ -167,6 +168,16 @@ public class CompArreglo extends AppCompatActivity {
                           Toast.makeText(CompArreglo.this, output, Toast.LENGTH_SHORT).show();
                           loading.dismiss();
                         }
+
+                        Pedido pedido= new Pedido();
+                        Intent f = new Intent(CompArreglo.this, UbicacionEnvioActiviy.class);
+                        pedido.setNombre_arreglo(IdArreglo.toUpperCase());
+                        pedido.setPrecio_arreglo(precio);
+                        pedido.setTipo_arreglo(tipodearreglo);
+                        f.putExtra("PEDIDO",pedido);
+                        // Toast.makeText(CompArreglo.this,tipodearreglo,Toast.LENGTH_SHORT).show();
+                        startActivity(f);
+                        loading.dismiss();
                       } catch (IOException e) {
                         e.printStackTrace();
                       }

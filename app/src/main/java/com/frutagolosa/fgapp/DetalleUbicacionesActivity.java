@@ -44,9 +44,7 @@ public class DetalleUbicacionesActivity extends AppCompatActivity {
     private final int xf = (int) (Math.random() * 10000);
     private final String xf2 = String.valueOf(xf);
 
-    //Recibe variables del intent anterior---------------------------------------------
-    final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
-    //---------------------------------------------------------------------------------
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +52,9 @@ public class DetalleUbicacionesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_ubicaciones);
 
 
-
+        //Recibe variables del intent anterior---------------------------------------------
+        final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
+        //---------------------------------------------------------------------------------
         final EditText CallePrin=(EditText) findViewById(R.id.EdtCallePrin);
         final EditText CallSec=(EditText) findViewById(R.id.EdtCalleSec);
         final EditText Refe=(EditText) findViewById(R.id.EdtRefe);
@@ -154,9 +154,6 @@ insertPendiente();
 
     public void insertPendiente() {
 
-
-
-
         final EditText CallePrin=(EditText) findViewById(R.id.EdtCallePrin);
         final EditText CallSec=(EditText) findViewById(R.id.EdtCalleSec);
         final EditText Refe=(EditText) findViewById(R.id.EdtRefe);
@@ -174,25 +171,14 @@ insertPendiente();
         }else {if (!compruebaConexion(getApplicationContext())) {
             Toast.makeText(getBaseContext(), "Necesaria conexión a internet para comprar ", Toast.LENGTH_SHORT).show();
         }else {
+            //Recibe variables del intent anterior---------------------------------------------
+            final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
+            //---------------------------------------------------------------------------------
             final ProgressDialog loading = ProgressDialog.show(DetalleUbicacionesActivity.this, "Cargando...", "Espere por favor");
             SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
             String nombreus = preferences.getString("nombreus", "Registrese");
             String mailus = preferences.getString("mailus", "No");
             String telefonous = preferences.getString("telefonous", "No");
-
-            final int cantidadpass=getIntent().getIntExtra(Maps4Activity.Cantidadpassm,-1);
-            final String Nombpass=getIntent().getStringExtra(Maps4Activity.NombreQuienRecibe);
-            final String TelPass=getIntent().getStringExtra(Maps4Activity.TelefonoQuienRecibe);
-            final String Horapass=getIntent().getStringExtra(Maps4Activity.FranjaHorariaQueRecibe);
-            final String FechaPass=getIntent().getStringExtra(Maps4Activity.DiaEntrega);
-            final String DireccionPassr=getIntent().getStringExtra(Maps4Activity.Direccionpassa);
-
-            final String PrecioViajePassa=getIntent().getStringExtra(Maps4Activity.PrecioViajePass);
-            final String precioArreglo = getIntent().getStringExtra(Maps4Activity.PrecioArreglo);
-            final String IdArreglo = getIntent().getStringExtra(Maps4Activity.NombreArreglo);
-            final String sector = getIntent().getStringExtra(Maps4Activity.Sector);
-
-            final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
             final String callprin=CallePrin.getText().toString().replace(","," ").trim();
             final String callsec=CallSec.getText().toString().replace(","," ").trim();
             final String refer=Refe.getText().toString().trim();
@@ -208,32 +194,32 @@ insertPendiente();
             String b = telefonous;
             String c = nombreus;
             String d = mailus;
-            final String e = Nombpass;
-            String f = TelPass;
-            String g = FechaPass;
-            String h = Horapass;
+            final String e = pedido.getNombre_recibe();
+            String f = pedido.getTelefono_recibe();
+            String g = pedido.getDia_entrega();
+            String h = pedido.getFranja_horaria();
             String i = callprin;
             String j = Numerac;
             String k = callsec;
             String l = CasaEmpEdif;
             String m = refer;
-            String n = IdArreglo;
-            String o = precioArreglo;
+            String n = pedido.getNombre_arreglo();
+            String o = pedido.getPrecio_arreglo();
             String p = "NO";
-            String q = Nombpass;
+            String q = pedido.getNombre_recibe();
             String r = detagg;
             String s = especificacion;
             String t = "keyaccount";
-            String v =sector;
+            String v =pedido.getSector();
             String w = "FRUTAGOLOSA";
             String x = "NO";
             String cc = "NO";
             String y  =MotivGlob;
             String z = "Compra Pendiente";
             String aa = "motorizado";
-            String bb = DireccionPassr;
-            String dd = Ciudad;
-            String ee = PrecioViajePassa.replace("$","");
+            String bb = pedido.getCoordenadas();
+            String dd = pedido.getCiudad();
+            String ee = pedido.getPrecio_viaje().replace("$","");
 
             RestAdapter adapter = new RestAdapter.Builder()
                     .setEndpoint(ROOT_URL)

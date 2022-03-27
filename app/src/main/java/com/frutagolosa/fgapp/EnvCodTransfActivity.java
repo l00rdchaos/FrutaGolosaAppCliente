@@ -111,7 +111,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
     final ImageView btnBolivariano = (ImageView) findViewById(R.id.btnBolivariano);
     final ImageView btnGuayaquil = (ImageView) findViewById(R.id.btnGuayaquil);
     final ImageView btnPacifico = (ImageView) findViewById(R.id.btnPacifico);
-    final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
+
     Button listoco = (Button) findViewById(R.id.btnListoCod);
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
@@ -188,7 +188,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
 
 
       }
-      insertUser();
+      insertUser("En Espera");
 
     }
 
@@ -244,7 +244,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
 
 
       }
-      insertUser();
+      insertUser("En Espera");
 
     }
 
@@ -327,8 +327,6 @@ public class EnvCodTransfActivity extends AppCompatActivity {
 
            uploadImage();
 
-
-
           }
 
 
@@ -364,17 +362,11 @@ public class EnvCodTransfActivity extends AppCompatActivity {
 
 
      private void WspFunct()   {
-
-
-
-        insertUser();
-
-
-
+        insertUser("Por Confirmar");
   }
 
 
-  public void insertUser() {
+  public void insertUser(String estado) {
     CalendarView FechaPedidoCalendar = findViewById(R.id.FechaActualCalendar);
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     String datea = sdf.format(new Date(FechaPedidoCalendar.getDate()));
@@ -408,7 +400,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
     String x = "NO";
     String cc = "https://frutagolosa.com/FrutaGolosaApp/uploads/" + pedido.getDia_entrega().replace("/", "a") + xf2 + ".png";
     String y = pedido.getMotivo();
-    String z = "Por Confirmar";
+    String z = estado;
     String aa = "motorizado";
     String bb = pedido.getCoordenadas();
     String dd = pedido.getCiudad();
@@ -541,7 +533,7 @@ public class EnvCodTransfActivity extends AppCompatActivity {
                 Toast.makeText(EnvCodTransfActivity.this, response, Toast.LENGTH_LONG).show();
                 if(response.equals("Imagen Enviada")){
 
-                    insertUser();
+                    insertUser("Por Confirmar");
 
                 }
 

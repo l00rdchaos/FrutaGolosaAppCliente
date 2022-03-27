@@ -48,18 +48,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class Maps4Activity extends AppCompatActivity implements OnMapReadyCallback {
-    public static final String NombreQuienRecibe="NombreQuienRecibe" ;
-    public static final String TelefonoQuienRecibe="TelfQuienRecibe" ;
-    public static final String DiaEntrega="DiaQueRecibe" ;
-    public static final String FranjaHorariaQueRecibe="HoraQueRecibe" ;
-    public static final String Cantidadpassm="u" ;
-    public static final String Direccionpassa="hola" ;
-    public static final String PrecioViajePass="precioviaje" ;
-    public static final String NombreArreglo="nombrearreglo" ;
-    public static final String cantidadArreglos="cantidadArreglos" ;
-    public static final String PrecioArreglo="precioarreglo" ;
-    public static final String Sector="sector" ;
-    public static final String CiudadA="ciudadd" ;
     private GoogleMap mMap;
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
     private int per=1;
@@ -119,12 +107,11 @@ envdc.setOnClickListener(new View.OnClickListener() {
             String corde = cordenada.getText().toString();
             String Precio = Ubicaciones.getSelectedItem().toString().substring(1,2);
             String sector =Ubicaciones.getSelectedItem().toString();
-            re.putExtra(PrecioViajePass, Precio);
-            re.putExtra(Sector, sector);
             pedido.setPrecio_viaje(Precio);
             pedido.setSector(sector);
             pedido.setCoordenadas(corde);
             re.putExtra("PEDIDO",pedido);
+        Toast.makeText(Maps4Activity.this, Precio, Toast.LENGTH_SHORT).show();
             startActivity(re);
         }
 
@@ -162,7 +149,8 @@ setTitle("Fruta Golosa");
 
 
     public void onMapSearch(View view) {
-        final String Ciudad = getIntent().getStringExtra(UbicacionEnvioActiviy.CiudadA);
+        final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
+        final String Ciudad = pedido.getCiudad();
         Spinner Ubicacionesw;
 
         Ubicacionesw= (Spinner) findViewById(R.id.SpUbicaciones);
@@ -197,13 +185,10 @@ setTitle("Fruta Golosa");
         mMap = googleMap;
 
         TextView prec = (TextView) findViewById(R.id.textprecio);
+        final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
         TextView Coord = (TextView) findViewById(R.id.textDistancia);
-        final String Ciudad = getIntent().getStringExtra(UbicacionEnvioActiviy.CiudadA);
+        final String Ciudad = pedido.getCiudad();
         mMap.getUiSettings().setZoomControlsEnabled(true);
-
-        final String Coordenadas = getIntent().getStringExtra(VerMotorizado.COORDENADAS);
-
-
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             per=1;
@@ -238,57 +223,9 @@ try {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cord, zoom));
         }
 
-        else {if (Ciudad.equals("si")){
-Button BtnEnvDic=(findViewById(R.id.BtnEnvDic));
-            BtnEnvDic.setVisibility(View.GONE);
-            ImageView fotomoto=findViewById(R.id.imgFotoMoto);
-            final String Coordena = getIntent().getStringExtra(VerMotorizado.COORDENADAS);
-            final String imgmoto = getIntent().getStringExtra(VerMotorizado.IMAGENMOTO);
-            fotomoto.setVisibility(View.VISIBLE);
-            Glide.with(this).load(imgmoto).into(fotomoto);
-            String[] latlong =  Coordena.split(",");
-            double latitude = Double.parseDouble(latlong[0]);
-            double longitude = Double.parseDouble(latlong[1]);
-            LatLng location = new LatLng(latitude, longitude);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,zoom));
-            mMap.addMarker(new MarkerOptions()
-                    .anchor(0.0f, 1.0f)
-                    .position(location)
-
-
-            );
-
-
-
-
-
-
-        }
-
-
-        }
 
 
     }
-
-
-
-
-
-try{
-
-
-
-
-}catch (Exception e){
-
-
-
-
-}
-
-
-
 
 
 }catch (Exception e){}
@@ -486,7 +423,7 @@ prec.setText("De un toque a la pantalla para marcar ubicacion o deje pulsado");
     }
 
     public void marcarmapaG(LatLng latLng){
-        final String Ciudad = getIntent().getStringExtra(UbicacionEnvioActiviy.CiudadA);
+        final Pedido pedido = (Pedido) getIntent().getSerializableExtra("PEDIDO");
         TextView prec = (TextView) findViewById(R.id.textprecio);
         TextView prec2 = (TextView) findViewById(R.id.txtprecDol);
         TextView Coord = (TextView) findViewById(R.id.textDistancia);

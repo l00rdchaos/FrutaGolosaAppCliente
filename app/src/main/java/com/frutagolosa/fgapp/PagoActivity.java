@@ -288,8 +288,6 @@ public class PagoActivity extends AppCompatActivity {
       }
       @Override
       public void onPageFinished(WebView view, String url) {
-
-        final String Ciudad = getIntent().getStringExtra(Maps4Activity.CiudadA);
         if(url.equals("https://frutagolosa.com/FrutaGolosaApp/PayPal/confirmado.html")){
           String banco = "Paypal";
           sendBank(banco,pedido,"1");
